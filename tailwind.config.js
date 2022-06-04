@@ -13,12 +13,18 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        poppins: "'Poppins',sans - serif",
+        poppins: "'Poppins',sans-serif",
         Roboto: "'Roboto', sans-serif",
       },
       colors: {
         primary: "#FF6709",
       },
+    },
+  },
+  variants: {
+    extend: {
+      display: ["group-hover"],
+      visibility: ["group-hover"],
     },
   },
   plugins: [],
