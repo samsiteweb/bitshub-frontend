@@ -1,5 +1,10 @@
 import React from "react";
-import game from "../images/game.svg";
+import game from "../images/gaming.png";
+import office from "../images/office.png";
+import personal from "../images/personal.png";
+import workstation from "../images/workstation.png";
+import sleek from "../images/sleek.png";
+import component from "../images/components.png";
 
 const Navbar = () => {
   return (
@@ -16,23 +21,23 @@ const Navbar = () => {
               <span className="ml-6 text-gray-600 text-sm">Gaming</span>
             </a>
             <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-              <img src={game} alt="" className="w-5 h-5 object-contain" />
+              <img src={office} alt="" className="w-5 h-5 object-contain" />
               <span className="ml-6 text-gray-600 text-sm">Office</span>
             </a>
             <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-              <img src={game} alt="" className="w-5 h-5 object-contain" />
+              <img src={personal} alt="" className="w-5 h-5 object-contain" />
               <span className="ml-6 text-gray-600 text-sm">Personal</span>
             </a>
             <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-              <img src={game} alt="" className="w-5 h-5 object-contain" />
-              <span className="ml-6 text-gray-600 text-sm">Desktops</span>
+              <img src={workstation} alt="" className="w-5 h-5 object-contain" />
+              <span className="ml-6 text-gray-600 text-sm">Workstation</span>
             </a>
             <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-              <img src={game} alt="" className="w-5 h-5 object-contain" />
+              <img src={sleek} alt="" className="w-5 h-5 object-contain" />
               <span className="ml-6 text-gray-600 text-sm">Sleek</span>
             </a>
             <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-              <img src={game} alt="" className="w-5 h-5 object-contain" />
+              <img src={component} alt="" className="w-5 h-5 object-contain" />
               <span className="ml-6 text-gray-600 text-sm">components</span>
             </a>
           </div>
