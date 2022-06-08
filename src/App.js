@@ -3,6 +3,7 @@ import Banner from "./pages/Banner";
 import moneyBack from "./images/money-back.png";
 import transit from "./images/transit.png";
 import support from "./images/support.png";
+import Categories from "./components/Categories";
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      <Categories />
     </div>
   );
 }
