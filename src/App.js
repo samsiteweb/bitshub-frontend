@@ -4,6 +4,7 @@ import moneyBack from "./images/money-back.png";
 import transit from "./images/transit.png";
 import support from "./images/support.png";
 import Categories from "./components/Categories";
+import Products from "./components/Products";
 function App() {
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function App() {
       </div>
 
       <Categories />
+      <Products />
     </div>
   );
 }
