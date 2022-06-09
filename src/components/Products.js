@@ -6,7 +6,7 @@ const Products = () => {
   return (
     <div className="container pb-16">
       <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">top new arrival</h2>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-3 sm:grid-cols-2">
         <div className="bg-white rounded shadow overflow-hidden group">
           <div className="relative">
             <img src={prod4} alt="" className="w-full" />

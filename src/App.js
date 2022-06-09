@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Banner />
       <div className="container py-16">
-        <div className="w-10/12 grid grid-cols-3 gap-6 mx-auto justify-center">
+        <div className="w-10/12 grid lg:grid-cols-3 gap-6 md:grid-cols-1 sm:grid-cols-1 mx-auto justify-center">
           <div className="border border-primary rounded-sm px-3 py-6 justify-center flex items-center gap-5">
             <img src={transit} alt="" className="w-12 h-12 object-contain" />
             <div>
