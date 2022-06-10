@@ -1,6 +1,6 @@
 import React from "react";
 
-const Home = () => {
+const Banner = () => {
   return (
     <div
       className="bg-cover bg-no-repeat bg-center py-36"
@@ -19,7 +19,7 @@ const Home = () => {
         </p>
         <div className="mt-12 ">
           <a
-            href=""
+            href="none"
             className="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition"
           >
             Shop Now
@@ -30,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Banner;
