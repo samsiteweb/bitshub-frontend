@@ -1,4 +1,7 @@
 import React from "react";
+
+import { Link } from "react-router-dom";
+
 import game from "../images/gaming.png";
 import office from "../images/office.png";
 import personal from "../images/personal.png";
@@ -44,22 +47,23 @@ const Navbar = () => {
         </div>
         <div className="flex items-center justify-between flex-grow pl-12">
           <div className="flex items-center space-x-6 capitalize">
-            <a href="" className="text-gray-200 hover:text-white transition">
+            <Link className="text-gray-200 hover:text-white transition" to="/">
               Home
-            </a>
-            <a href="" className="text-gray-200 hover:text-white transition">
+            </Link>
+            <Link className="text-gray-200 hover:text-white transition" to="/shop">
               Shop
-            </a>
-            <a href="" className="text-gray-200 hover:text-white transition">
+            </Link>
+
+            <Link className="text-gray-200 hover:text-white transition" to="/about">
               About Us
-            </a>
-            <a href="" className="text-gray-200 hover:text-white transition">
-              Contact us
-            </a>
+            </Link>
+            <Link className="text-gray-200 hover:text-white transition" to="/contact">
+              Contact Us
+            </Link>
           </div>
-          <a href="" className="text-gray-200 hover:text-white transition">
+          <Link className="text-gray-200 hover:text-white transition" to="/login">
             Login/Register
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
