@@ -17,3 +17,9 @@
     font-family: roboto;
   }
 }
+
+@layer components{
+.size-selector input:checked + label{
+  @apply bg-primary text-white
+}
+}
