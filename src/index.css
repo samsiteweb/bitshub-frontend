@@ -22,4 +22,7 @@
 .size-selector input:checked + label{
   @apply bg-primary text-white
 }
+.color-selecter input:checked + label{
+  @apply ring-2 ring-primary
+}
 }
