@@ -1,14 +1,13 @@
 import React from "react";
-import prod3 from "../images/products/Dell-Inspiron-15-5000-5558-Silver-Version.jpg";
-import prod4 from "../images/products/HPENVYx360m6__2_.jpg";
 
-const Product = () => {
+const Product = (props) => {
+  const { item } = props;
+
   return (
     <div>
-      {" "}
       <div className="bg-white rounded shadow overflow-hidden group">
         <div className="relative">
-          <img src={prod3} alt="" className="w-full" />
+          <img src={item.image} alt="" className="w-full" />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
             <a
               href=""
@@ -27,12 +26,12 @@ const Product = () => {
         <div className="pt-4 pb-3 px-4">
           <a href="">
             <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
-              Lenovo YOGA
+              {item.name}
             </h4>
           </a>
           <div className="flex items-baseline mb-1 space-x-2 font-roboto">
-            <p className="text-xl text-primary font-semibold">$45.00</p>
-            <p className="text-sm text-gray-400 line-through">$45.00</p>
+            <p className="text-xl text-primary font-semibold">${item.price}</p>
+            <p className="text-sm text-gray-400 line-through">${item.initialPrice}</p>
           </div>
           <div className="flex items-center">
             <div className="flex gap-1 text-sm text-yellow-400">
@@ -44,7 +43,7 @@ const Product = () => {
                 <i className="fas fa-star"></i>
               </span>
             </div>
-            <div className="text-xs text-gray-500 ml-3">(150)</div>
+            <div className="text-xs text-gray-500 ml-3">{`(${item.quantityInStock})`}</div>
           </div>
         </div>
         <a

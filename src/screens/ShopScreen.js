@@ -1,6 +1,7 @@
 import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Product from "../components/Product";
+import { ProductData } from "../data/productData";
 
 const ShopScreen = () => {
   return (
@@ -214,8 +215,11 @@ const ShopScreen = () => {
           </div>
 
           {/* Products */}
-          <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-2">
-            <Product />
+
+          <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-2 sm:grid-cols-1">
+            {ProductData.products.map((item) => {
+              return <Product item={item} id={item.id} />;
+            })}
           </div>
         </div>
       </div>
