@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Rating from "./Rating";
 
 const Product = (props) => {
   const { item } = props;
@@ -6,52 +8,48 @@ const Product = (props) => {
   return (
     <div>
       <div className="bg-white rounded shadow overflow-hidden group">
-        <div className="relative">
-          <img src={item.image} alt="" className="w-full" />
+        <div className="relative" style={{ height: "150px" }}>
+          <img src={item.image} alt="" style={{ width: "100%", height: "100%" }} />
+
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-            <a
-              href=""
+            <Link
+              to="/shop"
               className="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
             >
               <i className="fas fa-search"></i>
-            </a>
-            <a
-              href=""
-              className="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
+            </Link>
+            <span
+              className="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center
+              hover:bg-gray-800 transition"
             >
               <i className="far fa-heart"></i>
-            </a>
+            </span>
           </div>
         </div>
         <div className="pt-4 pb-3 px-4">
-          <a href="">
-            <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+          <Link to={`productDetails/${item.id}`}>
+            <h4 className="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition">
               {item.name}
             </h4>
-          </a>
+          </Link>
           <div className="flex items-baseline mb-1 space-x-2 font-roboto">
-            <p className="text-xl text-primary font-semibold">${item.price}</p>
+            <p className="text-l text-primary font-semibold">${item.price}</p>
             <p className="text-sm text-gray-400 line-through">${item.initialPrice}</p>
           </div>
           <div className="flex items-center">
-            <div className="flex gap-1 text-sm text-yellow-400">
-              <span>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-              </span>
+            <Rating />
+            <div className="text-xs text-gray-500 ml-3">
+              {`(${item.quantityInStock})`}
+              <span className="text-xs text-gray-500 ml-3 uppercase">-{item.condition}</span>
             </div>
-            <div className="text-xs text-gray-500 ml-3">{`(${item.quantityInStock})`}</div>
           </div>
         </div>
-        <a
-          href=""
+        <Link
+          to={`productDetails/${item.id}`}
           className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
         >
           Add to cart
-        </a>
+        </Link>
       </div>
     </div>
   );
