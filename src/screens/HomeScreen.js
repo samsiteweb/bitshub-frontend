@@ -4,7 +4,6 @@ import Banner from "../components/Banner";
 import Categories from "../components/Categories";
 import Products from "../components/Products";
 import Ad from "../components/Ad";
-import Footer from "../components/Footer";
 
 const HomeScreen = () => {
   return (
@@ -27,7 +26,6 @@ const HomeScreen = () => {
         <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">recommended for you</h2>
         <Products />
       </div>
-      <Footer />
     </div>
   );
 };
