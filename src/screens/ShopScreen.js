@@ -6,7 +6,7 @@ import { ProductData } from "../data/productData";
 const ShopScreen = () => {
   return (
     <div>
-      <Breadcrumbs />
+      <Breadcrumbs page="Shop" />
       <div className="container grid grid-cols-4 gap-6 pt-4 pb-16 items-start">
         <div className="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hidden">
           <div className="divide-y divide-gray-200 space-y-5">
@@ -145,7 +145,7 @@ const ShopScreen = () => {
 
             {/* color */}
             <div className="pt-4">
-              <h3 className="text-xl-text-gray-800 mb-3 uppercase font-medium">Color</h3>
+              <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium">Color</h3>
               <div className="flex items-center gap-2">
                 <div className="color-selecter">
                   <input type="radio" name="color" className="hidden" id="color-grey" />

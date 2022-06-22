@@ -4,6 +4,8 @@ import HomeScreen from "./screens/HomeScreen";
 import AboutScreen from "./screens/AboutScreen";
 import ShopScreen from "./screens/ShopScreen";
 import ContactScreen from "./screens/ContactScreen";
+import Footer from "./components/Footer";
+import ProductDetails from "./components/ProductDetails";
 function App() {
   return (
     <BrowserRouter>
@@ -15,7 +17,10 @@ function App() {
           <Route path="/about" component={AboutScreen}></Route>
           <Route path="/shop" component={ShopScreen}></Route>
           <Route path="/contact" component={ContactScreen}></Route>
+          <Route path="/product-details" component={ProductDetails}></Route>
         </main>
+
+        <Footer />
       </div>
     </BrowserRouter>
   );

@@ -27,7 +27,7 @@ const Product = (props) => {
           </div>
         </div>
         <div className="pt-4 pb-3 px-4">
-          <Link to={`productDetails/${item.id}`}>
+          <Link to={`product-details/${item.id}`}>
             <h4 className="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition">
               {item.name}
             </h4>
@@ -45,7 +45,7 @@ const Product = (props) => {
           </div>
         </div>
         <Link
-          to={`productDetails/${item.id}`}
+          to={`cart/${item.id}`}
           className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
         >
           Add to cart
