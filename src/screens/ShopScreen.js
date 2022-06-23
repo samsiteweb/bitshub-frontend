@@ -88,13 +88,13 @@ const ShopScreen = () => {
               <div className="mt-4 flex items-center">
                 <input
                   type="text"
-                  className="w-full border-gray-300 focus:border-primary focu:ring-0 px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
+                  className="w-full border-gray-300 focus:border-primary focus:ring-primary focu:ring-0 px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
                   placeholder="min"
                 />
                 <span className="mx-3 text-gray-500">-</span>
                 <input
                   type="text"
-                  className="w-full border-gray-300 focus:border-primary focu:ring-0 px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
+                  className="w-full border-gray-300 focus:border-primary focus:ring-primary focu:ring-0 px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
                   placeholder="max"
                 />
               </div>
@@ -197,7 +197,7 @@ const ShopScreen = () => {
             <select
               name=""
               id=""
-              className="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus-border-primary"
+              className="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
             >
               <option value="">Newly uploaded</option>
               <option value="">Just arrived</option>
