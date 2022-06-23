@@ -18,7 +18,7 @@ const Header = () => {
               type="text"
               name=""
               id=""
-              className="w-full border border-primary border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none"
+              className="w-full border border-primary border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none focus:ring-primary focus:border-primary"
               placeholder="search"
             />
             <button className="bg-primary border border-primary text-white px-8 rounded-r-md hover:bg-transparent hover:text-primary transition">
