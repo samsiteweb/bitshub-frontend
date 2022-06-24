@@ -6,6 +6,7 @@ import ShopScreen from "./screens/ShopScreen";
 import ContactScreen from "./screens/ContactScreen";
 import Footer from "./components/Footer";
 import ProductDetails from "./components/ProductDetails";
+import Account from "./components/Account";
 import { Login } from "./components/Login";
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/contact" component={ContactScreen}></Route>
           <Route path="/product-details" component={ProductDetails}></Route>
           <Route path="/login" component={Login}></Route>
+          <Route path="/account" component={Account}></Route>
         </main>
 
         <Footer />
