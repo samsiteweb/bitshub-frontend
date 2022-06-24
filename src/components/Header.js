@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import bitshub from "../images/bitshub.jpeg";
 import Navbar from "./Navbar";
 
@@ -44,12 +45,13 @@ const Header = () => {
                 8
               </span>
             </a>
-            <a href="" className="text-center text-gray-700 hover:text-primary transition relative">
+
+            <Link to="/account" className="text-center text-gray-700 hover:text-primary transition relative">
               <div className="text-2xl">
                 <i className="far fa-user"></i>
               </div>
               <div className="text-xs leading-3">Account</div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
