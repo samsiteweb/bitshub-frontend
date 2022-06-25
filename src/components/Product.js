@@ -9,7 +9,7 @@ const Product = (props) => {
     <div>
       <div className="bg-white rounded shadow overflow-hidden group">
         <div className="relative" style={{ height: "150px" }}>
-          <img src={item.image} alt="" style={{ width: "100%", height: "100%" }} />
+          <img src={item.image[0]} alt="" style={{ width: "100%", height: "100%" }} />
 
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
             <Link

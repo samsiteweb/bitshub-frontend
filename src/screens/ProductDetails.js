@@ -20,13 +20,14 @@ const ProductDetails = (props) => {
         <Breadcrumbs page="Product view" />
         <div className="container grid grid-cols-2 gap-6">
           <div>
-            <img src={product.image} alt={product.name} />
+            <img src={product.image[0]} alt={product.name} />
             <div className="grid grid-cols-5 gap-4 mt-4">
-              <img src={product.image} alt={product.name} className="w-full cursor-pointer border border-primary" />
-              <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" className="w-full cursor-pointer border" />
-              <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" className="w-full cursor-pointer border" />
-              <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" className="w-full cursor-pointer border" />
-              <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[0]} alt={product.name} className="w-full cursor-pointer border border-primary" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[2]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[3]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[4]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[5]} alt="" className="w-full cursor-pointer border" />
             </div>
           </div>
 

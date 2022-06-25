@@ -6,7 +6,7 @@ const Categories = () => {
   return (
     <div className="grid lg:grid-cols-3 gap-3 md:grid-cols-2 sm:grid-cols-1">
       {categoryData.category.map((item) => {
-        return <CategoryCard item={item} />;
+        return <CategoryCard item={item} key={item.id} />;
       })}
     </div>
   );

@@ -5,7 +5,7 @@ const Breadcrumbs = (props) => {
   const { page } = props;
   return (
     <div className="container py-4 flex items-center gap-3">
-      <Link rel="stylesheet" href="" className="text-primary text-base">
+      <Link to="/" className="text-primary text-base">
         <i className="fas fa-home"></i>
       </Link>
 
