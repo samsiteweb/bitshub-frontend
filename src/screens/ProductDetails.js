@@ -1,22 +1,28 @@
 import React from "react";
-import Breadcrumbs from "./Breadcrumbs";
-import Products from "./Products";
-import Rating from "./Rating";
+import Breadcrumbs from "../components/Breadcrumbs";
+import Products from "../components/Products";
+import Rating from "../components/Rating";
+import { ProductData } from "../data/productData";
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
+  console.log(props.match.params);
+  const product = ProductData.products.find((data) => {
+    console.log("data:", data.id, "props:", props.match.params.id);
+    return data.id === props.match.params.id;
+  });
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
   return (
     <div>
       <div>
         <Breadcrumbs page="Product view" />
         <div className="container grid grid-cols-2 gap-6">
           <div>
-            <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" />
+            <img src={product.image} alt={product.name} />
             <div className="grid grid-cols-5 gap-4 mt-4">
-              <img
-                src="../assets/products/HPENVYx360m6__2_.jpg"
-                alt=""
-                className="w-full cursor-pointer border border-primary"
-              />
+              <img src={product.image} alt={product.name} className="w-full cursor-pointer border border-primary" />
               <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" className="w-full cursor-pointer border" />
               <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" className="w-full cursor-pointer border" />
               <img src="../assets/products/HPENVYx360m6__2_.jpg" alt="" className="w-full cursor-pointer border" />
@@ -25,37 +31,36 @@ const ProductDetails = () => {
           </div>
 
           <div>
-            <h3 className="text-3xl font-medium uppercase mb-2">Italian L shape sofa</h3>
+            <h3 className="text-xl font-medium uppercase mb-2">{product.name}</h3>
             <div className="flex items-center mb-4">
               <Rating />
-              <div className="text xs text-gray-500 ml-3">(150 Reviews)</div>
+              <div className="text xs text-gray-500 ml-3">{product.reviews}</div>
             </div>
             <div className="space-y-2">
               <p className="text-gray-800 font-semi-bold space-x-2">
                 <span>Availability:</span>
-                <span className="text-green-600">In stock</span>
+                <span className={product.quantityInStock > 0 ? "text-green-600" : "text-red-600"}>
+                  {product.availability ? "In stock" : "out of stock"}
+                </span>
               </p>
               <p className="space-x-2">
                 <span className="text-gray-800 font-semibold">Brand:</span>
-                <span className="text-gray-600">Apex</span>
+                <span className="text-gray-600">{product.brand}</span>
               </p>
               <p className="space-x-2">
                 <span className="text-gray-800 font-semibold">Category:</span>
-                <span className="text-gray-600">Workstation</span>
+                <span className="text-gray-600">{product.category}</span>
               </p>
               <p className="space-x-2">
                 <span className="text-gray-800 font-semibold">SKU:</span>
-                <span className="text-gray-600">78DH9BBV</span>
+                <span className="text-gray-600">{product.model}</span>
               </p>
             </div>
             <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-              <p className="text-2xl text-primary font-semibold">$120,000</p>
-              <p className="text-base text-gray-400 line-through">$124,000</p>
+              <p className="text-2xl text-primary font-semibold">{product.price}</p>
+              <p className="text-base text-gray-400 line-through">{product.initialPrice}</p>
             </div>
-            <p className="mt-4 text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi voluptates nostrum dignissimos ut
-              harum.
-            </p>
+            <p className="mt-4 text-gray-600">{product.brief}</p>
             {/* size */}
             <div className="pt-4">
               <h3 className="text-sm text-gray-800 uppercase mb-1">Size</h3>
@@ -199,7 +204,8 @@ const ProductDetails = () => {
 
           <div className="w-3/5 pt-6">
             <div className="text-gray-600 space-y-3">
-              <p>
+              <p>{product.desc}</p>
+              {/* <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam sunt facere in consequatur voluptas
                 quaerat nisi minus perferendis at vero ipsa eaque quos porro, reprehenderit omnis ea suscipit, et
                 ratione.
@@ -208,22 +214,17 @@ const ProductDetails = () => {
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam sunt facere in consequatur voluptas
                 quaerat nisi minus perferendis at vero ipsa eaque quos porro, reprehenderit omnis ea suscipit, et
                 ratione.
-              </p>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam sunt facere in consequatur voluptas
-                quaerat nisi minus perferendis at vero ipsa eaque quos porro, reprehenderit omnis ea suscipit, et
-                ratione.
-              </p>
+              </p> */}
             </div>
           </div>
           <table className="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
             <tr>
               <th className="py-2 px-4 border border-gray-300 w-40 font-medium">Color</th>
-              <td className="py-2 px-4 border border-gray-300">Black, Brown, red</td>
+              <td className="py-2 px-4 border border-gray-300">{product.color}</td>
             </tr>
             <tr>
               <th className="py-2 px-4 border border-gray-300 w-40 font-medium">Size</th>
-              <td className="py-2 px-4 border border-gray-300">13 inches</td>
+              <td className="py-2 px-4 border border-gray-300">{product.size}</td>
             </tr>
             <tr>
               <th className="py-2 px-4 border border-gray-300 w-40 font-medium">Weight</th>

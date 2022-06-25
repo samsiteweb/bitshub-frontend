@@ -1,12 +1,13 @@
 import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import avatar from "../images/avatar.png";
+import ProfileCard from "./ProfileCard";
 
 const Account = () => {
   return (
     <div>
       <Breadcrumbs page="Account" />
-      <div className="container grid-cols-12 items-start gap-6 pt-4 pb-16">
+      <div className="container grid grid-cols-12 items-start gap-6 pt-4 pb-16">
         <div className="col-span-3">
           <div className="px-4 py-3 shadow flex items-center gap-4">
             <div className="flex-shrink-0">
@@ -27,7 +28,7 @@ const Account = () => {
                 Manage Account
               </a>
               <a href="" className="relative hover:text-primary block transition">
-                Profile Info
+                Profile Information
               </a>
               <a href="" className="relative hover:text-primary block transition">
                 Manage Address
@@ -42,16 +43,16 @@ const Account = () => {
                 <span className="absolute -left-8 top-0 text-base">
                   <i className="far fa-address-card"></i>
                 </span>
-                Manage Account
+                My Order History
               </a>
               <a href="" className="relative hover:text-primary block transition">
-                Profile Info
+                My returns{" "}
               </a>
               <a href="" className="relative hover:text-primary block transition">
-                Manage Address
+                My Cancellations
               </a>
               <a href="" className="relative hover:text-primary block transition">
-                Change Password
+                My Reviews
               </a>
             </div>
 
@@ -60,10 +61,10 @@ const Account = () => {
                 <span className="absolute -left-8 top-0 text-base">
                   <i className="far fa-address-card"></i>
                 </span>
-                Manage Account
+                Payment Methods
               </a>
               <a href="" className="relative hover:text-primary block transition">
-                Profile Info
+                Voucher
               </a>
             </div>
             <div className="space-y-1 pl-8 pt-4">
@@ -79,10 +80,26 @@ const Account = () => {
                 <span className="absolute -left-8 top-0 text-base">
                   <i className="far fa-address-card"></i>
                 </span>
-                Log out
+                Logout
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="col-span-9 grid grid-cols-3 gap-4">
+          <ProfileCard name="John doe" line1="example@mail.com" line2="08103431851" title="Personal Profile" />
+          <ProfileCard
+            name="John doe"
+            line1="21, Bade Abiona street, Agege, Lagos."
+            line2="08103431851"
+            title="Shipping Address"
+          />
+          <ProfileCard
+            title="Billing Address"
+            name="John doe"
+            line1="6, Olufeko street, Fola Agoro, Yaba, Lagos"
+            line2="08103431851"
+          />
         </div>
       </div>
     </div>
