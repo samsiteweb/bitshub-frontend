@@ -6,8 +6,8 @@ import ShopScreen from "./screens/ShopScreen";
 import ContactScreen from "./screens/ContactScreen";
 import Footer from "./components/Footer";
 import ProductDetails from "./screens/ProductDetails";
-import Account from "./components/Account";
-import { Login } from "./components/Login";
+import Account from "./screens/Account";
+import Login from "./screens/Login";
 import ScrollToTop from "./utilities/scrollToTop";
 function App() {
   return (

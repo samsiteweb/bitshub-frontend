@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Login = () => {
+const Login = () => {
   const [tab, setTab] = useState("login");
 
   return (
@@ -222,3 +222,4 @@ export const Login = () => {
     </div>
   );
 };
+export default Login;

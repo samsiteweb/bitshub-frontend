@@ -1,7 +1,7 @@
 import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import avatar from "../images/avatar.png";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "../components/ProfileCard";
 
 const Account = () => {
   return (
@@ -94,6 +94,7 @@ const Account = () => {
             line2="08103431851"
             title="Shipping Address"
           />
+
           <ProfileCard
             title="Billing Address"
             name="John doe"

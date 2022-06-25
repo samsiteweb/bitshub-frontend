@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -18,12 +19,13 @@ const Banner = () => {
           distinctio{" "}
         </p>
         <div className="mt-12 ">
-          <a
+          <Link
+            to="/shop"
             href="none"
             className="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition"
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       </div>
     </div>
