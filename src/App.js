@@ -5,27 +5,30 @@ import AboutScreen from "./screens/AboutScreen";
 import ShopScreen from "./screens/ShopScreen";
 import ContactScreen from "./screens/ContactScreen";
 import Footer from "./components/Footer";
-import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "./screens/ProductDetails";
 import Account from "./components/Account";
 import { Login } from "./components/Login";
+import ScrollToTop from "./utilities/scrollToTop";
 function App() {
   return (
     <BrowserRouter>
-      <div>
-        <Header />
+      <ScrollToTop>
+        <div>
+          <Header />
 
-        <main>
-          <Route path="/" component={HomeScreen} exact></Route>
-          <Route path="/about" component={AboutScreen}></Route>
-          <Route path="/shop" component={ShopScreen}></Route>
-          <Route path="/contact" component={ContactScreen}></Route>
-          <Route path="/product-details" component={ProductDetails}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/account" component={Account}></Route>
-        </main>
+          <main>
+            <Route path="/" component={HomeScreen} exact></Route>
+            <Route path="/about" component={AboutScreen}></Route>
+            <Route path="/shop" component={ShopScreen}></Route>
+            <Route path="/contact" component={ContactScreen}></Route>
+            <Route path="/product-details/:id" component={ProductDetails} exact></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/account" component={Account}></Route>
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </ScrollToTop>
     </BrowserRouter>
   );
 }
