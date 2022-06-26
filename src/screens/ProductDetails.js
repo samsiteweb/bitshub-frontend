@@ -24,10 +24,12 @@ const ProductDetails = (props) => {
             <div className="grid grid-cols-5 gap-4 mt-4">
               <img src={product.image[0]} alt={product.name} className="w-full cursor-pointer border border-primary" />
               <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[2]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[3]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[4]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[5]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
             </div>
           </div>
 
@@ -154,11 +156,11 @@ const ProductDetails = (props) => {
 
             {/* Quantity */}
             <div className="mt-4">
-              <h3 className="text-sm text-gray-800 uppercase mb-1">Color</h3>
+              <h3 className="text-sm text-gray-800 uppercase mb-1">quantity</h3>
               <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
                 <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                <input className="h-8 w-8 text-base flex items-center justify-center" value="4" />
-                <div className="h-8 w-8 text-xl">+</div>
+                <input className="h-8 w-14 text-base p-2" />
+                <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer">+</div>
               </div>
             </div>
 
@@ -206,16 +208,6 @@ const ProductDetails = (props) => {
           <div className="w-3/5 pt-6">
             <div className="text-gray-600 space-y-3">
               <p>{product.desc}</p>
-              {/* <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam sunt facere in consequatur voluptas
-                quaerat nisi minus perferendis at vero ipsa eaque quos porro, reprehenderit omnis ea suscipit, et
-                ratione.
-              </p>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam sunt facere in consequatur voluptas
-                quaerat nisi minus perferendis at vero ipsa eaque quos porro, reprehenderit omnis ea suscipit, et
-                ratione.
-              </p> */}
             </div>
           </div>
           <table className="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
