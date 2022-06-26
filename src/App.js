@@ -9,6 +9,7 @@ import ProductDetails from "./screens/ProductDetails";
 import Account from "./screens/Account";
 import Login from "./screens/Login";
 import ScrollToTop from "./utilities/scrollToTop";
+import Checkout from "./screens/Checkout";
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
             <Route path="/product-details/:id" component={ProductDetails} exact></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/account" component={Account}></Route>
+            <Route path="/checkout" component={Checkout}></Route>
           </main>
 
           <Footer />
