@@ -10,6 +10,12 @@ import Account from "./screens/Account";
 import Login from "./screens/Login";
 import ScrollToTop from "./utilities/scrollToTop";
 import Checkout from "./screens/Checkout";
+import ProfileInfo from "./components/ProfileInfo";
+import ManageAddress from "./components/ManageAddress";
+import ChangePassword from "./components/ChangePassword";
+import ProfileSideNav from "./components/ProfileSideNav";
+import ManageAccount from "./components/ManageAccount";
+import Breadcrumbs from "./components/Breadcrumbs";
 function App() {
   return (
     <BrowserRouter>
@@ -22,12 +28,11 @@ function App() {
             <Route path="/about" component={AboutScreen}></Route>
             <Route path="/shop" component={ShopScreen}></Route>
             <Route path="/contact" component={ContactScreen}></Route>
-            <Route path="/product-details/:id" component={ProductDetails} exact></Route>
+            <Route path="/product-details/:id" component={ProductDetails}></Route>
             <Route path="/login" component={Login}></Route>
-            <Route path="/account" component={Account}></Route>
             <Route path="/checkout" component={Checkout}></Route>
+            <Route path="/account" component={Account}></Route>
           </main>
-
           <Footer />
         </div>
       </ScrollToTop>
