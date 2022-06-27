@@ -17,7 +17,7 @@ const Account = () => {
         <Route path="/account/profile-info" component={ProfileInfo}></Route>
         <Route path="/account/manage-address" component={ManageAddress}></Route>
         <Route path="/account/change-password" component={ChangePassword}></Route>
-        <Route path="/account" component={ManageAccount}></Route>
+        <Route path="/account/manage-account" component={ManageAccount}></Route>
       </div>
     </div>
   );
