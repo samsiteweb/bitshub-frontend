@@ -33,8 +33,8 @@ const Product = (props) => {
             </h4>
           </Link>
           <div className="flex items-baseline mb-1 space-x-2 font-roboto">
-            <p className="text-l text-primary font-semibold">${item.price}</p>
-            <p className="text-sm text-gray-400 line-through">${item.initialPrice}</p>
+            <p className="text-l text-primary font-semibold">₦{item.price}</p>
+            <p className="text-sm text-gray-400 line-through">₦{item.initialPrice}</p>
           </div>
           <div className="flex items-center">
             <Rating />

@@ -6,6 +6,7 @@ import ManageAccount from "../components/ManageAccount";
 import ManageAddress from "../components/ManageAddress";
 import ProfileInfo from "../components/ProfileInfo";
 import ProfileSideNav from "../components/ProfileSideNav";
+import WishList from "../components/WishList";
 
 const Account = () => {
   return (
@@ -18,6 +19,7 @@ const Account = () => {
         <Route path="/account/manage-address" component={ManageAddress}></Route>
         <Route path="/account/change-password" component={ChangePassword}></Route>
         <Route path="/account/manage-account" component={ManageAccount}></Route>
+        <Route path="/account/wishlist" component={WishList}></Route>
       </div>
     </div>
   );

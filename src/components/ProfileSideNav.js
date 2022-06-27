@@ -10,7 +10,7 @@ const ProfileSideNav = () => {
           <img src={avatar} alt="" className="rounded-full h-14 w-14 border border-gray-200 p-1 object-cover" />
         </div>
         <div className="flex-grow">
-          <p className="text-gray-600">Hello</p>
+          <p className="text-gray-600">Hello,</p>
           <h4 className="text-gray-800 font-medium">John Doe</h4>
         </div>
       </div>
@@ -64,12 +64,12 @@ const ProfileSideNav = () => {
           </a>
         </div>
         <div className="space-y-1 pl-8 pt-4">
-          <a href="" className="relative hover:text-primary block font-medium transition">
+          <Link to="/account/wishlist" className="relative hover:text-primary block font-medium transition">
             <span className="absolute -left-8 top-0 text-base">
               <i className="far fa-address-card"></i>
             </span>
             My Wishlist
-          </a>
+          </Link>
         </div>
         <div className="space-y-1 pl-8 pt-4">
           <a href="" className="relative hover:text-primary block font-medium transition">
