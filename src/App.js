@@ -10,12 +10,7 @@ import Account from "./screens/Account";
 import Login from "./screens/Login";
 import ScrollToTop from "./utilities/scrollToTop";
 import Checkout from "./screens/Checkout";
-import ProfileInfo from "./components/ProfileInfo";
-import ManageAddress from "./components/ManageAddress";
-import ChangePassword from "./components/ChangePassword";
-import ProfileSideNav from "./components/ProfileSideNav";
-import ManageAccount from "./components/ManageAccount";
-import Breadcrumbs from "./components/Breadcrumbs";
+
 function App() {
   return (
     <BrowserRouter>
