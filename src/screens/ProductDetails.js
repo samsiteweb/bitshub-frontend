@@ -43,7 +43,7 @@ const ProductDetails = (props) => {
               <p className="text-gray-800 font-semi-bold space-x-2">
                 <span>Availability:</span>
                 <span className={product.quantityInStock > 0 ? "text-green-600" : "text-red-600"}>
-                  {product.availability ? "In stock" : "out of stock"}
+                  {product.quantityInStock > 0 ? "In stock" : "out of stock"}
                 </span>
               </p>
               <p className="space-x-2">
@@ -60,7 +60,7 @@ const ProductDetails = (props) => {
               </p>
             </div>
             <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-              <p className="text-2xl text-primary font-semibold">{product.price}</p>
+              <p className="text-2xl text-primary font-semibold">₦{product.price}</p>
               <p className="text-base text-gray-400 line-through">{product.initialPrice}</p>
             </div>
             <p className="mt-4 text-gray-600">{product.brief}</p>

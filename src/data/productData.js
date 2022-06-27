@@ -28,7 +28,7 @@ export const ProductData = {
       price: "682,000",
       rating: "5",
       initialPrice: "685,000",
-      quantityInStock: "24",
+      quantityInStock: "0",
       brief:
         "The Macbook 2021 M1 13.3 (2GB RAM, 500GB HDD) Laptop is a sleek lightweight laptop that delivers value at an amazing price. Running on Windows 10 and equipped with a 2GHz Quad-Core processor, the Viao 13.3 Laptop is your best bet for work and entertainment. Get the Sony Vaio Laptop online from Jumia at the best price in Nigeria",
       desc: "The macbook 2021 M1 Laptop features an M1 chip at a speed of 2.5GHz so you are assured of super fast processing while you run multiple applications. Open multiple web pages, create documents and spreadsheets, play games and do so much more with a processor that can handle it.HD Screen. View everything in crystal clear resolution with the HD Screen. The Sony Vaio HD is perfect for entertainment, multimedia and work. Watch videos, video call, create slides and view memories all in life like clarity.). Retina display size: 9.7-inch (diagonal) LED-backlit Multi-Touch display resolution:2048-by-1536 resolution at 264 pixels per inch (ppi), Wide color display, True Tone display, Fingerprint-resistant oleophobic coating, Fully laminated display, Antireflective coating Chip, A9X chip with 64-bit architecture, M9 coprocessor",
@@ -114,7 +114,7 @@ export const ProductData = {
       price: "95,000",
       rating: "5",
       initialPrice: "98,000",
-      quantityInStock: "11",
+      quantityInStock: "0",
       brief:
         "The Toshiba Satelite Laptop is a sleek lightweight laptop that delivers value at an amazing price. Running on Windows 10 and equipped with a 2GHz Quad-Core processor, the Viao 13.3 Laptop is your best bet for work and entertainment. Get the Sony Vaio Laptop online from Jumia at the best price in Nigeria",
       desc: "The Toshiba Satelite Laptop features an M1 chip at a speed of 2.5GHz so you are assured of super fast processing while you run multiple applications. Open multiple web pages, create documents and spreadsheets, play games and do so much more with a processor that can handle it.HD Screen. View everything in crystal clear resolution with the HD Screen. The Sony Vaio HD is perfect for entertainment, multimedia and work. Watch videos, video call, create slides and view memories all in life like clarity.). Retina display size: 9.7-inch (diagonal) LED-backlit Multi-Touch display resolution:2048-by-1536 resolution at 264 pixels per inch (ppi), Wide color display, True Tone display, Fingerprint-resistant oleophobic coating, Fully laminated display, Antireflective coating Chip, A9X chip with 64-bit architecture, M9 coprocessor",
