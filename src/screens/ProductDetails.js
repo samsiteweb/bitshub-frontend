@@ -1,14 +1,14 @@
 import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { useParams } from "react-router-dom";
 import Products from "../components/Products";
 import Rating from "../components/Rating";
 import { ProductData } from "../data/productData";
 
 const ProductDetails = (props) => {
-  console.log(props.match.params);
+  const { id } = useParams();
   const product = ProductData.products.find((data) => {
-    console.log("data:", data.id, "props:", props.match.params.id);
-    return data.id === props.match.params.id;
+    return data.id === id;
   });
 
   if (!product) {
@@ -225,10 +225,11 @@ const ProductDetails = (props) => {
             </tr>
           </table>
         </div>
-      </div>
-      <div className="container pb-16">
-        <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">related products</h2>
-        <Products />
+
+        <div className="container pb-16">
+          <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">related products</h2>
+          <Products />
+        </div>
       </div>
     </div>
   );

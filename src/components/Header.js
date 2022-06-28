@@ -46,10 +46,7 @@ const Header = () => {
               </span>
             </a>
 
-            <Link
-              to="/account/manage-account"
-              className="text-center text-gray-700 hover:text-primary transition relative"
-            >
+            <Link to="/account" className="text-center text-gray-700 hover:text-primary transition relative">
               <div className="text-2xl">
                 <i className="far fa-user"></i>
               </div>
