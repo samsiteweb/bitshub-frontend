@@ -17,7 +17,7 @@ const ProfileSideNav = () => {
 
       <div className="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
         <div className="space-y-1 pl-8">
-          <Link to="/account/manage-account" className="relative hover:text-primary block font-medium transition">
+          <Link to="/account" className="relative hover:text-primary block font-medium transition">
             <span className="absolute -left-8 top-0 text-base">
               <i className="far fa-address-card"></i>
             </span>
@@ -35,33 +35,33 @@ const ProfileSideNav = () => {
         </div>
 
         <div className="space-y-1 pl-8 pt-4">
-          <a href="" className="relative hover:text-primary block font-medium transition">
+          <Link to="/account/order-history" className="relative hover:text-primary block font-medium transition">
             <span className="absolute -left-8 top-0 text-base">
               <i className="far fa-address-card"></i>
             </span>
             My Order History
-          </a>
-          <a href="" className="relative hover:text-primary block transition">
-            My returns{" "}
-          </a>
-          <a href="" className="relative hover:text-primary block transition">
+          </Link>
+          <Link to="/account/returns" className="relative hover:text-primary block transition">
+            My returns
+          </Link>
+          <Link to="/account/cancellations" className="relative hover:text-primary block transition">
             My Cancellations
-          </a>
-          <a href="" className="relative hover:text-primary block transition">
+          </Link>
+          <Link to="/account/reviews" className="relative hover:text-primary block transition">
             My Reviews
-          </a>
+          </Link>
         </div>
 
         <div className="space-y-1 pl-8 pt-4">
-          <a href="" className="relative hover:text-primary block font-medium transition">
+          <Link to="/account/payment-methods" className="relative hover:text-primary block font-medium transition">
             <span className="absolute -left-8 top-0 text-base">
               <i className="far fa-address-card"></i>
             </span>
             Payment Methods
-          </a>
-          <a href="" className="relative hover:text-primary block transition">
+          </Link>
+          <Link to="/account/voucher" className="relative hover:text-primary block transition">
             Voucher
-          </a>
+          </Link>
         </div>
         <div className="space-y-1 pl-8 pt-4">
           <Link to="/account/wishlist" className="relative hover:text-primary block font-medium transition">
@@ -72,12 +72,12 @@ const ProfileSideNav = () => {
           </Link>
         </div>
         <div className="space-y-1 pl-8 pt-4">
-          <a href="" className="relative hover:text-primary block font-medium transition">
+          <Link to="/login" className="relative hover:text-primary block font-medium transition">
             <span className="absolute -left-8 top-0 text-base">
               <i className="far fa-address-card"></i>
             </span>
             Logout
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -5,33 +5,35 @@ const ChangePassword = () => {
     <div className="col-span-9 shadow rounded px-6 pt-5 pb-7">
       <p className="text-lg font-medium capitalize mb-4">Change Password</p>
       <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2">
           <div>
-            <label htmlFor="full-name" className="text-gray-600 mb-2 block">
-              Current Password
-            </label>
-            <input type="text" className="input-box" placeholder="Enter full name" />
-          </div>
-          <div>
-            <label htmlFor="full-name" className="text-gray-600 mb-2 block">
-              Phone Number
-            </label>
-            <input type="text" className="input-box" placeholder="Enter Number" />
+            <div className="py-4">
+              <label htmlFor="full-name" className="text-gray-600 mb-2 block">
+                Current Password
+              </label>
+              <input type="password" className="input-box" placeholder="enter current password" />
+            </div>
+            <div className="pb-4">
+              <label htmlFor="full-name" className="text-gray-600 mb-2 block">
+                New Password
+              </label>
+              <input type="password" className="input-box" placeholder="enter new password" />
+            </div>
+            <div>
+              <label htmlFor="full-name" className="text-gray-600 mb-2 block">
+                Retype Password
+              </label>
+              <input type="password" className="input-box" placeholder="repeat your password" />
+            </div>
           </div>
         </div>
 
-        <div>
-          <label htmlFor="full-name" className="text-gray-600 mb-2 block">
-            Address
-          </label>
-          <input type="text" className="input-box" placeholder="Enter address" />
-        </div>
         <div className="mt-4">
           <button
             type="submit"
             className="bg-primary border border-primary text-white px-12 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm text-center"
           >
-            Save
+            Save Changes
           </button>
         </div>
       </div>
