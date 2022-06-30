@@ -11,7 +11,7 @@ import component from "../images/components.png";
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-gray-800 hidden md:block">
       <div className="container flex">
         <div className="px-8 py-4 bg-primary flex items-center cursor-pointer relative group">
           <span className="text-white">
