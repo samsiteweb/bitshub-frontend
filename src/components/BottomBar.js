@@ -2,7 +2,7 @@ import React from "react";
 
 const BottomBar = () => {
   return (
-    <div className="flex justify-between items-center bg-white p-3">
+    <div className="flex justify-between items-center bg-white py-3 px-8">
       <div className="text-center text-gray-700 hover:text-primary transition relative">
         <div className="text-2xl">
           <i className="fas fa-bars"></i>
