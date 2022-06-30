@@ -2,16 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import bitshub from "../images/bitshub.jpeg";
 import Navbar from "./Navbar";
+import TopBar from "./TopBar";
 
 const Header = () => {
   return (
     <div>
+      <TopBar />
       <div className="py-4 shadow-sm bg-white">
-        <div className="container flex items-center justify-between">
+        <div className="container flex items-center justify-between ">
           <Link to="/">
             <img src={bitshub} alt="bitshub-img" className="w-32" />
           </Link>
-          <div className="w-full max-w-xl relative flex">
+          <div className="hidden w-full md:max-w-xl relative md:flex ml-3">
             <span className="absolute left-4 top-3 text-lg text-gray-400">
               <i className="fas fa-search"></i>
             </span>
@@ -26,7 +28,7 @@ const Header = () => {
               Search
             </button>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 ml-3">
             <Link to="/account/wishlist" className="text-center text-gray-700 hover:text-primary transition relative">
               <div className="text-2xl">
                 <i className="far fa-heart"></i>
@@ -36,7 +38,7 @@ const Header = () => {
                 8
               </span>
             </Link>
-            <Link to="/" className="text-center text-gray-700 hover:text-primary transition relative">
+            <Link to="/" className="hidden md:block text-center text-gray-700 hover:text-primary transition relative">
               <div className="text-2xl">
                 <i className="fas fa-shopping-bag"></i>
               </div>

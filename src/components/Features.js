@@ -5,7 +5,7 @@ import support from "../images/support.png";
 
 const Features = () => {
   return (
-    <div className="w-10/12 grid lg:grid-cols-3 gap-6 md:grid-cols-1 sm:grid-cols-1 mx-auto justify-center">
+    <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-1 justify-center">
       <div className="border border-primary rounded-sm px-3 py-6 justify-center flex items-center gap-5">
         <img src={transit} alt="" className="w-12 h-12 object-contain" />
         <div>
