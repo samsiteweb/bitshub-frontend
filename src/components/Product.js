@@ -28,10 +28,9 @@ const Product = (props) => {
         </div>
         <div className="pt-4 pb-3 px-4">
           <Link to={`/product-details/${item.id}`}>
-            <h4 className="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition">
-              {item.name}
-            </h4>
+            <p className="uppercase font-medium text-l text-gray-800 hover:text-primary transition">{item.name}</p>
           </Link>
+          <p className="text-xs text-gray-500 mb-2">{item.config}</p>
           <div className="flex items-baseline mb-1 space-x-2 font-roboto">
             <p className="text-l text-primary font-semibold">₦{item.price}</p>
             <p className="text-sm text-gray-400 line-through">₦{item.initialPrice}</p>

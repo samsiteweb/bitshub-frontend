@@ -14,16 +14,16 @@ const HomeScreen = () => {
       </div>
 
       <div className="container pb-16">
-        <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
+        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</p>
         <Categories />
       </div>
       <div className="container pb-16">
-        <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">top new arrival</h2>
+        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">top new arrival</p>
         <Products />
       </div>
       <Ad />
       <div className="container pb-16">
-        <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">recommended for you</h2>
+        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">recommended for you</p>
         <Products />
       </div>
     </div>
