@@ -22,14 +22,18 @@ const ProductDetails = (props) => {
           <div>
             <img src={product.image[0]} alt={product.name} />
             <div className="grid grid-cols-5 gap-4 mt-4">
-              <img src={product.image[0]} alt={product.name} className="w-full cursor-pointer border border-primary" />
-              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
-              <img src={product.image[1]} alt="" className="w-full cursor-pointer border" />
+              <img
+                src={product.image[0]}
+                alt={product.name}
+                className="w-full cursor-pointer border hover:border-primary"
+              />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
+              <img src={product.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
             </div>
           </div>
 
