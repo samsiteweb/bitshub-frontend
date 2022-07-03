@@ -5,8 +5,8 @@ const Checkout = () => {
   return (
     <div>
       <Breadcrumbs page="Checkout" />
-      <div className="container grid grid-cols-12 gap-6 items-start pb-16 pt-4">
-        <div className="col-span-8">
+      <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
+        <div className="col-span-12 md:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
             <p className="px-4 py-3 text-sm font-semibold">Billing Details</p>
           </div>
@@ -55,7 +55,7 @@ const Checkout = () => {
           </div>
         </div>
 
-        <div className="col-span-4">
+        <div className="col-span-12 md:col-span-4">
           <div className="bg-gray-200 text-black mb-4 rounded">
             <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
           </div>
@@ -108,7 +108,7 @@ const Checkout = () => {
               />
               <label htmlFor="agreement" className="text-gray-600 ml-3 cursor-pointer text-sm">
                 Agree to our
-                <a href="" className="text-primary">
+                <a href="" className="text-primary pl-1">
                   terms & condition
                 </a>
               </label>
