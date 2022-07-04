@@ -14,7 +14,7 @@ const ShopScreen = () => {
     <div className="">
       <Breadcrumbs page="Shop" />
       <div className="container grid lg:grid-cols-4 gap-6 md:grid-cols-3 sm:grid-cols-1 pt-4 pb-16 items-start">
-        <div className="hidden lg:block">
+        <div className="hidden lg:block transition duration-300 ">
           <Filter />
         </div>
 
@@ -36,7 +36,7 @@ const ShopScreen = () => {
                 <div
                   className={
                     showFilter
-                      ? "absolute w-full left-0 top-full bg-white shadow-md py-3 divide-dashed opacity-0 opacity-100 transition duration-300 visible z-50"
+                      ? "absolute w-full left-0 top-full bg-white shadow-md py-3 divide-dashed transition duration-300 visible z-50"
                       : "invisible hidden"
                   }
                 >
