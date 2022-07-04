@@ -2,27 +2,27 @@ import React from "react";
 
 const BottomBar = () => {
   return (
-    <div className="flex justify-between items-center bg-white py-3 px-8">
+    <div className="flex justify-between items-center bg-white py-2 px-8">
       <div className="text-center text-gray-700 hover:text-primary transition relative">
-        <div className="text-2xl">
+        <div className="text-xl">
           <i className="fas fa-bars"></i>
         </div>
         <div className="text-xs leading-3">Menu</div>
       </div>
       <div className="text-center text-gray-700 hover:text-primary transition relative">
-        <div className="text-2xl">
+        <div className="text-xl">
           <i className="fas fa-bars"></i>
         </div>
         <div className="text-xs leading-3">Categories</div>
       </div>
       <div className="text-center text-gray-700 hover:text-primary transition relative">
-        <div className="text-2xl">
+        <div className="text-xl">
           <i className="fas fa-search"></i>
         </div>
         <div className="text-xs leading-3">Search</div>
       </div>
       <div className="text-center text-gray-700 hover:text-primary transition relative">
-        <div className="text-2xl">
+        <div className="text-xl">
           <i className="fas fa-shopping-bag"></i>
         </div>
         <div className="text-xs leading-3">Cart</div>
