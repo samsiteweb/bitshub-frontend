@@ -14,24 +14,32 @@ const ShopScreen = () => {
     <div className="">
       <Breadcrumbs page="Shop" />
       <div className="container grid lg:grid-cols-4 gap-6 md:grid-cols-3 sm:grid-cols-1 pt-4 pb-16 items-start">
-        <div className="hidden lg:block">
+        <div className="hidden lg:block transition duration-300 ">
           <Filter />
         </div>
 
         <div className="col-span-3">
           <div className="flex items-center justify-center mb-4">
             <div className="flex items-center">
-              <div className="relative">
-                <button
-                  onClick={() => {
-                    handleFilter();
-                  }}
-                  type="submit"
-                  className="lg:hidden bg-primary border border-primary text-white mr-4 px-12 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm text-center"
+              <div className="py-2 items-center cursor-pointer relative pr-12">
+                <div>
+                  <button
+                    onClick={() => {
+                      handleFilter();
+                    }}
+                    type="submit"
+                    className="lg:hidden bg-primary border border-primary text-white mr-4 px-12 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm text-center"
+                  >
+                    {showFilter ? "Close" : "Filter"}
+                  </button>
+                </div>
+                <div
+                  className={
+                    showFilter
+                      ? "absolute w-full left-0 top-full bg-white shadow-md py-3 divide-dashed transition duration-300 visible z-50"
+                      : "invisible hidden"
+                  }
                 >
-                  {showFilter ? "Close" : "Filter"}
-                </button>
-                <div className={showFilter ? "md:block absolute z-50 mt-2" : "hidden"}>
                   <Filter />
                 </div>
               </div>
