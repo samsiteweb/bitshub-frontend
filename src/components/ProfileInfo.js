@@ -5,7 +5,7 @@ const ProfileInfo = () => {
     <div className="col-span-12 lg:col-span-9 shadow rounded px-6 pt-5 pb-7">
       <p className="text-lg font-medium capitalize mb-4">Profile Information</p>
       <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="full-name" className="text-gray-600 mb-2 block">
               First Name
@@ -20,7 +20,7 @@ const ProfileInfo = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="full-name" className="text-gray-600 mb-2 block">
               Birthday
@@ -37,7 +37,7 @@ const ProfileInfo = () => {
             </select>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="full-name" className="text-gray-600 mb-2 block">
               Email address
