@@ -88,7 +88,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-800 pt-4 pb-16 md:mb-0">
+      <div className="bg-gray-800 pt-4 pb-16 md:pb-4 md:mb-0">
         <div className="container flex items-center justify-between">
           <p className="text-white">© Bitshub - All Rights Reserved</p>
         </div>

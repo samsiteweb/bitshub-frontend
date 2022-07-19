@@ -3,9 +3,9 @@ import React from "react";
 const ManageAddress = () => {
   return (
     <div className="col-span-12 lg:col-span-9 shadow rounded px-6 pt-5 pb-7">
-      <p className="text-lg font-medium capitalize mb-4">Payment Address</p>
+      <p className="text-lg font-medium capitalize mb-4">Manage Address</p>
       <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="full-name" className="text-gray-600 mb-2 block">
               Full Name

@@ -5,7 +5,7 @@ const ChangePassword = () => {
     <div className="col-span-12 lg:col-span-9 shadow rounded px-6 pt-5 pb-7">
       <p className="text-lg font-medium capitalize mb-4">Change Password</p>
       <div className="space-y-4">
-        <div className="grid grid-cols-2">
+        <div className="grid md:grid-cols-2">
           <div>
             <div className="py-4">
               <label htmlFor="full-name" className="text-gray-600 mb-2 block">
