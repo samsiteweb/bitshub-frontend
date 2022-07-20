@@ -2,17 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Breadcrumbs = (props) => {
-  const { page } = props;
+  const { page, secondary } = props;
   return (
     <div className="container py-4 flex items-center gap-3">
       <Link to="/" className="text-primary text-base">
         <i className="fas fa-home"></i>
       </Link>
 
-      <span className="text sm text-gray-400">
-        <i className="fas fa-cheveron-right"></i>
+      <span className={`text-xs ${secondary ? " text-white" : "text-primary"}`}>
+        <i className="fas fa-chevron-right"></i>
       </span>
-      <p className="text-gray-600 font-medium">{page}</p>
+
+      <p className={`font-medium ${secondary ? " text-white" : "text-primary"}`}>{page}</p>
     </div>
   );
 };
