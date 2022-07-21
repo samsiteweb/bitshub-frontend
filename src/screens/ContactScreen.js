@@ -25,13 +25,13 @@ const ContactScreen = () => {
           </div>
           <div className="">
             <div className="flex md:flex-row flex-col gap-4">
-              <div>
+              <div className="w-full">
                 <label htmlFor="" className="text-gray-600 mb-2 block">
                   First Name <span className="text-red-500">*</span>
                 </label>
                 <input type="text" className="input-box" />
               </div>
-              <div>
+              <div className="w-full">
                 <label htmlFor="" className="text-gray-600 mb-2 block">
                   Last Name <span className="text-red-500">*</span>
                 </label>
@@ -68,7 +68,7 @@ const ContactScreen = () => {
           </div>
         </div>
 
-        <div className="w-full shadow p-4 rounded">
+        <div className="w-full md:w-1/3 shadow p-4 rounded">
           <p className="text-gray-800 text-lg mb-4 font-medium uppercase">Our stores</p>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
