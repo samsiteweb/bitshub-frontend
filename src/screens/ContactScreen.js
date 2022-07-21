@@ -18,7 +18,7 @@ const ContactScreen = () => {
         </div>
       </div>
       <div className="container flex flex-col md:flex-row gap-6 items-start pb-16 pt-4 my-8">
-        <div className="w-2/3 shadow p-4 rounded">
+        <div className="w-full md:w-2/3 shadow p-4 rounded">
           <div className="text-sm font-medium my-4">
             <p className="text-2xl font-medium uppercase">Leave us a message</p>
             <p className="text-sm font-medium pb-4">Use the form below to get in touch with the sales team</p>
@@ -68,7 +68,7 @@ const ContactScreen = () => {
           </div>
         </div>
 
-        <div className="shadow p-4 rounded">
+        <div className="w-full shadow p-4 rounded">
           <p className="text-gray-800 text-lg mb-4 font-medium uppercase">Our stores</p>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
