@@ -95,11 +95,11 @@ const AboutScreen = () => {
       <div className="container my-8 text-center">
         <p className="text-2xl text-gray-600 font-medium uppercase py-4">Our partners</p>
         <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-          <p className="text-primary font-semibold text-base">Zaron Cosmetics</p>
-          <p className="text-primary font-semibold text-base">Advanced Waste Projects</p>
-          <p className="text-primary font-semibold text-base">Laptop Clinic</p>
-          <p className="text-primary font-semibold text-base">lorem Ipsum</p>
-          <p className="text-primary font-semibold text-base">Zaron Cosmetics</p>
+          <div className="text-primary font-semibold text-base">Zaron Cosmetics</div>
+          <div className="text-primary font-semibold text-base">Advanced Waste Projects</div>
+          <div className="text-primary font-semibold text-base">Laptop Clinic</div>
+          <div className="text-primary font-semibold text-base">lorem Ipsum</div>
+          <div className="text-primary font-semibold text-base">Zaron Cosmetics</div>
         </div>
       </div>
     </div>
