@@ -8,7 +8,7 @@ const OrderCard = (props) => {
         <img src={image[0]} alt={name} />
       </div>
       <div className="md:w-1/3">
-        <p className="text-gray-800 text-xl font-medium uppercase">{name}</p>
+        <p className="text-gray-800 text-lg font-medium uppercase">{name}</p>
         <p className="text-gray-500 text-sm">
           <span>Availability: </span>
           <span className={quantityInStock > 0 ? "text-green-600" : "text-red-600"}>
