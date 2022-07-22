@@ -21,6 +21,7 @@ import Voucher from "./components/Voucher";
 import PaymentMethods from "./components/PaymentMethods";
 import WishList from "./components/WishList";
 import ProfileInfo from "./components/ProfileInfo";
+import ShoppingCart from "./screens/ShoppingCart";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/product-details/:id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<ShoppingCart />} />
         <Route
           exact
           path="/account"
