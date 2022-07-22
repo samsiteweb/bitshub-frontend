@@ -9,15 +9,15 @@ const ShoppingCart = () => {
     <div className="">
       <Breadcrumbs page="cart" />
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
-        <div className="col-span-12 md:col-span-8">
+        <div className="space-y-4 col-span-12 lg:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
-            <p className="px-4 py-3 text-sm font-semibold">Billing Details</p>
+            <p className="px-4 py-3 text-sm font-semibold">Billing details</p>
           </div>
           {OrderData.orders.map((item) => {
             return <CartCard item={item} id={item.id} />;
           })}
         </div>
-        <div className="col-span-12 md:col-span-4">
+        <div className="col-span-12 lg:col-span-4">
           <div className="border border-gray-200 p-4 rounded">
             <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
 
