@@ -1,12 +1,12 @@
 export const ProductData = {
   products: [
     {
-      id: "1",
+      id: 1,
       name: "Lenovo Yoga",
       model: "U76789I3HE",
       image: ["../assets/products/1646_Lenovo-Yoga-3-Pro-Repair_1.jpg", "../assets/products/lenoYOGApro3_2.jpg"],
       price: "120,000",
-      rating: "5",
+      rating: 1.5,
       initialPrice: "124,000",
       quantityInStock: "24",
       config: "256GB SSD/ 8GB RAM, intel core i9, 2.43 GHz processor speed...",
@@ -22,7 +22,7 @@ export const ProductData = {
       brand: "Lenovo",
     },
     {
-      id: "2",
+      id: 2,
       name: "Macbook 2021 M1",
       model: "U76789I3HE",
       image: ["../assets/products/macbook2.png", "../assets/products/macbook1.jpeg"],
@@ -43,7 +43,7 @@ export const ProductData = {
       brand: "Apple",
     },
     {
-      id: "3",
+      id: 3,
       name: "DELL Inspiron",
       model: "U76789I3HE",
       image: [
@@ -52,7 +52,7 @@ export const ProductData = {
       ],
       initialPrice: "280,000",
       price: "250,000",
-      rating: "5",
+      rating: 2.5,
       quantityInStock: "34",
       config: "256GB SSD/ 8GB RAM, intel core i9, 2.43 GHz processor speed...",
       brief:
@@ -67,7 +67,7 @@ export const ProductData = {
       brand: "Dell",
     },
     {
-      id: "4",
+      id: 4,
       name: "HP Envy",
       model: "U76789I3HE",
       image: ["../assets/products/HPENVYx360m6__2_.jpg", "../assets/products/csm_MG_2838_354458139a.jpg"],
@@ -88,7 +88,7 @@ export const ProductData = {
       brand: "Hp",
     },
     {
-      id: "5",
+      id: 5,
       name: "Lenovo Thinkpad",
       model: "U76789I3HE",
       image: [
@@ -96,7 +96,7 @@ export const ProductData = {
         "../assets/products/csm_MG_2838_354458139a.jpg",
       ],
       price: "172,500",
-      rating: "5",
+      rating: 2,
       initialPrice: "175,000",
       quantityInStock: "17",
       config: "256GB SSD/ 8GB RAM, intel core i9, 2.43 GHz processor speed...",
@@ -112,12 +112,12 @@ export const ProductData = {
       brand: "Lenovo",
     },
     {
-      id: "6",
+      id: 6,
       name: "Acer Aspire",
       model: "U76789I3HE",
       image: ["../assets/products/acer.jpg"],
       price: "95,000",
-      rating: "5",
+      rating: 1.5,
       initialPrice: "98,000",
       quantityInStock: "0",
       config: "256GB SSD/ 8GB RAM, intel core i9, 2.43 GHz processor speed...",

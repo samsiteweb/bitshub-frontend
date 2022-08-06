@@ -35,12 +35,12 @@ const Product = (props) => {
             <p className="text-l text-primary font-semibold">₦{item.price}</p>
             <p className="text-sm text-gray-400 line-through">₦{item.initialPrice}</p>
           </div>
-          <div className="flex items-center">
-            <Rating />
-            <div className="text-xs text-gray-500 ml-3">
+          <div>
+            <Rating rating={item?.rating} reviews={item?.reviews} />
+            {/* <div className="text-xs text-gray-500 ml-3">
               {`(${item.quantityInStock})`}
               <span className="text-xs text-gray-500 ml-3 uppercase">-{item.condition}</span>
-            </div>
+            </div> */}
           </div>
         </div>
         <Link
