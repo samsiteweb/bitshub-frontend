@@ -18,12 +18,6 @@ const SideBarModal = (props) => {
         </ModalOverlay>,
         document.getElementById("overlay-root")
       )}
-      {/* {ReactDOM.createPortal(
-        <ModalOverlay>
-          <CategoriesNav setSideModalOpen={props.setSideModalOpen} sideModalOpen={props.sideModalOpen} />
-        </ModalOverlay>,
-        document.getElementById("overlay-root")
-      )} */}
     </React.Fragment>
   );
 };
