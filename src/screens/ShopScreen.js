@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Filter from "../components/Filter";
 import Product from "../components/Product";
-import { ProductData } from "../data/productData";
+import ProductData from "../data/productData";
 
 const ShopScreen = () => {
   const [showFilter, setShowFilter] = useState(false);
