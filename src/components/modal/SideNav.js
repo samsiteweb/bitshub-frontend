@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SideNav = (props) => {
+const SideNav = ({ modalHandler }) => {
   return (
     <div>
-      <div className="text-white text-xl font-semibold text-center p-3 bg-primary">
+      <div className="text-white font-semibold text-center p-3 bg-primary">
         <span>Menu</span>
         <span
-          className="pl-[60%]"
+          className="ml-[60%] font-normal cursor-pointer"
           onClick={() => {
-            props.setSideModalOpen(!props.sideModalOpen);
+            modalHandler();
           }}
         >
           X
