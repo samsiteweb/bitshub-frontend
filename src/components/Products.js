@@ -9,7 +9,6 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { product } = ProductData.products;
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -34,7 +33,7 @@ const Products = () => {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="grid lg:grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
-          {product.map((item) => {
+          {ProductData.products.map((item) => {
             return <Product item={item} id={item.id} />;
           })}
         </div>
