@@ -2,19 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
 import ModalOverlay from "./ModalOverlay";
-import SideNav from "./SideNav";
-import CategoriesNav from "./CategoriesNav";
+import Card from "./Card";
 
 const SideBarModal = (props) => {
   return (
     <React.Fragment>
-      {ReactDOM.createPortal(
-        <Backdrop setSideModalOpen={props.setSideModalOpen} sideModalOpen={props.sideModalOpen} />,
-        document.getElementById("backdrop-root")
-      )}
+      {ReactDOM.createPortal(<Backdrop modalHandler={props.modalHandler} />, document.getElementById("backdrop-root"))}
       {ReactDOM.createPortal(
         <ModalOverlay>
-          <SideNav setSideModalOpen={props.setSideModalOpen} sideModalOpen={props.sideModalOpen} />
+          <Card className="z-[50] fixed h-[100vh] w-[75%] rounded-none">{props.children}</Card>;
         </ModalOverlay>,
         document.getElementById("overlay-root")
       )}

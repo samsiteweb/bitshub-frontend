@@ -3,7 +3,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import { useParams } from "react-router-dom";
 import Products from "../components/Products";
 import Rating from "../components/Rating";
-import { ProductData } from "../data/productData";
+import ProductData from "../data/productData";
 
 const ProductDetails = (props) => {
   const { id } = useParams();
