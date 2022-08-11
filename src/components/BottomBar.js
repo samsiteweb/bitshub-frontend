@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SideBarModal from "./modal/SideBarModal";
-import SideNav from "./modal/SideNav";
-import CategoriesNav from "./modal/CategoriesNav";
-import FullModal from "./modal/FullModal";
-import SearchModal from "./modal/SearchModal";
-import CartModal from "./modal/CartModal";
+import SideBarModal from "./modals/SideBarModal";
+import SideNav from "./modals/SideNav";
+import CategoriesNav from "./modals/CategoriesNav";
+import FullModal from "./modals/FullModal";
+import SearchModal from "./modals/SearchModal";
+import CartModal from "./modals/CartModal";
 const BottomBar = () => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [openCategories, setOpenCategories] = useState(false);

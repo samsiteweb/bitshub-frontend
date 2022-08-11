@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Product from "./Product";
-import MessageBox from "./modal/MessageBox";
+import MessageBox from "./modals/MessageBox";
 import LoadingBox from "./LoadingBox";
 
 const Products = () => {
