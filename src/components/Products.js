@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
 import Product from "./Product";
 import MessageBox from "./modals/MessageBox";
 import LoadingBox from "./LoadingBox";
-import ProductData from "../data/productData";
+// import axios from "axios";
+// import ProductData from "../data/productData";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state?.productList);
+  const { loading, error, products } = productList;
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const { data } = await axios.get("/api/products");
-  //       setLoading(false);
-  //       setProducts(data);
-  //     } catch (err) {
-  //       setError(err.message);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    dispatch(listProducts());
+    console.log(products);
+  }, [dispatch]);
 
   return (
     <div>
@@ -33,8 +25,8 @@ const Products = () => {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="grid lg:grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
-          {ProductData.products.map((item) => {
-            return <Product item={item} id={item.id} />;
+          {products?.map((item) => {
+            return <Product item={item} id={item?.id} />;
           })}
         </div>
       )}
