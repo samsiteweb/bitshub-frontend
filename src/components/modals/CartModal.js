@@ -23,8 +23,8 @@ const CartModal = ({ modalHandler }) => {
               <img className="w-full" src="../assets/products/81nde-rFKzL._AC_SL1500_.jpg" alt="cart item" />
             </div>
             <div>
-              <p className="text-gray-700 font-medium hover:text-primary">Lenovo Yoga Y6</p>
-              <p className="text-gray-700 text-sm">#200,000</p>
+              <p className="text-gray-700 font-medium text-sm hover:text-primary">Lenovo Yoga Y6</p>
+              <p className="text-gray-700 text-xs">#200,000</p>
             </div>
           </div>
           <div className="text-gray-600 cursor-pointer hover:text-primary mr-4">
@@ -37,8 +37,8 @@ const CartModal = ({ modalHandler }) => {
               <img className="w-full" src="../assets/products/81nde-rFKzL._AC_SL1500_.jpg" alt="cart item" />
             </div>
             <div>
-              <p className="text-gray-700 font-medium hover:text-primary">Lenovo Yoga Y6</p>
-              <p className="text-gray-700 text-sm">#200,000</p>
+              <p className="text-gray-700 font-medium text-sm hover:text-primary">Lenovo Yoga Y6</p>
+              <p className="text-gray-700 text-xs">#200,000</p>
             </div>
           </div>
           <div className="text-gray-600 cursor-pointer hover:text-primary mr-4">
