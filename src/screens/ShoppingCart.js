@@ -4,7 +4,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import CartCard from "../components/CartCard";
 import { OrderData } from "../data/orderData";
 
-const ShoppingCart = () => {
+const ShoppingCart = (props) => {
   return (
     <div className="">
       <Breadcrumbs page="cart" />
@@ -14,7 +14,7 @@ const ShoppingCart = () => {
             <p className="px-4 py-3 text-sm font-semibold">Billing details</p>
           </div>
           {OrderData.orders.map((item) => {
-            return <CartCard item={item} id={item.id} />;
+            return <CartCard item={item} key={item.id} />;
           })}
         </div>
         <div className="col-span-12 lg:col-span-4">

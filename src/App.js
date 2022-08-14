@@ -22,20 +22,21 @@ import PaymentMethods from "./components/PaymentMethods";
 import WishList from "./components/WishList";
 import ProfileInfo from "./components/ProfileInfo";
 import ShoppingCart from "./screens/ShoppingCart";
+import NotFound from "./screens/NotFound";
 
 function App() {
   return (
     <ScrollToTop>
       <Header />
       <Routes>
-        <Route exact path="/" element={<HomeScreen />} />
+        <Route path="/" element={<HomeScreen />} />
         <Route path="/about" element={<AboutScreen />} />
         <Route path="/shop" element={<ShopScreen />} />
         <Route path="/contact" element={<ContactScreen />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/cart/:id?" element={<ShoppingCart />} />
         <Route
           exact
           path="/account"
@@ -128,6 +129,7 @@ function App() {
             </AccountLayout>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </ScrollToTop>

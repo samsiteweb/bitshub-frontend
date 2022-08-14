@@ -14,7 +14,6 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(listProducts());
-    console.log(products);
   }, [dispatch]);
 
   return (
@@ -26,7 +25,7 @@ const Products = () => {
       ) : (
         <div className="grid lg:grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
           {products?.map((item) => {
-            return <Product item={item} id={item?.id} />;
+            return <Product item={item} key={item?.id} />;
           })}
         </div>
       )}
