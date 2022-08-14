@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsProduct } from "../actions/productActions";
@@ -7,10 +7,16 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/modals/MessageBox";
 import Products from "../components/Products";
 import Rating from "../components/Rating";
+import Button from "../components/Button";
 
 const ProductDetails = (props) => {
   const dispatch = useDispatch();
   const { id: productId } = useParams();
+
+  const [qty, setQty] = useState("1");
+  const handleClick = () => {
+    console.log("Dynamic button clicked");
+  };
 
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
@@ -48,9 +54,8 @@ const ProductDetails = (props) => {
 
             <div>
               <h3 className="text-xl font-medium uppercase mb-2">{product?.name}</h3>
-              <div className="flex items-center mb-4">
-                <Rating />
-                <div className="text xs text-gray-500 ml-3">{product?.reviews}</div>
+              <div className="my-2">
+                <Rating rating={product?.rating} reviews={product?.reviews} />
               </div>
               <div className="space-y-2">
                 <p className="text-gray-800 font-semi-bold space-x-2">
@@ -172,24 +177,23 @@ const ProductDetails = (props) => {
                 <h3 className="text-sm text-gray-800 uppercase mb-1">quantity</h3>
                 <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
                   <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                  <input className="h-8 w-14 text-base p-2" />
+                  <input
+                    className="h-8 w-12 text-base p-2 focus:border-primary focus:ring-primary"
+                    type="number"
+                    value={qty}
+                    onChange={(e) => setQty(e.target.value)}
+                  />
                   <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer">+</div>
                 </div>
               </div>
 
               <div className="flex gap-3 border-b border-gray-200 pb-5 mt-6">
-                <a
-                  href="/"
-                  className="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition"
-                >
+                <Button className="uppercase" primary onClick={handleClick}>
                   <i className="fas fa-shopping-bag"></i> Add to cart
-                </a>
-                <a
-                  href="/"
-                  className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
-                >
+                </Button>
+                <Button className="uppercase" secondary onClick={handleClick}>
                   <i className="fas fa-heart"></i> Wish list
-                </a>
+                </Button>
               </div>
 
               <div className="flex gap-3 mt-4">
