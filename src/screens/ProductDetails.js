@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsProduct } from "../actions/productActions";
 import Breadcrumbs from "../components/Breadcrumbs";
@@ -12,18 +12,22 @@ import Button from "../components/Button";
 const ProductDetails = (props) => {
   const dispatch = useDispatch();
   const { id: productId } = useParams();
-
-  const [qty, setQty] = useState("1");
-  const handleClick = () => {
-    console.log("Dynamic button clicked");
-  };
-
+  let navigate = useNavigate();
+  const location = useLocation();
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
-  console.log(product);
+  const [qty, setQty] = useState(1);
+
   useEffect(() => {
     dispatch(detailsProduct(productId));
+    setQty(1);
   }, [dispatch, productId]);
+
+  const addToCarthandler = () => {
+    console.log(location);
+    navigate(`/cart/${productId}?qty=${qty}`);
+    console.log(location);
+  };
   return (
     <div>
       {loading ? (
@@ -176,22 +180,52 @@ const ProductDetails = (props) => {
               <div className="mt-4">
                 <h3 className="text-sm text-gray-800 uppercase mb-1">quantity</h3>
                 <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-                  <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
+                  {/* <button
+                    className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+                    onClick={() => decrease(qty)}
+                  >
+                    -
+                  </button> */}
                   <input
                     className="h-8 w-12 text-base p-2 focus:border-primary focus:ring-primary"
                     type="number"
                     value={qty}
-                    onChange={(e) => setQty(e.target.value)}
+                    onChange={(e) => {
+                      setQty(e.target.value);
+                    }}
                   />
-                  <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer">+</div>
+                  {/* <button
+                    className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer"
+                    onClick={() => increase(quantity)}
+                  >
+                    +
+                  </button> */}
                 </div>
               </div>
 
               <div className="flex gap-3 border-b border-gray-200 pb-5 mt-6">
-                <Button className="uppercase" primary onClick={handleClick}>
-                  <i className="fas fa-shopping-bag"></i> Add to cart
-                </Button>
-                <Button className="uppercase" secondary onClick={handleClick}>
+                <div>
+                  <Button
+                    className="uppercase"
+                    primary
+                    onClick={addToCarthandler}
+                    disabled={product?.quantityInStock < 1 || qty < 1 || qty > product?.quantityInStock ? true : false}
+                    loading={loading}
+                  >
+                    <i className="fas fa-shopping-bag"></i> Add to cart
+                  </Button>
+                  <p className="text-xs text-red-500 py-2">
+                    {product?.quantityInStock < 1
+                      ? "item sold out"
+                      : qty < 1
+                      ? "cart cannot be empty"
+                      : qty > product?.quantityInStock
+                      ? "quantity cannot be greater than stock"
+                      : ""}
+                  </p>
+                </div>
+
+                <Button className="uppercase" secondary loading={loading}>
                   <i className="fas fa-heart"></i> Wish list
                 </Button>
               </div>

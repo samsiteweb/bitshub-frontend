@@ -19,9 +19,9 @@ const CartCard = (props) => {
         </p>
       </div>
       <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-        <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-        <input value="4" className="h-8 w-14 text-base p-2" />
-        <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer">+</div>
+        {/* <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div> */}
+        <input className="h-8 w-14 text-base p-2" />
+        {/* <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer">+</div> */}
       </div>
       <div className="flex items-center justify-between gap-4">
         <p className="text-primary text-lg font-semibold">₦{price}</p>
