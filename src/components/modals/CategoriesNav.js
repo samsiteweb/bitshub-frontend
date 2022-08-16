@@ -13,12 +13,20 @@ const CategoriesNav = ({ modalHandler }) => {
     <div className="px-8 py-4 bg-primary flex items-center cursor-pointer relative group">
       <span className="text-white">All categories</span>
       <span
-        className="font-normal text-white ml-auto cursor-pointer"
+        className="modal-close cursor-pointer ml-[60%]"
         onClick={() => {
           modalHandler();
         }}
       >
-        X
+        <svg
+          class="fill-current text-black"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+        >
+          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+        </svg>
       </span>
       <div className="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed transition duration-300">
         <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
