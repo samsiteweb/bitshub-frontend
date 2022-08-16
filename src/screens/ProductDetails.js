@@ -8,6 +8,8 @@ import MessageBox from "../components/modals/MessageBox";
 import Products from "../components/Products";
 import Rating from "../components/Rating";
 import Button from "../components/Button";
+import CenterModal from "../components/modals/CenterModal";
+import ProductDetailsModal from "../components/modals/ProductDetailsModal";
 
 const ProductDetails = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const ProductDetails = (props) => {
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
   const [qty, setQty] = useState(1);
+  const [addToCart, setAddToCart] = useState(false);
 
   useEffect(() => {
     dispatch(detailsProduct(productId));
@@ -24,9 +27,10 @@ const ProductDetails = (props) => {
   }, [dispatch, productId]);
 
   const addToCarthandler = () => {
-    console.log(location);
-    navigate(`/cart/${productId}?qty=${qty}`);
-    console.log(location);
+    // console.log(location);
+    // navigate(`/cart/${productId}?qty=${qty}`);
+    // console.log(location);
+    setAddToCart(!addToCart);
   };
   return (
     <div>
@@ -284,6 +288,11 @@ const ProductDetails = (props) => {
             <Products />
           </div>
         </div>
+      )}
+      {addToCart && (
+        <CenterModal modalHandler={addToCarthandler}>
+          <ProductDetailsModal modalHandler={addToCarthandler} />
+        </CenterModal>
       )}
     </div>
   );
