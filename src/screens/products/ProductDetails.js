@@ -16,12 +16,11 @@ const ProductDetails = (props) => {
   const { id: productId } = useParams();
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
-  const [qty, setQty] = useState();
+  const [qty, setQty] = useState(1);
   const [addToCart, setAddToCart] = useState(false);
 
   useEffect(() => {
     dispatch(detailsProduct(productId));
-    setQty(1);
   }, [dispatch, productId]);
 
   const addToCarthandler = () => {

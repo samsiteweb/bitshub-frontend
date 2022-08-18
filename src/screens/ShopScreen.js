@@ -71,7 +71,7 @@ const ShopScreen = () => {
 
           <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-2">
             {ProductData.products.map((item) => {
-              return <Product item={item} id={item.id} />;
+              return <Product item={item} key={item.id} />;
             })}
           </div>
         </div>

@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const CartCard = (props) => {
-  const { image, price, name, condition } = props.item;
+  const { image, price, name, condition, qty } = props.item;
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
   return (
     <div className="flex flex-col md:flex-row items-left md:items-center justify between gap-6 p-4 border border-gray-200 rounded">
       <div className="w-28 flex-shrink-0">
@@ -20,7 +23,7 @@ const CartCard = (props) => {
       </div>
       <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
         {/* <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div> */}
-        <input className="h-8 w-14 text-base p-2" />
+        <input className="h-8 w-14 text-base p-2" value={qty} />
         {/* <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer">+</div> */}
       </div>
       <div className="flex items-center justify-between gap-4">
