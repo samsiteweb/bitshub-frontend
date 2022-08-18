@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CartCard from "../components/CartCard";
 import { OrderData } from "../data/orderData";
 
 const ShoppingCart = (props) => {
+  const [searchParams, setSearchparams] = useSearchParams();
+  console.log("searchParams:", searchParams.get("qty"));
   return (
-    <div className="">
+    <div>
       <Breadcrumbs page="cart" />
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="space-y-4 col-span-12 lg:col-span-8">

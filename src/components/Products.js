@@ -4,8 +4,6 @@ import { listProducts } from "../actions/productActions";
 import Product from "./Product";
 import MessageBox from "./modals/MessageBox";
 import LoadingBox from "./LoadingBox";
-// import axios from "axios";
-// import ProductData from "../data/productData";
 
 const Products = () => {
   const dispatch = useDispatch();

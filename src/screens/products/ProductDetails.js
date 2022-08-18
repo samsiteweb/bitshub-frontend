@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { detailsProduct } from "../actions/productActions";
-import Breadcrumbs from "../components/Breadcrumbs";
-import LoadingBox from "../components/LoadingBox";
-import MessageBox from "../components/modals/MessageBox";
-import Products from "../components/Products";
-import Rating from "../components/Rating";
-import Button from "../components/Button";
-import CenterModal from "../components/modals/CenterModal";
-import ProductDetailsModal from "../components/modals/ProductDetailsModal";
+import { detailsProduct } from "../../actions/productActions";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import LoadingBox from "../../components/LoadingBox";
+import MessageBox from "../../components/modals/MessageBox";
+import Products from "../../components/Products";
+import Rating from "../../components/Rating";
+import Button from "../../components/Button";
+import CenterModal from "../../components/modals/CenterModal";
+import ProductDetailsModal from "./ProductDetailsModal";
 
 const ProductDetails = (props) => {
   const dispatch = useDispatch();
   const { id: productId } = useParams();
-  let navigate = useNavigate();
-  const location = useLocation();
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState();
   const [addToCart, setAddToCart] = useState(false);
 
   useEffect(() => {
@@ -27,9 +25,6 @@ const ProductDetails = (props) => {
   }, [dispatch, productId]);
 
   const addToCarthandler = () => {
-    // console.log(location);
-    // navigate(`/cart/${productId}?qty=${qty}`);
-    // console.log(location);
     setAddToCart(!addToCart);
   };
   return (
@@ -291,7 +286,7 @@ const ProductDetails = (props) => {
       )}
       {addToCart && (
         <CenterModal modalHandler={addToCarthandler}>
-          <ProductDetailsModal modalHandler={addToCarthandler} />
+          <ProductDetailsModal modalHandler={addToCarthandler} productId={productId} qty={qty} />
         </CenterModal>
       )}
     </div>

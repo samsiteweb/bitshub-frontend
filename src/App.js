@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import HomeScreen from "./screens/HomeScreen";
@@ -5,7 +6,7 @@ import AboutScreen from "./screens/AboutScreen";
 import ShopScreen from "./screens/ShopScreen";
 import ContactScreen from "./screens/ContactScreen";
 import Footer from "./components/Footer";
-import ProductDetails from "./screens/ProductDetails";
+import ProductDetails from "./screens/products/ProductDetails";
 import AccountLayout from "./screens/AccountLayout";
 import Login from "./screens/Login";
 import ScrollToTop from "./utilities/scrollToTop";
@@ -36,7 +37,7 @@ function App() {
         <Route path="/product-details/:id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart/:id?" element={<ShoppingCart />} />
+        <Route path="/cart/:id" element={<ShoppingCart />} />
         <Route
           exact
           path="/account"
