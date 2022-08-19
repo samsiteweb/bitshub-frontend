@@ -41,7 +41,10 @@ const Header = () => {
                 8
               </span>
             </Link>
-            <Link to="/" className="hidden md:block text-center text-gray-700 hover:text-primary transition relative">
+            <Link
+              to="/cart/:id"
+              className="hidden md:block text-center text-gray-700 hover:text-primary transition relative"
+            >
               <div className="text-2xl">
                 <i className="fas fa-shopping-bag"></i>
               </div>

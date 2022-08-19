@@ -28,9 +28,9 @@ const ShoppingCart = () => {
         <div className="space-y-4 col-span-12 lg:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
             <p className="px-4 py-3 text-sm font-semibold">Billing details</p>
-            <p className="px-4 py-3 text-sm font-semibold">
+            {/* <p className="px-4 py-3 text-sm font-semibold">
               productId: {productId} quantity:{qty}
-            </p>
+            </p> */}
           </div>
           {cartItems.length === 0 ? (
             <MessageBox>
