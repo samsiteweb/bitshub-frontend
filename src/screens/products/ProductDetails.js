@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsProduct } from "../../actions/productActions";
+import { addToCart } from "../../actions/cartActions";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/modals/MessageBox";
@@ -16,16 +17,16 @@ const ProductDetails = (props) => {
   const { id: productId } = useParams();
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
-  const [qty, setQty] = useState();
-  const [addToCart, setAddToCart] = useState(false);
+  const [qty, setQty] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     dispatch(detailsProduct(productId));
-    setQty(1);
   }, [dispatch, productId]);
 
   const addToCarthandler = () => {
-    setAddToCart(!addToCart);
+    dispatch(addToCart(productId, qty));
+    setOpenModal(!openModal);
   };
   return (
     <div>
@@ -284,7 +285,7 @@ const ProductDetails = (props) => {
           </div>
         </div>
       )}
-      {addToCart && (
+      {openModal && (
         <CenterModal modalHandler={addToCarthandler}>
           <ProductDetailsModal modalHandler={addToCarthandler} productId={productId} qty={qty} />
         </CenterModal>

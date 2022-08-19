@@ -1,12 +1,26 @@
-import React from "react";
-import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../actions/cartActions";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CartCard from "../components/CartCard";
-import { OrderData } from "../data/orderData";
+import MessageBox from "../components/modals/MessageBox";
 
-const ShoppingCart = (props) => {
-  const [searchParams, setSearchparams] = useSearchParams();
-  console.log("searchParams:", searchParams.get("qty"));
+const ShoppingCart = () => {
+  const params = useParams();
+  const { id: productId } = params;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const qty = Number(searchParams.get("qty"));
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty));
+    }
+  }, [dispatch, productId, qty]);
+
   return (
     <div>
       <Breadcrumbs page="cart" />
@@ -14,10 +28,19 @@ const ShoppingCart = (props) => {
         <div className="space-y-4 col-span-12 lg:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
             <p className="px-4 py-3 text-sm font-semibold">Billing details</p>
+            {/* <p className="px-4 py-3 text-sm font-semibold">
+              productId: {productId} quantity:{qty}
+            </p> */}
           </div>
-          {OrderData.orders.map((item) => {
-            return <CartCard item={item} key={item.id} />;
-          })}
+          {cartItems.length === 0 ? (
+            <MessageBox>
+              No item in cart currently. <Link to="/shop">Go shopping</Link>
+            </MessageBox>
+          ) : (
+            cartItems.map((item) => {
+              return <CartCard item={item} qty={qty} key={item.product} />;
+            })
+          )}
         </div>
         <div className="col-span-12 lg:col-span-4">
           <div className="border border-gray-200 p-4 rounded">
