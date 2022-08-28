@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/cartActions";
+import Button from "./Button";
 import Rating from "./Rating";
 
 const Product = (props) => {
   const { item } = props;
+  const dispatch = useDispatch();
+  const addToCarthandler = () => {
+    dispatch(addToCart(item.id, 1));
+  };
 
   return (
     <div>
@@ -24,6 +31,7 @@ const Product = (props) => {
             >
               <i className="far fa-heart"></i>
             </span>
+            <p className="text-sm text-red-500 font-medium">{item?.quantityInStock < 1 ? "item sold out" : ""}</p>
           </div>
         </div>
         <div className="pt-4 pb-3 px-4">
@@ -37,18 +45,17 @@ const Product = (props) => {
           </div>
           <div>
             <Rating rating={item?.rating} reviews={item?.reviews} />
-            {/* <div className="text-xs text-gray-500 ml-3">
-              {`(${item.quantityInStock})`}
-              <span className="text-xs text-gray-500 ml-3 uppercase">-{item.condition}</span>
-            </div> */}
           </div>
         </div>
-        <Link
-          to="/cart"
-          className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
+
+        <Button
+          className="block w-full border border-primary rounded-none rounded-b justify-center"
+          primary
+          onClick={addToCarthandler}
+          disabled={item?.quantityInStock < 1 ? true : false}
         >
           Add to cart
-        </Link>
+        </Button>
       </div>
     </div>
   );
