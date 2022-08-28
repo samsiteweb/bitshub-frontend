@@ -18,6 +18,7 @@ const ProductDetails = (props) => {
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
   const [qty, setQty] = useState(1);
+  const [editQty, setEditQty] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
@@ -179,27 +180,34 @@ const ProductDetails = (props) => {
               {/* Quantity */}
               <div className="mt-4">
                 <h3 className="text-sm text-gray-800 uppercase mb-1">quantity</h3>
-                <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-                  {/* <button
-                    className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-                    onClick={() => decrease(qty)}
+                <div className="flex items-center text-gray-600 divide-x divide-gray-300 w-16 h-8">
+                  <Button
+                    primary
+                    className="px-2 py-1"
+                    // onClick={() => decrease(qty)}
                   >
                     -
-                  </button> */}
+                  </Button>
+
                   <input
-                    className="h-8 w-12 text-base p-2 focus:border-primary focus:ring-primary"
+                    className="h-8 w-12 text-base p-2 focus:border-primary focus:ring-primary outline-none"
                     type="number"
-                    value={qty}
                     onChange={(e) => {
-                      setQty(e.target.value);
+                      setQty(Number(e.target.value));
+                    }}
+                    value={editQty ? qty : 1}
+                    onClick={() => {
+                      setEditQty(true);
                     }}
                   />
-                  {/* <button
-                    className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer"
-                    onClick={() => increase(quantity)}
+
+                  <Button
+                    primary
+                    className="px-2 py-1"
+                    // onClick={() => decrease(qty)}
                   >
                     +
-                  </button> */}
+                  </Button>
                 </div>
               </div>
 
