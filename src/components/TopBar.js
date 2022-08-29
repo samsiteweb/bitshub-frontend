@@ -10,6 +10,9 @@ const TopBar = () => {
         </a>
         <div className="flex items-center justify-center gap-8">
           <Link to="/account/order-history" className="text-sm hover:text-primary transition">
+            Become a vendor
+          </Link>
+          <Link to="/account/order-history" className="text-sm hover:text-primary transition">
             Track my order
           </Link>
           <p className="text-sm hover:text-primary transition">

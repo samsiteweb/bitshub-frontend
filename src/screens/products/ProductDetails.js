@@ -18,7 +18,6 @@ const ProductDetails = (props) => {
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
   const [qty, setQty] = useState(1);
-  const [editQty, setEditQty] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
@@ -182,9 +181,12 @@ const ProductDetails = (props) => {
                 <h3 className="text-sm text-gray-800 uppercase mb-1">quantity</h3>
                 <div className="flex items-center text-gray-600 divide-x divide-gray-300 w-16 h-8">
                   <Button
-                    primary
+                    secondary
                     className="px-2 py-1"
-                    // onClick={() => decrease(qty)}
+                    onClick={() => {
+                      setQty((prev) => prev - 1);
+                      console.log(qty);
+                    }}
                   >
                     -
                   </Button>
@@ -195,16 +197,16 @@ const ProductDetails = (props) => {
                     onChange={(e) => {
                       setQty(Number(e.target.value));
                     }}
-                    value={editQty ? qty : 1}
-                    onClick={() => {
-                      setEditQty(true);
-                    }}
+                    value={qty}
                   />
 
                   <Button
-                    primary
+                    secondary
                     className="px-2 py-1"
-                    // onClick={() => decrease(qty)}
+                    onClick={() => {
+                      setQty((prev) => prev + 1);
+                      console.log(qty);
+                    }}
                   >
                     +
                   </Button>

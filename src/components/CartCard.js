@@ -7,10 +7,11 @@ const CartCard = (props) => {
   const [quantity, setQuantity] = useState(qty);
   const dispatch = useDispatch();
   const updateCartHandler = (product, quantity) => {
+    // console.log("id:", product, "qty:", quantity);
     const productId = product;
     const qty = quantity;
     dispatch(addToCart(productId, qty));
-    console.log("id:", productId, "qty:", qty);
+    // console.log("id:", productId, "qty:", qty);
   };
 
   return (
@@ -33,8 +34,7 @@ const CartCard = (props) => {
         <button
           className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
           onClick={() => {
-            setQuantity((prev) => prev - 1);
-            updateCartHandler(product, quantity);
+            setQuantity((prev) => prev - 1) ?? updateCartHandler(product, quantity);
           }}
         >
           -
@@ -50,8 +50,7 @@ const CartCard = (props) => {
         <button
           className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer"
           onClick={() => {
-            setQuantity((prev) => prev + 1);
-            updateCartHandler(product, quantity);
+            setQuantity((prev) => prev + 1) ?? updateCartHandler(product, quantity);
           }}
         >
           +
