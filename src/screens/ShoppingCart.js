@@ -69,6 +69,7 @@ const ShoppingCart = () => {
             </div>
 
             <Button
+              disabled={qty <= 0 ? true : false}
               onClick={() => {
                 navigate("/login?redirect=shipping");
               }}
