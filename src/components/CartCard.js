@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, itemRemove } from "../actions/cartActions";
 import Button from "./Button";
 
 const CartCard = (props) => {
   const { image, price, name, condition, qty, product, quantityInStock } = props.item;
   const [editQty, setEditQty] = useState(false);
   const [quantity, setQuantity] = useState(Number());
-  const removeFromCartHandler = () => {};
+  const removeFromCartHandler = (id) => {
+    dispatch(itemRemove(id));
+  };
 
   const dispatch = useDispatch();
 
