@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../actions/cartActions";
+import Button from "./Button";
 
 const CartCard = (props) => {
-  const { image, price, name, condition, qty, product } = props.item;
-  const [quantity, setQuantity] = useState(qty);
+  const { image, price, name, condition, qty, product, quantityInStock } = props.item;
+  const [editQty, setEditQty] = useState(false);
+  const [quantity, setQuantity] = useState(Number());
+  const removeFromCartHandler = () => {};
+
   const dispatch = useDispatch();
-  const updateCartHandler = (product, quantity) => {
-    // console.log("id:", product, "qty:", quantity);
-    const productId = product;
-    const qty = quantity;
-    dispatch(addToCart(productId, qty));
-    // console.log("id:", productId, "qty:", qty);
-  };
 
   return (
     <div className="flex flex-col md:flex-row items-left md:items-center justify between gap-6 p-4 border border-gray-200 rounded">
@@ -31,35 +28,55 @@ const CartCard = (props) => {
         </p>
       </div>
       <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-        <button
+        <Button
+          secondary
+          disabled={qty <= 1 ? true : false}
           className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
           onClick={() => {
-            setQuantity((prev) => prev - 1) ?? updateCartHandler(product, quantity);
+            setEditQty(true);
+            setQuantity((prev) => (prev -= 1));
+            dispatch(addToCart(product, quantity - 1));
           }}
         >
           -
-        </button>
+        </Button>
+
         <input
           className="h-8 w-14 text-base p-2"
-          onChange={(e) => setQuantity(e.target.value)}
-          value={quantity}
+          onChange={(e) => {
+            setEditQty(true);
+            setQuantity(Number(e.target.value));
+          }}
+          value={editQty ? Number(quantity) : qty}
           type="number"
-          onBlur={() => updateCartHandler(product, quantity)}
+          onBlur={() => {
+            dispatch(addToCart(product, quantity));
+            console.log("dispatched!!", product, quantity);
+          }}
         />
 
-        <button
+        <Button
+          disabled={qty >= quantityInStock ? true : false}
+          secondary
           className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer"
           onClick={() => {
-            setQuantity((prev) => prev + 1) ?? updateCartHandler(product, quantity);
+            setEditQty(true);
+            setQuantity((prev) => (prev += 1));
+            dispatch(addToCart(product, quantity + 1));
           }}
         >
           +
-        </button>
+        </Button>
       </div>
       <div className="flex items-center justify-between gap-4">
-        <p className="text-primary text-lg font-semibold">₦{price}</p>
+        <p className="text-primary text-lg font-semibold">₦{price * qty}</p>
 
-        <div className="text-gray-600 cursor-pointer hover:text-primary">
+        <div
+          className="text-gray-600 cursor-pointer hover:text-primary"
+          onClick={() => {
+            removeFromCartHandler(product);
+          }}
+        >
           <i className="fas fa-trash"></i>
         </div>
       </div>
