@@ -185,7 +185,6 @@ const ProductDetails = (props) => {
                     className="px-2 py-1"
                     onClick={() => {
                       setQty((prev) => prev - 1);
-                      console.log(qty);
                     }}
                   >
                     -
@@ -205,7 +204,6 @@ const ProductDetails = (props) => {
                     className="px-2 py-1"
                     onClick={() => {
                       setQty((prev) => prev + 1);
-                      console.log(qty);
                     }}
                   >
                     +

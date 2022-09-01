@@ -1,25 +1,27 @@
 import React, { useEffect } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartActions";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CartCard from "../components/CartCard";
 import MessageBox from "../components/modals/MessageBox";
+import Button from "../components/Button";
 
 const ShoppingCart = () => {
   const params = useParams();
   const { id: productId } = params;
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const qty = Number(searchParams.get("qty"));
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (productId) {
-      dispatch(addToCart(productId, qty));
-    }
-  }, [dispatch, productId, qty]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (productId) {
+  //     dispatch(addToCart(productId, qty));
+  //   }
+  // }, [dispatch, productId, qty]);
 
   return (
     <div>
@@ -48,7 +50,10 @@ const ShoppingCart = () => {
 
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
               <p>Subtotal</p>
-              <p>₦320,000</p>
+              <p>
+                ({cartItems.reduce((a, c) => a + c.qty, 0)} items): ₦
+                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+              </p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-800 py-3">
               <p>Shipping</p>
@@ -60,15 +65,18 @@ const ShoppingCart = () => {
             </div>
             <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>₦320,000</p>
+              <p>₦{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
             </div>
 
-            <Link
-              to="/checkout"
-              className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
+            <Button
+              onClick={() => {
+                navigate("/login?redirect=shipping");
+              }}
+              primary
+              className="w-full"
             >
               Proceed to checkout
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
