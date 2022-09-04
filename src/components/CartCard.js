@@ -6,7 +6,7 @@ import Button from "./Button";
 const CartCard = (props) => {
   const { image, price, name, condition, qty, product, quantityInStock } = props.item;
   const [editQty, setEditQty] = useState(false);
-  const [quantity, setQuantity] = useState(Number());
+  const [quantity, setQuantity] = useState(Number(qty));
   const removeFromCartHandler = (id) => {
     dispatch(itemRemove(id));
   };
