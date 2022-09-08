@@ -13,8 +13,9 @@ import CenterModal from "../../components/modals/CenterModal";
 import ProductDetailsModal from "./ProductDetailsModal";
 
 const ProductDetails = (props) => {
+  const { _id: productId } = useParams();
   const dispatch = useDispatch();
-  const { id: productId } = useParams();
+
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
   const [qty, setQty] = useState(1);
@@ -38,7 +39,7 @@ const ProductDetails = (props) => {
         <div>
           <Breadcrumbs page="Product view" />
           <div className="container grid md:grid-cols-2 gap-6">
-            <div>
+            {/* <div>
               <img src={product?.image[0]} alt={product?.name} />
               <div className="grid grid-cols-5 gap-4 mt-4">
                 <img
@@ -54,38 +55,38 @@ const ProductDetails = (props) => {
                 <img src={product?.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
                 <img src={product?.image[1]} alt="" className="w-full cursor-pointer border hover:border-primary" />
               </div>
-            </div>
+            </div> */}
 
             <div>
-              <h3 className="text-xl font-medium uppercase mb-2">{product?.name}</h3>
+              <h3 className="text-xl font-medium uppercase mb-2">{product?.product?.name}</h3>
               <div className="my-2">
-                <Rating rating={product?.rating} reviews={product?.reviews} />
+                <Rating rating={product?.product?.rating} reviews={product?.product?.reviews} />
               </div>
               <div className="space-y-2">
                 <p className="text-gray-800 font-semi-bold space-x-2">
                   <span>Availability:</span>
-                  <span className={product?.quantityInStock > 0 ? "text-green-600" : "text-red-600"}>
-                    {product?.quantityInStock > 0 ? "In stock" : "out of stock"}
+                  <span className={product?.product?.quantityInStock > 0 ? "text-green-600" : "text-red-600"}>
+                    {product?.product?.quantityInStock > 0 ? "In stock" : "out of stock"}
                   </span>
                 </p>
                 <p className="space-x-2">
                   <span className="text-gray-800 font-semibold">Brand:</span>
-                  <span className="text-gray-600">{product?.brand}</span>
+                  <span className="text-gray-600">{product?.product?.brand}</span>
                 </p>
                 <p className="space-x-2">
                   <span className="text-gray-800 font-semibold">Category:</span>
-                  <span className="text-gray-600">{product?.category}</span>
+                  <span className="text-gray-600">{product?.product?.category}</span>
                 </p>
                 <p className="space-x-2">
                   <span className="text-gray-800 font-semibold">SKU:</span>
-                  <span className="text-gray-600">{product?.model}</span>
+                  <span className="text-gray-600">{product?.product?.model}</span>
                 </p>
               </div>
               <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-                <p className="text-2xl text-primary font-semibold">₦{product?.price}</p>
-                <p className="text-base text-gray-400 line-through">{product?.initialPrice}</p>
+                <p className="text-2xl text-primary font-semibold">₦{product?.product?.price}</p>
+                <p className="text-base text-gray-400 line-through">{product?.product?.initialPrice}</p>
               </div>
-              <p className="mt-4 text-gray-600">{product?.brief}</p>
+              <p className="mt-4 text-gray-600">{product?.product?.brief}</p>
               {/* size */}
               <div className="pt-4">
                 <h3 className="text-sm text-gray-800 uppercase mb-1">Size</h3>
@@ -217,17 +218,21 @@ const ProductDetails = (props) => {
                     className="uppercase"
                     primary
                     onClick={addToCarthandler}
-                    disabled={product?.quantityInStock < 1 || qty < 1 || qty > product?.quantityInStock ? true : false}
+                    disabled={
+                      product?.product?.quantityInStock < 1 || qty < 1 || qty > product?.product?.quantityInStock
+                        ? true
+                        : false
+                    }
                     loading={loading}
                   >
                     <i className="fas fa-shopping-bag"></i> Add to cart
                   </Button>
                   <p className="text-xs text-red-500 py-2">
-                    {product?.quantityInStock < 1
+                    {product?.product?.quantityInStock < 1
                       ? "item sold out"
                       : qty < 1
                       ? "cart cannot be empty"
-                      : qty > product?.quantityInStock
+                      : qty > product?.product?.quantityInStock
                       ? "quantity cannot be greater than stock"
                       : ""}
                   </p>
@@ -266,18 +271,18 @@ const ProductDetails = (props) => {
 
             <div className="pt-6">
               <div className="text-gray-600 space-y-3">
-                <p>{product?.desc}</p>
+                <p>{product?.product?.desc}</p>
               </div>
             </div>
             <table className="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
               <tbody>
                 <tr>
                   <th className="py-2 px-4 border border-gray-300 w-40 font-medium">Color</th>
-                  <td className="py-2 px-4 border border-gray-300">{product?.color}</td>
+                  <td className="py-2 px-4 border border-gray-300">{product?.product?.color}</td>
                 </tr>
                 <tr>
                   <th className="py-2 px-4 border border-gray-300 w-40 font-medium">Size</th>
-                  <td className="py-2 px-4 border border-gray-300">{product?.size}</td>
+                  <td className="py-2 px-4 border border-gray-300">{product?.product?.size}</td>
                 </tr>
                 <tr>
                   <th className="py-2 px-4 border border-gray-300 w-40 font-medium">Weight</th>

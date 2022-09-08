@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Filter from "../components/Filter";
 import Product from "../components/Product";
+import Products from "../components/Products";
 import ProductData from "../data/productData";
 
 const ShopScreen = () => {
@@ -69,11 +70,12 @@ const ShopScreen = () => {
 
           {/* Products */}
 
-          <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-2">
+          {/* <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-2">
             {ProductData.products.map((item) => {
-              return <Product item={item} key={item.id} />;
+              return <Product item={item} key={item._id} />;
             })}
-          </div>
+          </div> */}
+          <Products />
         </div>
       </div>
     </div>

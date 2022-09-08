@@ -9,7 +9,6 @@ const Products = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state?.productList);
   const { loading, error, products } = productList;
-
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
@@ -23,7 +22,7 @@ const Products = () => {
       ) : (
         <div className="grid lg:grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
           {products?.map((item) => {
-            return <Product item={item} key={item?.id} />;
+            return <Product item={item} key={item?._id} />;
           })}
         </div>
       )}
