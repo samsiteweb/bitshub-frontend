@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import SideBarModal from "./modals/SideBarModal";
 import SideNav from "./modals/SideNav";
 import CategoriesNav from "./modals/CategoriesNav";
@@ -6,6 +7,8 @@ import FullModal from "./modals/FullModal";
 import SearchModal from "./modals/SearchModal";
 import CartModal from "./modals/CartModal";
 const BottomBar = () => {
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [openCategories, setOpenCategories] = useState(false);
   const [openSearchBar, setOpenSearchBar] = useState(false);
@@ -72,9 +75,11 @@ const BottomBar = () => {
           <i className="fas fa-shopping-bag"></i>
         </div>
         <div className="text-xs leading-3">Cart</div>
-        <span className="absolute -right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-          8
-        </span>
+        {cartItems.length > 0 && (
+          <span className="absolute -right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
+            {cartItems.length}
+          </span>
+        )}
       </div>
 
       {sideNavOpen && (

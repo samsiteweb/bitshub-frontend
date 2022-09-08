@@ -34,10 +34,10 @@ function App() {
         <Route path="/about" element={<AboutScreen />} />
         <Route path="/shop" element={<ShopScreen />} />
         <Route path="/contact" element={<ContactScreen />} />
-        <Route path="/product-details/:id" element={<ProductDetails />} />
+        <Route path="/product-details/:_id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart/:id" element={<ShoppingCart />} />
+        <Route path="/cart/:_id" element={<ShoppingCart />} />
         <Route
           exact
           path="/account"

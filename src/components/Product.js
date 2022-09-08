@@ -9,14 +9,13 @@ const Product = (props) => {
   const { item } = props;
   const dispatch = useDispatch();
   const addToCarthandler = () => {
-    dispatch(addToCart(item.id, 1));
+    dispatch(addToCart(item._id, 1));
   };
-
   return (
     <div>
       <div className="bg-white rounded shadow overflow-hidden group">
         <div className="relative" style={{ height: "150px" }}>
-          <img src={item.image[0]} alt="" style={{ width: "100%", height: "100%" }} />
+          {/* <img src={item.image[0]} alt="" style={{ width: "100%", height: "100%" }} /> */}
 
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
             <Link
@@ -35,7 +34,7 @@ const Product = (props) => {
           </div>
         </div>
         <div className="pt-4 pb-3 px-4">
-          <Link to={`/product-details/${item.id}`}>
+          <Link to={`/product-details/${item._id}`}>
             <p className="uppercase font-medium text-l text-gray-800 hover:text-primary transition">{item.name}</p>
           </Link>
           <p className="text-xs text-gray-500 mb-2">{item.config}</p>

@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../actions/cartActions";
+import React from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CartCard from "../components/CartCard";
 import MessageBox from "../components/modals/MessageBox";
 import Button from "../components/Button";
+// import { addToCart } from "../actions/cartActions";
 
 const ShoppingCart = () => {
-  const params = useParams();
-  const { id: productId } = params;
+  // const params = useParams();
+  // const { _id: productId } = params;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const qty = Number(searchParams.get("qty"));
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
 
   // const dispatch = useDispatch();
@@ -69,6 +69,7 @@ const ShoppingCart = () => {
             </div>
 
             <Button
+              disabled={cartItems.length === 0 ? true : false}
               onClick={() => {
                 navigate("/login?redirect=shipping");
               }}
