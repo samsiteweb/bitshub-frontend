@@ -5,14 +5,15 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import CartCard from "../components/CartCard";
 import MessageBox from "../components/modals/MessageBox";
 import Button from "../components/Button";
+// import { addToCart } from "../actions/cartActions";
 
 const ShoppingCart = () => {
   // const params = useParams();
-  // const { id: productId } = params;
+  // const { _id: productId } = params;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const qty = Number(searchParams.get("qty"));
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
 
   // const dispatch = useDispatch();

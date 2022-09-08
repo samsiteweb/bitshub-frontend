@@ -26,6 +26,7 @@ const ProductDetails = (props) => {
   }, [dispatch, productId]);
 
   const addToCarthandler = () => {
+    console.log(productId, qty);
     dispatch(addToCart(productId, qty));
     setOpenModal(!openModal);
   };

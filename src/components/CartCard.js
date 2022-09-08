@@ -4,7 +4,7 @@ import { addToCart, itemRemove } from "../actions/cartActions";
 import Button from "./Button";
 
 const CartCard = (props) => {
-  const { image, price, name, condition, qty, product, quantityInStock } = props.item;
+  const { price, name, condition, qty, product, quantityInStock } = props.item;
   const [editQty, setEditQty] = useState(false);
   const [quantity, setQuantity] = useState(Number(qty));
   const removeFromCartHandler = (id) => {
@@ -15,9 +15,7 @@ const CartCard = (props) => {
 
   return (
     <div className="flex flex-col md:flex-row items-left md:items-center justify between gap-6 p-4 border border-gray-200 rounded">
-      <div className="w-28 flex-shrink-0">
-        <img src={image[0]} alt={name} />
-      </div>
+      <div className="w-28 flex-shrink-0">{/* <img src={image[0]} alt={name} /> */}</div>
       <div className="md:w-1/3">
         <p className="text-gray-800 text-lg font-medium uppercase">{name}</p>
         <p className="text-gray-500 text-sm">
@@ -33,7 +31,7 @@ const CartCard = (props) => {
         <Button
           secondary
           disabled={qty <= 1 ? true : false}
-          className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+          className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none w-full"
           onClick={() => {
             setEditQty(true);
             setQuantity((prev) => (prev -= 1));
@@ -44,7 +42,7 @@ const CartCard = (props) => {
         </Button>
 
         <input
-          className="h-8 w-14 text-base p-2"
+          className="h-8 w-14 text-base p-2 w-full"
           onChange={(e) => {
             setEditQty(true);
             setQuantity(Number(e.target.value));
@@ -60,7 +58,7 @@ const CartCard = (props) => {
         <Button
           disabled={qty >= quantityInStock ? true : false}
           secondary
-          className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer"
+          className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer w-full"
           onClick={() => {
             setEditQty(true);
             setQuantity((prev) => (prev += 1));
@@ -71,7 +69,7 @@ const CartCard = (props) => {
         </Button>
       </div>
       <div className="flex items-center justify-between gap-4">
-        <p className="text-primary text-lg font-semibold">₦{price * qty}</p>
+        <p className="text-primary text-lg font-semibold w-24">₦{price * qty}</p>
 
         <div
           className="text-gray-600 cursor-pointer hover:text-primary"
