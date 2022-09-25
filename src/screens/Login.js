@@ -1,22 +1,62 @@
-import React, { useState } from "react";
+// import e from "express";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signin } from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/";
+
   const [tab, setTab] = useState("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signinData = useSelector((state) => state?.userSignin);
+  const { loading, error, userInfo } = signinData;
+  const customId = "custom-id-yes";
+
+  const dispatch = useDispatch();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(signin(email, password));
+
+    toast.error(error, {
+      toastId: customId,
+    });
+  };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect || "/");
+    }
+  }, [navigate, redirect, userInfo]);
 
   return (
     <div className="container py-16">
+      {loading && <LoadingBox />}
+
       {tab === "login" && (
         <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
           <h2 className="text-2xl uppercase font-medium mb-1">Login</h2>
           <p className="text-gray-600 mb-6 text-sm">Login if you are a returning user</p>
-          <form action="">
+          <form onSubmit={submitHandler}>
             <div className="space-y-4">
               <div>
                 <label htmlFor="email" className="text-gray-600 mb-2 block">
                   Email
                 </label>
                 <input
+                  id="email"
                   type="email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                   className="w-full block border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                   placeholder="Enter your email address"
                 />
@@ -26,7 +66,11 @@ const Login = () => {
                   Password
                 </label>
                 <input
-                  type="email"
+                  id="password"
+                  type="password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                   className="w-full block border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                   placeholder="Enter password"
                 />
@@ -43,7 +87,7 @@ const Login = () => {
                 onClick={() => {
                   setTab("forgot-password");
                 }}
-                href="#"
+                href="/#"
                 className="text-primary cursor-pointer"
               >
                 Forgot password?
@@ -61,13 +105,13 @@ const Login = () => {
           </div>
           <div className="flex mt-4 gap-4">
             <a
-              href=""
+              href="/"
               className="w-1/2 py-2 text-center text-white bg-blue-800 hover:bg-blue-700 rounded uppercase font-roboto font-medium text-sm"
             >
               Facebook
             </a>
             <a
-              href=""
+              href="/"
               className="w-1/2 py-2 text-center text-white bg-yellow-600 hover:bg-yellow-500 rounded uppercase font-roboto font-medium text-sm"
             >
               Google
@@ -140,7 +184,7 @@ const Login = () => {
                   I have read and agreed to the
                 </label>
               </div>
-              <a href="#" className="text-primary">
+              <a href="/#" className="text-primary">
                 terms and conditions
               </a>
             </div>
@@ -156,13 +200,13 @@ const Login = () => {
           </div>
           <div className="flex mt-4 gap-4">
             <a
-              href=""
+              href="/"
               className="w-1/2 py-2 text-center text-white bg-blue-800 hover:bg-blue-700 rounded uppercase font-roboto font-medium text-sm"
             >
               Facebook
             </a>
             <a
-              href=""
+              href="/"
               className="w-1/2 py-2 text-center text-white bg-yellow-600 hover:bg-yellow-500 rounded uppercase font-roboto font-medium text-sm"
             >
               Google

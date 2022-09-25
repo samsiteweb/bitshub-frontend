@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import HomeScreen from "./screens/HomeScreen";
@@ -28,6 +30,7 @@ import NotFound from "./screens/NotFound";
 function App() {
   return (
     <ScrollToTop>
+      <ToastContainer />
       <Header />
       <Routes>
         <Route path="/" element={<HomeScreen />} />
@@ -36,7 +39,7 @@ function App() {
         <Route path="/contact" element={<ContactScreen />} />
         <Route path="/product-details/:_id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/login/checkout" element={<Checkout />} />
         <Route path="/cart/:_id" element={<ShoppingCart />} />
         <Route
           exact
