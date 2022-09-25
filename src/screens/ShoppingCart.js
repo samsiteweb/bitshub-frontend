@@ -71,7 +71,7 @@ const ShoppingCart = () => {
             <Button
               disabled={cartItems.length === 0 ? true : false}
               onClick={() => {
-                navigate("/login?redirect=shipping");
+                navigate("/login?redirect=checkout");
               }}
               primary
               className="w-full"
