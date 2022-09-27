@@ -74,7 +74,7 @@ const ShoppingCart = () => {
                 navigate("/login?redirect=checkout");
               }}
               primary
-              className="w-full"
+              className="w-full px-8 py-2 font-medium"
             >
               Proceed to checkout
             </Button>

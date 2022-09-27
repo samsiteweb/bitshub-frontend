@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, itemRemove } from "../actions/cartActions";
+import { toast } from "react-toastify";
 import Button from "./Button";
 
 const CartCard = (props) => {
   const { price, name, condition, qty, product, quantityInStock } = props.item;
   const [editQty, setEditQty] = useState(false);
   const [quantity, setQuantity] = useState(Number(qty));
+  const customId = "custom-id-yes";
   const removeFromCartHandler = (id) => {
     dispatch(itemRemove(id));
+    toast.success("Successfully removed from cart", {
+      toastId: customId,
+    });
   };
 
   const dispatch = useDispatch();
@@ -17,7 +22,7 @@ const CartCard = (props) => {
     <div className="flex flex-col md:flex-row items-left md:items-center justify between gap-6 p-4 border border-gray-200 rounded">
       <div className="w-28 flex-shrink-0">{/* <img src={image[0]} alt={name} /> */}</div>
       <div className="md:w-1/3">
-        <p className="text-gray-800 text-lg font-medium uppercase">{name}</p>
+        <p className="text-gray-800 text-sm font-medium uppercase">{name}</p>
         <p className="text-gray-500 text-sm">
           <span>Price: </span>
           <span className="text-primary font-semibold">₦{price}</span>
@@ -31,7 +36,7 @@ const CartCard = (props) => {
         <Button
           secondary
           disabled={qty <= 1 ? true : false}
-          className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none w-full"
+          className="p-2 h-8"
           onClick={() => {
             setEditQty(true);
             setQuantity((prev) => (prev -= 1));
@@ -42,7 +47,7 @@ const CartCard = (props) => {
         </Button>
 
         <input
-          className="h-8 w-14 text-base p-2 w-full"
+          className="h-8 w-14 text-base p-2 w-full ring-0 border-0 focus:border-0 focus:ring-0"
           onChange={(e) => {
             setEditQty(true);
             setQuantity(Number(e.target.value));
@@ -58,7 +63,7 @@ const CartCard = (props) => {
         <Button
           disabled={qty >= quantityInStock ? true : false}
           secondary
-          className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer w-full"
+          className="p-2 h-8"
           onClick={() => {
             setEditQty(true);
             setQuantity((prev) => (prev += 1));

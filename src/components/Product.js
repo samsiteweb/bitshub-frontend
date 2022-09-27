@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { addToCart } from "../actions/cartActions";
 import Button from "./Button";
 import Rating from "./Rating";
@@ -8,9 +9,14 @@ import Rating from "./Rating";
 const Product = (props) => {
   const { item } = props;
   const dispatch = useDispatch();
+  const customId = "custom-id-yes";
   const addToCarthandler = () => {
     dispatch(addToCart(item._id, 1));
+    toast.success("Successfully added to cart", {
+      toastId: customId,
+    });
   };
+
   return (
     <div>
       <div className="bg-white rounded shadow overflow-hidden group">
@@ -48,7 +54,7 @@ const Product = (props) => {
         </div>
 
         <Button
-          className="block w-full border border-primary rounded-none rounded-b justify-center"
+          className="block w-full border border-primary rounded-none rounded-b px-8 py-2 font-medium"
           primary
           onClick={addToCarthandler}
           disabled={item?.quantityInStock < 1 ? true : false}
