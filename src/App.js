@@ -26,6 +26,7 @@ import WishList from "./components/WishList";
 import ProfileInfo from "./components/ProfileInfo";
 import ShoppingCart from "./screens/ShoppingCart";
 import NotFound from "./screens/NotFound";
+import Register from "./screens/Register";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/product-details/:_id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/checkout" element={<Checkout />} />
+        <Route path="register" element={<Register />} />
         <Route path="/cart/:_id" element={<ShoppingCart />} />
         <Route
           exact

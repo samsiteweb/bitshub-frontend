@@ -8,10 +8,12 @@ import LoadingBox from "./LoadingBox";
 const Products = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state?.productList);
+  const cart = useSelector((state) => state.cart);
   const { loading, error, products } = productList;
+  const { cartItems } = cart;
   useEffect(() => {
     dispatch(listProducts());
-  }, [dispatch]);
+  }, [dispatch, cartItems]);
 
   return (
     <div>

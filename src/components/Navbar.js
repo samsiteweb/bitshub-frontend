@@ -45,6 +45,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center justify-between flex-grow pl-12">
+          <Link className="text-gray-200 hover:text-white transition" to="/blog">
+            FAQ
+          </Link>
           <div className="flex items-center space-x-6 capitalize">
             <Link className="text-gray-200 hover:text-white transition" to="/">
               Home
@@ -60,9 +63,6 @@ const Navbar = () => {
               Contact Us
             </Link>
           </div>
-          <Link className="text-gray-200 hover:text-white transition" to="/blog">
-            FAQ
-          </Link>
         </div>
       </div>
     </nav>

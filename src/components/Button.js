@@ -7,7 +7,7 @@ const Button = (props) => {
       <button
         type={type || "button"}
         onClick={disabled || loading ? null : onClick}
-        className={`px-8 py-2 font-medium rounded flex items-center gap-2 cursor-pointer ${className} ${
+        className={` rounded flex justify-center items-center gap-2 cursor-pointer ${className} ${
           primary
             ? "bg-primary border border-primary text-white hover:bg-transparent hover:text-primary transition"
             : secondary
