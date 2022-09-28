@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 
 const Shipping = () => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
   return (
     <div>
       <Breadcrumbs page="Checkout" />
@@ -11,45 +16,73 @@ const Shipping = () => {
             <p className="px-4 py-3 text-sm font-semibold">Shipping Details</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-lg font-medium capitalize mb-4">Checkout</p>
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="" className="text-gray-600 mb-2 block">
-                    First Name <span className="text-red-500">*</span>
-                  </label>
-                  <input type="text" className="input-box" />
-                </div>
-                <div>
-                  <label htmlFor="" className="text-gray-600 mb-2 block">
-                    Last Name <span className="text-red-500">*</span>
-                  </label>
-                  <input type="text" className="input-box" />
-                </div>
-              </div>
               <div>
                 <label htmlFor="" className="text-gray-600 mb-2 block">
-                  Company name <span className="text-red-500">*</span>
+                  Full Name <span className="text-red-500">*</span>
                 </label>
-                <input type="text" className="input-box" />
-              </div>
-              <div>
-                <label htmlFor="" className="text-gray-600 mb-2 block">
-                  Address <span className="text-red-500">*</span>
-                </label>
-                <input type="text" className="input-box" />
+                <input
+                  id="name"
+                  type="text"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  className="input-box"
+                />
               </div>
               <div>
                 <label htmlFor="" className="text-gray-600 mb-2 block">
                   Phone <span className="text-red-500">*</span>
                 </label>
-                <input type="text" className="input-box" />
+                <input
+                  id="phone"
+                  type="number"
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
+                  className="input-box"
+                />
               </div>
               <div>
                 <label htmlFor="" className="text-gray-600 mb-2 block">
-                  Email <span className="text-red-500">*</span>
+                  Address <span className="text-red-500">*</span>
                 </label>
-                <input type="text" className="input-box" />
+                <input
+                  id="address"
+                  type="text"
+                  onChange={(e) => {
+                    setAddress(e.target.value);
+                  }}
+                  className="input-box"
+                />
+              </div>
+              <div className="flex">
+                <div>
+                  <label htmlFor="" className="text-gray-600 mb-2 block">
+                    City <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="city"
+                    type="text"
+                    onChange={(e) => {
+                      setCity(e.target.value);
+                    }}
+                    className="input-box"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="" className="text-gray-600 mb-2 block">
+                    State <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="state"
+                    type="text"
+                    onChange={(e) => {
+                      setState(e.target.value);
+                    }}
+                    className="input-box"
+                  />
+                </div>
               </div>
             </div>
           </div>

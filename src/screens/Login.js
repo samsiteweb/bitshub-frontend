@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
@@ -10,7 +10,6 @@ const Login = (props) => {
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
-  console.log(redirect);
 
   const [tab, setTab] = useState("login");
   const [email, setEmail] = useState("");
@@ -19,7 +18,6 @@ const Login = (props) => {
   const signinData = useSelector((state) => state?.userSignin);
   const { loading, error, userInfo } = signinData;
   const customId = "custom-id-yes";
-
   const dispatch = useDispatch();
 
   const signinHandler = (e) => {
@@ -32,9 +30,9 @@ const Login = (props) => {
   });
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}` || "/");
+      navigate(redirect);
     }
-  }, [navigate, redirect, userInfo]);
+  }, [redirect, userInfo, navigate]);
 
   return (
     <div className="container py-16">
@@ -87,7 +85,7 @@ const Login = (props) => {
                 onClick={() => {
                   setTab("forgot-password");
                 }}
-                href="/#"
+                href="/"
                 className="text-primary cursor-pointer"
               >
                 Forgot password?
@@ -120,7 +118,7 @@ const Login = (props) => {
           <p className="mt-4 text-gray-600 text-center">
             Don't have an account?
             <span className="text-primary cursor-pointer">
-              <Link to={`/register?redirect=${redirect}`}>Sign up</Link>
+              <Link to={`/register?redirect=${redirect}`}>Create account</Link>
             </span>
           </p>
         </div>
