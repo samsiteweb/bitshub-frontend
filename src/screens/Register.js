@@ -3,6 +3,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userActions";
 import { toast } from "react-toastify";
+import LoadingBox from "../components/LoadingBox";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const userData = useSelector((state) => state?.registerUser);
-  const { error, userInfo } = userData;
+  const { error, userInfo, loading } = userData;
   const customId = "custom-id-yes";
 
   const dispatch = useDispatch();
@@ -39,8 +40,6 @@ const Register = () => {
   }, [navigate, redirect, userInfo]);
   return (
     <div className="container py-16">
-      {/* {loading && <LoadingBox />} */}
-      {/* {error && <MessageBox children={error} variant="danger" />} */}
       <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
         <h2 className="text-2xl uppercase font-medium mb-1">Create an account</h2>
         <p className="text-gray-600 mb-6 text-sm">Sign up here if you're a new customer</p>

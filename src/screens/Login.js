@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation, Link, useParams } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import { toast } from "react-toastify";
 
-const Login = (props) => {
+const Login = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
 
-  const [tab, setTab] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,10 +35,9 @@ const Login = (props) => {
 
   return (
     <div className="container py-16">
-      {loading && <LoadingBox />}
-      {/* {error && <MessageBox children={error} variant="danger" />} */}
-
-      {tab === "login" && (
+      {loading ? (
+        <LoadingBox />
+      ) : (
         <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
           <h2 className="text-2xl uppercase font-medium mb-1">Login</h2>
           <p className="text-gray-600 mb-6 text-sm">Login if you are a returning user</p>
@@ -81,15 +79,9 @@ const Login = (props) => {
                   Remember me
                 </label>
               </div>
-              <span
-                onClick={() => {
-                  setTab("forgot-password");
-                }}
-                href="/"
-                className="text-primary cursor-pointer"
-              >
+              <Link to="/" className="text-primary cursor-pointer">
                 Forgot password?
-              </span>
+              </Link>
             </div>
             <div className="mt-4">
               <button className="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
