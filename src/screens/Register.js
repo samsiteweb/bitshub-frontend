@@ -5,11 +5,10 @@ import { register } from "../actions/userActions";
 import { toast } from "react-toastify";
 
 const Register = () => {
-  const { search } = useLocation();
   const navigate = useNavigate();
+  const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +34,7 @@ const Register = () => {
   });
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}` || "/");
+      navigate(redirect);
     }
   }, [navigate, redirect, userInfo]);
   return (

@@ -8,20 +8,11 @@ import Button from "../components/Button";
 // import { addToCart } from "../actions/cartActions";
 
 const ShoppingCart = () => {
-  // const params = useParams();
-  // const { _id: productId } = params;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const qty = Number(searchParams.get("qty"));
   const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (productId) {
-  //     dispatch(addToCart(productId, qty));
-  //   }
-  // }, [dispatch, productId, qty]);
 
   return (
     <div>
@@ -30,9 +21,6 @@ const ShoppingCart = () => {
         <div className="space-y-4 col-span-12 lg:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
             <p className="px-4 py-3 text-sm font-semibold">Billing details</p>
-            {/* <p className="px-4 py-3 text-sm font-semibold">
-              productId: {productId} quantity:{qty}
-            </p> */}
           </div>
           {cartItems.length === 0 ? (
             <MessageBox>
@@ -71,7 +59,7 @@ const ShoppingCart = () => {
             <Button
               disabled={cartItems.length === 0 ? true : false}
               onClick={() => {
-                navigate("/login?redirect=shipping");
+                navigate("/login?redirect=/shipping");
               }}
               primary
               className="w-full px-8 py-2 font-medium"

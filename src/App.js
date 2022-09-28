@@ -34,7 +34,7 @@ function App() {
       <ToastContainer />
       <Header />
       <Routes>
-        <Route path="/" element={<HomeScreen />} />
+        <Route exact path="/" element={<HomeScreen />} />
         <Route path="/about" element={<AboutScreen />} />
         <Route path="/shop" element={<ShopScreen />} />
         <Route path="/contact" element={<ContactScreen />} />
