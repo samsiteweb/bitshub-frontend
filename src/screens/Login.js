@@ -5,11 +5,12 @@ import { signin } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import { toast } from "react-toastify";
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
+  console.log(redirect);
 
   const [tab, setTab] = useState("login");
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ const Login = () => {
   });
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect || "/");
+      navigate(`/${redirect}` || "/");
     }
   }, [navigate, redirect, userInfo]);
 
