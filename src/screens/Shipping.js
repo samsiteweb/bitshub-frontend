@@ -1,14 +1,14 @@
 import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 
-const Checkout = () => {
+const Shipping = () => {
   return (
     <div>
       <Breadcrumbs page="Checkout" />
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="col-span-12 md:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
-            <p className="px-4 py-3 text-sm font-semibold">Billing Details</p>
+            <p className="px-4 py-3 text-sm font-semibold">Shipping Details</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <p className="text-lg font-medium capitalize mb-4">Checkout</p>
@@ -117,7 +117,7 @@ const Checkout = () => {
               href=""
               className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
             >
-              Place Order
+              Continue
             </a>
           </div>
         </div>
@@ -126,4 +126,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default Shipping;

@@ -12,7 +12,7 @@ import ProductDetails from "./screens/products/ProductDetails";
 import AccountLayout from "./screens/AccountLayout";
 import Login from "./screens/Login";
 import ScrollToTop from "./utilities/scrollToTop";
-import Checkout from "./screens/Checkout";
+import Shipping from "./screens/Shipping";
 import ManageAddress from "./components/ManageAddress";
 import ChangePassword from "./components/ChangePassword";
 import ManageAccount from "./components/ManageAccount";
@@ -40,8 +40,8 @@ function App() {
         <Route path="/contact" element={<ContactScreen />} />
         <Route path="/product-details/:_id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/login/checkout" element={<Checkout />} />
-        <Route path="register" element={<Register />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/cart/:_id" element={<ShoppingCart />} />
         <Route
           exact
