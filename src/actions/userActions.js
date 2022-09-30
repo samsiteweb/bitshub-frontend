@@ -15,7 +15,11 @@ export const register = (name, email, password) => async (dispatch) => {
     payload: { name, email, password },
   });
   try {
-    const { data } = await Axios.post("/api/users/register", { name, email, password });
+    const { data } = await Axios.post("https://bitshub-api.herokuapp.com/api/users/register", {
+      name,
+      email,
+      password,
+    });
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: data,
