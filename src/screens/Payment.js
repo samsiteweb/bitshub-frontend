@@ -1,27 +1,26 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
-import { useDispatch } from "react-redux";
-import { saveShippingAddress } from "../actions/cartActions";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import master from "../images/payment-master.png";
 import visa from "../images/payment-visa.png";
 
 const Payment = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [exp, setExp] = useState("");
+  const [cvv, setCvv] = useState("");
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const cart = useSelector((state) => state?.cart);
+  const { cartItems } = cart;
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("submitted");
-    if (name.length < 1) {
-      alert("error!");
+    if (cardName.length < 1 || cardNumber.length < 1 || exp.length < 1 || cvv.length < 1) {
+      toast.error("Feild cannot be empty!");
+    } else {
+      toast.success("payment successful");
     }
-    dispatch(saveShippingAddress({ name, phone, address, city }));
-    navigate("account/payment-methods");
   };
 
   return (
@@ -51,10 +50,10 @@ const Payment = () => {
                     Card Number <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="name"
-                    type="text"
+                    id="cardNumber"
+                    type="number"
                     onChange={(e) => {
-                      setName(e.target.value);
+                      setCardNumber(e.target.value);
                     }}
                     className="input-box"
                   />
@@ -64,10 +63,10 @@ const Payment = () => {
                     Name on Card <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="phone"
-                    type="number"
+                    id="cardName"
+                    type="text"
                     onChange={(e) => {
-                      setPhone(e.target.value);
+                      setCardName(e.target.value);
                     }}
                     className="input-box"
                   />
@@ -79,10 +78,10 @@ const Payment = () => {
                       Expiration Date <span className="text-red-500">*</span>
                     </label>
                     <input
-                      id="address"
-                      type="text"
+                      id="Exp"
+                      type="date"
                       onChange={(e) => {
-                        setAddress(e.target.value);
+                        setExp(e.target.value);
                       }}
                       className="input-box"
                     />
@@ -92,10 +91,10 @@ const Payment = () => {
                       CVV <span className="text-red-500">*</span>
                     </label>
                     <input
-                      id="city"
-                      type="text"
+                      id="cvv"
+                      type="number"
                       onChange={(e) => {
-                        setCity(e.target.value);
+                        setCvv(e.target.value);
                       }}
                       className="input-box"
                     />
@@ -112,36 +111,26 @@ const Payment = () => {
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-gray-800 font-medium">italian shape sofa</p>
-                  <p className="text-sm text-gray-600">size:m</p>
+            {cartItems.map((item) => {
+              return (
+                <div className="space-y-2" key={item.product}>
+                  <div className="flex justify-between">
+                    <div>
+                      <p className="text-gray-800 font-medium">{item.name}</p>
+                      <p className="text-sm text-gray-600">{item.condition}</p>
+                    </div>
+                    <p className="text-gray-600">X{item.qty}</p>
+                    <p className="text-gray-800 font-medium">₦{item.price}</p>
+                  </div>
                 </div>
-                <p className="text-gray-600">X3</p>
-                <p className="text-gray-800 font-medium">$320</p>
-              </div>
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-gray-800 font-medium">italian shape sofa</p>
-                  <p className="text-sm text-gray-600">size:m</p>
-                </div>
-                <p className="text-gray-600">X3</p>
-                <p className="text-gray-800 font-medium">$320</p>
-              </div>
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-gray-800 font-medium">italian shape sofa</p>
-                  <p className="text-sm text-gray-600">size:m</p>
-                </div>
-                <p className="text-gray-600">X3</p>
-                <p className="text-gray-800 font-medium">$320</p>
-              </div>
-            </div>
-
+              );
+            })}
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p>Subtotal</p>
-              <p>$320</p>
+              <p>
+                ({cartItems.reduce((a, c) => a + c.qty, 0)} items): ₦
+                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+              </p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p>Shipping</p>
@@ -149,8 +138,27 @@ const Payment = () => {
             </div>
             <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>$320</p>
+              <p>₦{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
             </div>
+            <div className="flex items-center mb-4 mt-2">
+              <input
+                type="checkbox"
+                id="agreement"
+                className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
+              />
+              <label htmlFor="agreement" className="text-gray-600 ml-3 cursor-pointer text-sm">
+                Agree to our
+                <a href="/" className="text-primary pl-1">
+                  terms & condition
+                </a>
+              </label>
+            </div>
+            <button
+              onClick={submitHandler}
+              className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
+            >
+              Continue
+            </button>
           </div>
         </div>
       </div>

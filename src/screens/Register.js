@@ -3,7 +3,6 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userActions";
 import { toast } from "react-toastify";
-import LoadingBox from "../components/LoadingBox";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const userData = useSelector((state) => state?.registerUser);
-  const { error, userInfo, loading } = userData;
+  const { error, userInfo } = userData;
   const customId = "custom-id-yes";
 
   const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const Shipping = () => {
   const signinData = useSelector((state) => state?.userSignin);
-  const { loading, error, userInfo } = signinData;
+  const { userInfo } = signinData;
   const navigate = useNavigate();
   useEffect(() => {
     if (!userInfo) {
@@ -16,8 +16,8 @@ const Shipping = () => {
   });
 
   const cart = useSelector((state) => state?.cart);
-  const { shippingDetails } = cart;
-  console.log(shippingDetails, userInfo);
+  const { shippingDetails, cartItems } = cart;
+  console.log(cartItems);
 
   const [name, setName] = useState(shippingDetails.name);
   const [phone, setPhone] = useState(shippingDetails.phone);
@@ -57,7 +57,7 @@ const Shipping = () => {
                     id="name"
                     type="text"
                     value={name}
-                    repuired
+                    required
                     onChange={(e) => {
                       setName(e.target.value);
                     }}
@@ -72,7 +72,7 @@ const Shipping = () => {
                     id="phone"
                     type="number"
                     value={phone}
-                    repuired
+                    required
                     onChange={(e) => {
                       setPhone(e.target.value);
                     }}
@@ -87,7 +87,7 @@ const Shipping = () => {
                     id="address"
                     type="text"
                     value={address}
-                    repuired
+                    required
                     onChange={(e) => {
                       setAddress(e.target.value);
                     }}
@@ -103,7 +103,7 @@ const Shipping = () => {
                       id="city"
                       type="text"
                       value={city}
-                      repuired
+                      required
                       onChange={(e) => {
                         setCity(e.target.value);
                       }}
@@ -118,7 +118,7 @@ const Shipping = () => {
                       id="state"
                       type="text"
                       value={state}
-                      repuired
+                      required
                       onChange={(e) => {
                         setState(e.target.value);
                       }}
@@ -137,36 +137,26 @@ const Shipping = () => {
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-gray-800 font-medium">italian shape sofa</p>
-                  <p className="text-sm text-gray-600">size:m</p>
+            {cartItems.map((item) => {
+              return (
+                <div className="space-y-2" key={item.product}>
+                  <div className="flex justify-between">
+                    <div>
+                      <p className="text-gray-800 font-medium">{item.name}</p>
+                      <p className="text-sm text-gray-600">{item.condition}</p>
+                    </div>
+                    <p className="text-gray-600">X{item.qty}</p>
+                    <p className="text-gray-800 font-medium">₦{item.price}</p>
+                  </div>
                 </div>
-                <p className="text-gray-600">X3</p>
-                <p className="text-gray-800 font-medium">$320</p>
-              </div>
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-gray-800 font-medium">italian shape sofa</p>
-                  <p className="text-sm text-gray-600">size:m</p>
-                </div>
-                <p className="text-gray-600">X3</p>
-                <p className="text-gray-800 font-medium">$320</p>
-              </div>
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-gray-800 font-medium">italian shape sofa</p>
-                  <p className="text-sm text-gray-600">size:m</p>
-                </div>
-                <p className="text-gray-600">X3</p>
-                <p className="text-gray-800 font-medium">$320</p>
-              </div>
-            </div>
-
+              );
+            })}
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p>Subtotal</p>
-              <p>$320</p>
+              <p>
+                ({cartItems.reduce((a, c) => a + c.qty, 0)} items): ₦
+                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+              </p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p>Shipping</p>
@@ -174,7 +164,7 @@ const Shipping = () => {
             </div>
             <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>$320</p>
+              <p>₦{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
             </div>
             <div className="flex items-center mb-4 mt-2">
               <input

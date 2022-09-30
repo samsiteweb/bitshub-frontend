@@ -5,7 +5,6 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import CartCard from "../components/CartCard";
 import MessageBox from "../components/modals/MessageBox";
 import Button from "../components/Button";
-// import { addToCart } from "../actions/cartActions";
 
 const ShoppingCart = () => {
   const [searchParams, setSearchParams] = useSearchParams();
