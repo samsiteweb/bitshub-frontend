@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "proxy": "https://bitshub-api.herokuapp.com/",
-  "home": "https://localhost:3000",
+  "home": "https://bitshub.vercel.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
