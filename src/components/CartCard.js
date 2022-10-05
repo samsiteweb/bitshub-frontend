@@ -9,14 +9,13 @@ const CartCard = (props) => {
   const [editQty, setEditQty] = useState(false);
   const [quantity, setQuantity] = useState(Number(qty));
   const customId = "custom-id-yes";
+  const dispatch = useDispatch();
   const removeFromCartHandler = (id) => {
     dispatch(itemRemove(id));
     toast.success("Successfully removed from cart", {
       toastId: customId,
     });
   };
-
-  const dispatch = useDispatch();
 
   return (
     <div className="flex flex-col md:flex-row items-left md:items-center justify between gap-6 p-4 border border-gray-200 rounded">

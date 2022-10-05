@@ -17,7 +17,6 @@ const Shipping = () => {
 
   const cart = useSelector((state) => state?.cart);
   const { shippingDetails, cartItems } = cart;
-  console.log(cartItems);
 
   const [name, setName] = useState(shippingDetails.name);
   const [phone, setPhone] = useState(shippingDetails.phone);
@@ -57,7 +56,6 @@ const Shipping = () => {
                     id="name"
                     type="text"
                     value={name}
-                    required
                     onChange={(e) => {
                       setName(e.target.value);
                     }}
@@ -72,7 +70,6 @@ const Shipping = () => {
                     id="phone"
                     type="number"
                     value={phone}
-                    required
                     onChange={(e) => {
                       setPhone(e.target.value);
                     }}
@@ -87,7 +84,6 @@ const Shipping = () => {
                     id="address"
                     type="text"
                     value={address}
-                    required
                     onChange={(e) => {
                       setAddress(e.target.value);
                     }}
@@ -103,7 +99,6 @@ const Shipping = () => {
                       id="city"
                       type="text"
                       value={city}
-                      required
                       onChange={(e) => {
                         setCity(e.target.value);
                       }}
@@ -118,7 +113,6 @@ const Shipping = () => {
                       id="state"
                       type="text"
                       value={state}
-                      required
                       onChange={(e) => {
                         setState(e.target.value);
                       }}

@@ -215,7 +215,7 @@ const ProductDetails = (props) => {
               <div className="flex gap-3 border-b border-gray-200 pb-5 mt-6">
                 <div>
                   <Button
-                    className="uppercase"
+                    className="uppercase block w-full border border-primary rounded-none rounded-b px-8 py-2 font-medium"
                     primary
                     onClick={addToCarthandler}
                     disabled={
@@ -238,7 +238,11 @@ const ProductDetails = (props) => {
                   </p>
                 </div>
 
-                <Button className="uppercase" secondary loading={loading}>
+                <Button
+                  className="uppercase block w-full border border-primary rounded-none rounded-b px-8 py-2 font-medium"
+                  secondary
+                  loading={loading}
+                >
                   <i className="fas fa-heart"></i> Wish list
                 </Button>
               </div>

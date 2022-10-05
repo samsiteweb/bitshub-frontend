@@ -10,7 +10,7 @@ const SideBarModal = (props) => {
       {ReactDOM.createPortal(<Backdrop modalHandler={props.modalHandler} />, document.getElementById("backdrop-root"))}
       {ReactDOM.createPortal(
         <ModalOverlay>
-          <Card className="z-[50] fixed h-[100vh] w-[80%] rounded-none">{props.children}</Card>;
+          <Card className="z-[50] fixed h-[100vh] w-[86%] rounded-none transition">{props.children}</Card>;
         </ModalOverlay>,
         document.getElementById("overlay-root")
       )}
