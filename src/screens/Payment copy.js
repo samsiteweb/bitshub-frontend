@@ -1,122 +1,101 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
-import { useDispatch, useSelector } from "react-redux";
-import { saveShippingAddress } from "../actions/cartActions";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import Button from "../components/Button";
-import CheckoutSteps from "../components/CheckoutSteps";
+import master from "../images/payment-master.png";
+import visa from "../images/payment-visa.png";
 
-const Shipping = () => {
-  const signinData = useSelector((state) => state?.userSignin);
-  const { userInfo } = signinData;
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!userInfo) {
-      navigate("/login");
-    }
-  });
+const Payment = () => {
+  const [cardName, setCardName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [exp, setExp] = useState("");
+  const [cvv, setCvv] = useState("");
 
   const cart = useSelector((state) => state?.cart);
-  const { shippingDetails, cartItems } = cart;
+  const { cartItems } = cart;
 
-  const [name, setName] = useState(shippingDetails.name);
-  const [phone, setPhone] = useState(shippingDetails.phone);
-  const [address, setAddress] = useState(shippingDetails.address);
-  const [city, setCity] = useState(shippingDetails.city);
-  const [state, setState] = useState(shippingDetails.state);
-
-  const dispatch = useDispatch();
-
-  const handleShipping = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    if (name?.length < 1 || phone?.length < 1 || address?.length < 1 || city?.length < 1 || state?.length < 1) {
+    if (cardName.length < 1 || cardNumber.length < 1 || exp.length < 1 || cvv.length < 1) {
       toast.error("Feild cannot be empty!");
     } else {
-      dispatch(saveShippingAddress({ name, phone, address, city, state }));
-      navigate("/payment");
+      toast.success("payment successful");
     }
   };
 
   return (
     <div>
-      <Breadcrumbs page="Checkout" />
-      <CheckoutSteps step1 step2 />
+      <Breadcrumbs page="Payment" />
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="col-span-12 md:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
-            <p className="px-4 py-3 text-sm font-semibold">Shipping Details</p>
+            <p className="px-4 py-3 text-sm font-semibold">Select payment method</p>
           </div>
+
           <div className="border border-gray-200 p-4 rounded">
+            <div className="flex justify-between items-center">
+              <p className="font-medium">Credit Card</p>
+              <div className="flex items-center">
+                <div className="w-20">
+                  <img src={master} alt="" />
+                </div>
+                <div className="w-20">
+                  <img src={visa} alt="" />
+                </div>
+              </div>
+            </div>
             <div className="space-y-4">
-              <form onSubmit={handleShipping}>
+              <form onSubmit={submitHandler}>
                 <div className="py-2">
                   <label htmlFor="" className="text-gray-600 mb-2 block">
-                    Full Name <span className="text-red-500">*</span>
+                    Card Number <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                    className="input-box"
-                  />
-                </div>
-                <div className="py-2">
-                  <label htmlFor="" className="text-gray-600 mb-2 block">
-                    Phone <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="phone"
+                    id="cardNumber"
                     type="number"
-                    value={phone}
                     onChange={(e) => {
-                      setPhone(e.target.value);
+                      setCardNumber(e.target.value);
                     }}
                     className="input-box"
                   />
                 </div>
                 <div className="py-2">
                   <label htmlFor="" className="text-gray-600 mb-2 block">
-                    Address <span className="text-red-500">*</span>
+                    Name on Card <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="address"
+                    id="cardName"
                     type="text"
-                    value={address}
                     onChange={(e) => {
-                      setAddress(e.target.value);
+                      setCardName(e.target.value);
                     }}
                     className="input-box"
                   />
                 </div>
+
                 <div className="py-2 flex items-center justify-between gap-4">
                   <div className="w-full">
                     <label htmlFor="" className="text-gray-600 mb-2 block">
-                      City <span className="text-red-500">*</span>
+                      Expiration Date <span className="text-red-500">*</span>
                     </label>
                     <input
-                      id="city"
-                      type="text"
-                      value={city}
+                      id="Exp"
+                      type="date"
                       onChange={(e) => {
-                        setCity(e.target.value);
+                        setExp(e.target.value);
                       }}
                       className="input-box"
                     />
                   </div>
                   <div className="w-full">
                     <label htmlFor="" className="text-gray-600 mb-2 block">
-                      State <span className="text-red-500">*</span>
+                      CVV <span className="text-red-500">*</span>
                     </label>
                     <input
-                      id="state"
-                      type="text"
-                      value={state}
+                      id="cvv"
+                      type="number"
                       onChange={(e) => {
-                        setState(e.target.value);
+                        setCvv(e.target.value);
                       }}
                       className="input-box"
                     />
@@ -175,14 +154,12 @@ const Shipping = () => {
                 </a>
               </label>
             </div>
-            <Button
-              disabled={cartItems.length === 0 ? true : false}
-              className="w-full p-2"
-              primary
-              onClick={handleShipping}
+            <button
+              onClick={submitHandler}
+              className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
             >
-              Continue
-            </Button>
+              Place order
+            </button>
           </div>
         </div>
       </div>
@@ -190,4 +167,4 @@ const Shipping = () => {
   );
 };
 
-export default Shipping;
+export default Payment;
