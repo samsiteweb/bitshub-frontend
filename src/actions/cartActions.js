@@ -1,5 +1,10 @@
 import Axios from "axios";
-import { CART_ADD_ITEM, CART_DELETE_ITEM, CART_SAVE_SHIPPING_ADDRESS } from "../constants/cartConstants";
+import {
+  CART_ADD_ITEM,
+  CART_DELETE_ITEM,
+  CART_SAVE_SHIPPING_ADDRESS,
+  CART_SAVE_PAYMENT_METHOD,
+} from "../constants/cartConstants";
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
   const { data } = await Axios.get(`https://bitshub-api.herokuapp.com/api/products/${productId}`);
@@ -31,4 +36,10 @@ export const saveShippingAddress = (data) => async (dispatch, getState) => {
     payload: data,
   });
   localStorage.setItem("shippingDetails", JSON.stringify(data));
+};
+export const savePaymentMethod = (data) => async (dispatch, getState) => {
+  dispatch({
+    type: CART_SAVE_PAYMENT_METHOD,
+    payload: data,
+  });
 };
