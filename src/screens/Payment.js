@@ -31,6 +31,7 @@ const Payment = () => {
           <div className="bg-gray-200 text-black mb-4 rounded">
             <p className="px-4 py-3 text-sm font-semibold">Select payment method</p>
           </div>
+
           <div className="border border-gray-200 p-4 rounded">
             <div className="flex justify-between items-center">
               <p className="font-medium">Credit Card</p>

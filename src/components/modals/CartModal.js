@@ -42,7 +42,9 @@ const CartModal = ({ modalHandler }) => {
         </span>
       </div>
       <div className="p-3 space-y-2">
-        <p className="text-gray-700 font-medium border-b border-solid transition pt-4 pb-2">Total 2 Items</p>
+        <p className="text-gray-700 font-medium border-b border-solid transition pt-4 pb-2">
+          Total {cartItems.length} Item(s)
+        </p>
         {cartItems.length === 0 ? (
           <MessageBox>
             No item in cart currently. <Link to="/shop">Go shopping</Link>

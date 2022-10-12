@@ -4,6 +4,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../actions/cartActions";
 import { toast } from "react-toastify";
+import Button from "../components/Button";
 
 const Shipping = () => {
   const signinData = useSelector((state) => state?.userSignin);
@@ -28,10 +29,9 @@ const Shipping = () => {
 
   const handleShipping = (e) => {
     e.preventDefault();
-    if (name.length < 1 || phone.length < 1 || address.length < 1 || city.length < 1 || state.length < 1) {
+    if (name?.length < 1 || phone?.length < 1 || address?.length < 1 || city?.length < 1 || state?.length < 1) {
       toast.error("Feild cannot be empty!");
     } else {
-      console.log(name, phone, address, city, state);
       dispatch(saveShippingAddress({ name, phone, address, city, state }));
       navigate("/payment");
     }
@@ -173,12 +173,14 @@ const Shipping = () => {
                 </a>
               </label>
             </div>
-            <button
+            <Button
+              disabled={cartItems.length === 0 ? true : false}
+              className="w-full p-2"
+              primary
               onClick={handleShipping}
-              className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
             >
               Continue
-            </button>
+            </Button>
           </div>
         </div>
       </div>

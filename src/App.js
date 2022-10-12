@@ -28,6 +28,7 @@ import ShoppingCart from "./screens/ShoppingCart";
 import NotFound from "./screens/NotFound";
 import Register from "./screens/Register";
 import Payment from "./screens/Payment";
+import PaymentMethod from "./screens/PaymentMethod";
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart/:_id" element={<ShoppingCart />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment" element={<PaymentMethod />} />
+        <Route path="/place-order" element={<Payment />} />
         <Route
           exact
           path="/account"
