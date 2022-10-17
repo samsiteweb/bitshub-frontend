@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { CreateOrder } from "../actions/createOrder";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 const Payment = () => {
   const cart = useSelector((state) => state?.cart);
+  const orderCreate = useSelector((state) => state?.orderCreate);
+  const { loading, success, error, order } = orderCreate;
   const { cartItems, paymentMethod, shippingDetails } = cart;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const submitHandler = () => {};
+  console.log(loading, error, success);
+  // useEffect(() => {
+
+  //   if (!paymentMethod) {
+  //     navigate("/payment");
+  //   } else if (success) {
+  //     navigate(`/order/${order._id}`);
+  //   }
+  // }, [navigate, order, paymentMethod, success, error, loading]);
+
+  const placeOrderHandler = () => {
+    dispatch(
+      CreateOrder({
+        ...cart,
+        orderItems: cartItems,
+      })
+    );
+  };
 
   return (
     <div>
@@ -34,16 +58,17 @@ const Payment = () => {
             {cartItems?.map((item) => {
               return (
                 <div
-                  className="flex items-center justify-between gap-1 py-2 border-b border-gray-100"
+                  className="flex-col flex md:flex-row items-center justify-evenly gap-1 py-2 border-b border-gray-100"
                   key={item.product}
                 >
-                  <div className="w-20">
-                    <img className="w-full" src="../assets/products/81nde-rFKzL._AC_SL1500_.jpg" alt="cart item" />
+                  <div className="flex items-center justify-center gap-1">
+                    <div className="w-20">
+                      <img className="w-full" src="../assets/products/81nde-rFKzL._AC_SL1500_.jpg" alt="cart item" />
+                    </div>
+
+                    <p className="text-gray-700 font-semibold text-xs md:text-base">{item.name}</p>
+                    <p className="text-green-700 font-semibold text-xs md:text-base">{item.condition}</p>
                   </div>
-
-                  <p className="text-gray-700 font-semibold text-xs md:text-base">{item.name}</p>
-                  <p className="text-green-700 font-semibold text-xs md:text-base">{item.condition}</p>
-
                   <div className="text-gray-600 mr-4">
                     <span className="text-gray-700 text-xs md:text-base pr-2">
                       {item.price} x {item.qty}
@@ -104,12 +129,12 @@ const Payment = () => {
                 </a>
               </label>
             </div>
-            <button
-              onClick={submitHandler}
+            <Button
+              onClick={placeOrderHandler}
               className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
             >
               Place order
-            </button>
+            </Button>
           </div>
         </div>
       </div>
