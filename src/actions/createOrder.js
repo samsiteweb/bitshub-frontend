@@ -13,7 +13,7 @@ export const CreateOrder = (order) => async (dispatch, getState) => {
     } = getState();
     const { data } = await Axios.post("https://bitshub-api.herokuapp.com/api/orders", order, {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        authorization: `Bearer ${userInfo.token}`,
       },
     });
     dispatch({

@@ -20,20 +20,22 @@ const Shipping = () => {
   const cart = useSelector((state) => state?.cart);
   const { shippingDetails, cartItems } = cart;
 
-  const [name, setName] = useState(shippingDetails.name);
+  const [fullName, setFullName] = useState(shippingDetails.fullName);
   const [phone, setPhone] = useState(shippingDetails.phone);
   const [address, setAddress] = useState(shippingDetails.address);
   const [city, setCity] = useState(shippingDetails.city);
-  const [state, setState] = useState(shippingDetails.state);
-
+  // const [state, setState] = useState(shippingDetails.state);
+  let taxPrice = (cartItems.reduce((a, c) => a + c.price * c.qty, 0) / 100) * 7.5;
+  const totalPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0) + taxPrice;
+  const shippingPrice = "free";
   const dispatch = useDispatch();
 
   const handleShipping = (e) => {
     e.preventDefault();
-    if (name?.length < 1 || phone?.length < 1 || address?.length < 1 || city?.length < 1 || state?.length < 1) {
+    if (fullName?.length < 1 || phone?.length < 1 || address?.length < 1 || city?.length < 1) {
       toast.error("Feild cannot be empty!");
     } else {
-      dispatch(saveShippingAddress({ name, phone, address, city, state }));
+      dispatch(saveShippingAddress({ fullName, phone, address, city, taxPrice, shippingPrice, totalPrice }));
       navigate("/payment");
     }
   };
@@ -51,15 +53,15 @@ const Shipping = () => {
             <div className="space-y-4">
               <form onSubmit={handleShipping}>
                 <div className="py-2">
-                  <label htmlFor="" className="text-gray-600 mb-2 block">
+                  <label htmlFor="name" className="text-gray-600 mb-2 block">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="name"
+                    id="fullName"
                     type="text"
-                    value={name}
+                    value={fullName}
                     onChange={(e) => {
-                      setName(e.target.value);
+                      setFullName(e.target.value);
                     }}
                     className="input-box"
                   />
@@ -107,7 +109,7 @@ const Shipping = () => {
                       className="input-box"
                     />
                   </div>
-                  <div className="w-full">
+                  {/* <div className="w-full">
                     <label htmlFor="" className="text-gray-600 mb-2 block">
                       State <span className="text-red-500">*</span>
                     </label>
@@ -120,7 +122,7 @@ const Shipping = () => {
                       }}
                       className="input-box"
                     />
-                  </div>
+                  </div> */}
                 </div>
               </form>
             </div>
@@ -147,20 +149,24 @@ const Shipping = () => {
                 </div>
               );
             })}
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
               <p>Subtotal</p>
               <p>
-                ({cartItems.reduce((a, c) => a + c.qty, 0)} items): ₦
+                ({cartItems.reduce((a, c) => a + c.qty, 0)} item(s)): ₦
                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
               <p>Shipping</p>
-              <p>free</p>
+              <p>{shippingPrice}</p>
+            </div>
+            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+              <p>VAT</p>
+              <p>{taxPrice}</p>
             </div>
             <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>₦{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
+              <p>₦{totalPrice}</p>
             </div>
             <div className="flex items-center mb-4 mt-2">
               <input

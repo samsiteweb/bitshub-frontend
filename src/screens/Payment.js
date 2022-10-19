@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CreateOrder } from "../actions/createOrder";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import { toast } from "react-toastify";
 
 const Payment = () => {
   const cart = useSelector((state) => state?.cart);
@@ -12,25 +13,30 @@ const Payment = () => {
   const { cartItems, paymentMethod, shippingDetails } = cart;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const customId = "custom-id-yes";
 
-  console.log(loading, error, success);
-  // useEffect(() => {
-
-  //   if (!paymentMethod) {
-  //     navigate("/payment");
-  //   } else if (success) {
-  //     navigate(`/order/${order._id}`);
-  //   }
-  // }, [navigate, order, paymentMethod, success, error, loading]);
+  useEffect(() => {
+    if (!paymentMethod) {
+      navigate("/payment");
+    }
+  }, [navigate, paymentMethod]);
 
   const placeOrderHandler = () => {
     dispatch(
       CreateOrder({
-        ...cart,
         orderItems: cartItems,
+        paymentMethod,
+        shippingDetails,
       })
     );
   };
+  if (error) {
+    toast.error(error, {
+      toastId: customId,
+    });
+  } else if (success) {
+    navigate(`/order/${order._id}`);
+  }
 
   return (
     <div>
@@ -40,11 +46,16 @@ const Payment = () => {
           <div className="border border-gray-200 p-4 rounded">
             <p className="font-medium text-gray-400">Shipping</p>
             <div className="pt-2">
-              <span className="font-normal">Address:</span>
-              <span className="font-light text-sm">
-                {" "}
-                {`${shippingDetails.address}, ${shippingDetails.city}, ${shippingDetails.state}`}
-              </span>
+              <div>
+                <span className="font-normal">Name:</span>
+                <span className="font-light text-sm">{shippingDetails.fullName}</span>
+              </div>
+              <div>
+                <span className="font-normal">Address:</span>
+                <span className="font-light text-sm">
+                  {`${shippingDetails.address}, ${shippingDetails.city}, ${shippingDetails.state}`}
+                </span>
+              </div>
             </div>
           </div>
           <div className="border border-gray-200 p-4 rounded">
@@ -101,20 +112,24 @@ const Payment = () => {
                 </div>
               );
             })}
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
               <p>Subtotal</p>
               <p>
-                ({cartItems.reduce((a, c) => a + c.qty, 0)} items): ₦
+                ({cartItems.reduce((a, c) => a + c.qty, 0)} item(s)): ₦
                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
               <p>Shipping</p>
-              <p>free</p>
+              <p>{shippingDetails.shippingPrice}</p>
+            </div>
+            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+              <p>VAT</p>
+              <p>{shippingDetails.taxPrice}</p>
             </div>
             <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>₦{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
+              <p>₦{shippingDetails.totalPrice}</p>
             </div>
             <div className="flex items-center mb-4 mt-2">
               <input
@@ -129,11 +144,8 @@ const Payment = () => {
                 </a>
               </label>
             </div>
-            <Button
-              onClick={placeOrderHandler}
-              className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
-            >
-              Place order
+            <Button disabled={loading} className="w-full p-2" primary onClick={placeOrderHandler}>
+              {loading ? "loading..." : "Place order"}
             </Button>
           </div>
         </div>
