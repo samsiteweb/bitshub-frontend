@@ -1,82 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useDispatch, useSelector } from "react-redux";
-import { CreateOrder } from "../actions/createOrder";
-import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import { toast } from "react-toastify";
+import { detailsOrder } from "../actions/createOrder";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/modals/MessageBox";
 
-const Payment = () => {
-  const [isPaid, setIsPaid] = useState(false);
-  const [PaidAt, setPaidAt] = useState("");
-  const [isDelivered, setIsDelivered] = useState(false);
-  const [deliveredAt, setDeliveredAt] = useState("");
-  const cart = useSelector((state) => state?.cart);
-  const orderCreate = useSelector((state) => state?.orderCreate);
-  const { loading, success, error, order } = orderCreate;
-  const { cartItems, paymentMethod, shippingDetails } = cart;
-  const [loader, setLoader] = useState(false);
+const OrderDetails = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const customId = "custom-id-yes";
+  const { _id: orderId } = useParams();
+  const orderDetails = useSelector((state) => state?.orderDetails);
+  const { loading, error, order } = orderDetails;
 
   useEffect(() => {
-    if (!paymentMethod) {
-      navigate("/payment");
-    }
-  }, [navigate, paymentMethod]);
-
-  const placeOrderHandler = () => {
-    dispatch(
-      CreateOrder({
-        orderItems: cartItems,
-        paymentMethod,
-        isPaid,
-        PaidAt,
-        isDelivered,
-        deliveredAt,
-        shippingDetails,
-      })
-    );
-    setLoader(loading);
-  };
-  if (error) {
-    toast.error(error, {
-      toastId: customId,
-    });
-  } else if (success) {
-    navigate(`/order/${order._id}`);
-  }
-
-  return (
+    dispatch(detailsOrder(orderId));
+  }, [dispatch, orderId]);
+  const placeOrderHandler = () => {};
+  console.log(order);
+  return loading ? (
+    <LoadingBox></LoadingBox>
+  ) : error ? (
+    <MessageBox variant="danger">{error}</MessageBox>
+  ) : (
     <div>
-      <Breadcrumbs page="Payment" />
+      <Breadcrumbs page="Order" />
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="col-span-12 md:col-span-8 space-y-4">
           <div className="border border-gray-200 p-4 rounded">
-            <p className="font-medium text-gray-400">Shipping</p>
+            <p className="font-medium text-gray-400">Order</p>
             <div className="pt-2">
               <div>
-                <span className="font-normal">Name:</span>
-                <span className="font-light text-sm">{shippingDetails.fullName}</span>
+                <span className="font-normal">Order Id: </span>
+                <span className="font-light text-sm">{order._id}</span>
+              </div>
+            </div>
+          </div>
+          <div className="border border-gray-200 p-4 rounded">
+            <p className="font-medium text-gray-400">Shipping details</p>
+            <div className="pt-2">
+              <div>
+                <span className="font-normal">Name: </span>
+                <span className="font-light text-sm">{order.shippingDetails.fullName}</span>
               </div>
               <div>
-                <span className="font-normal">Address:</span>
+                <span className="font-normal">Address: </span>
                 <span className="font-light text-sm">
-                  {`${shippingDetails.address}, ${shippingDetails.city}, ${shippingDetails.state}`}
+                  {`${order.shippingDetails.address}, ${order.shippingDetails.city}, ${order.shippingDetails.state}`}
                 </span>
+              </div>
+              <div>
+                {order.isDelivered ? (
+                  <MessageBox variant="success">Delivered at {order.deliveredAt}</MessageBox>
+                ) : (
+                  <MessageBox variant="danger">Not Delivered</MessageBox>
+                )}
               </div>
             </div>
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <p className="font-medium text-gray-400">Payment</p>
             <div className="pt-2">
-              <span className="font-normal">Method:</span> <span className="font-light text-sm">{paymentMethod}</span>
+              <span className="font-normal">Method:</span>
+              <span className="font-light text-sm">{order.paymentMethod}</span>
+            </div>
+            <div>
+              {order.isPaid ? (
+                <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
+              ) : (
+                <MessageBox variant="danger">Not Paid</MessageBox>
+              )}
             </div>
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <p className="font-medium text-gray-400">Ordered items</p>
-            {cartItems?.map((item) => {
+            {order.orderItems?.map((item) => {
               return (
                 <div
                   className="flex-col flex md:flex-row items-center justify-evenly gap-1 py-2 border-b border-gray-100"
@@ -108,7 +106,7 @@ const Payment = () => {
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
-            {cartItems.map((item) => {
+            {/* {order.orderItems.map((item) => {
               return (
                 <div className="space-y-2" key={item.product}>
                   <div className="flex justify-between">
@@ -121,27 +119,24 @@ const Payment = () => {
                   </div>
                 </div>
               );
-            })}
+            })} */}
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
-              <p>Subtotal</p>
-              <p>
-                ({cartItems.reduce((a, c) => a + c.qty, 0)} item(s)): ₦
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-              </p>
+              <p>Items</p>
+              <p>₦{order.orderItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
               <p>Shipping</p>
-              <p>{shippingDetails.shippingPrice}</p>
+              <p>{order.shippingDetails.shippingPrice}</p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p>VAT</p>
-              <p>{shippingDetails.taxPrice}</p>
+              <p>{order.shippingDetails.taxPrice}</p>
             </div>
             <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>₦{shippingDetails.totalPrice}</p>
+              <p>₦{order.shippingDetails.totalPrice}</p>
             </div>
-            <div className="flex items-center mb-4 mt-2">
+            {/* <div className="flex items-center mb-4 mt-2">
               <input
                 type="checkbox"
                 id="agreement"
@@ -153,9 +148,9 @@ const Payment = () => {
                   terms & condition
                 </a>
               </label>
-            </div>
-            <Button disabled={loader} className="w-full p-2" primary onClick={placeOrderHandler}>
-              {loader ? "loading..." : "Place order"}
+            </div> */}
+            <Button disabled={loading} className="w-full p-2" primary onClick={placeOrderHandler}>
+              {loading ? "loading..." : "Place order"}
             </Button>
           </div>
         </div>
@@ -164,4 +159,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default OrderDetails;

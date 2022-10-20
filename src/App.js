@@ -29,7 +29,7 @@ import NotFound from "./screens/NotFound";
 import Register from "./screens/Register";
 import Payment from "./screens/Payment";
 import PaymentMethod from "./screens/PaymentMethod";
-import Order from "./screens/Order";
+import OrderDetails from "./screens/OrderDetails";
 
 function App() {
   return (
@@ -48,7 +48,7 @@ function App() {
         <Route path="/cart/:_id" element={<ShoppingCart />} />
         <Route path="/payment" element={<PaymentMethod />} />
         <Route path="/place-order" element={<Payment />} />
-        <Route path="/order/:_id" element={<Order />} />
+        <Route path="/order/:_id" element={<OrderDetails />} />
         <Route
           exact
           path="/account"
