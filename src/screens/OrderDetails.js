@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { usePaystackPayment } from "react-paystack";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,12 +13,37 @@ const OrderDetails = () => {
   const { _id: orderId } = useParams();
   const orderDetails = useSelector((state) => state?.orderDetails);
   const { loading, error, order } = orderDetails;
+  const { userInfo } = useSelector((state) => state?.userSignin);
+  const [transactionStatus, setTransactionStatus] = useState("");
+
+  const PUBLIC_KEY_TEST = "pk_test_d1ea6075f9db65a1983a5d0c18fceda9d63d4672";
+
+  const config = {
+    reference: orderId,
+    email: userInfo.email,
+    amount: order?.shippingDetails?.totalPrice * 100,
+    publicKey: PUBLIC_KEY_TEST,
+  };
+
+  // you can call this function anything
+  const onSuccess = (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    setTransactionStatus(reference.status);
+    console.log(reference);
+  };
+
+  // you can call this function anything
+  const onClose = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log("closed");
+  };
 
   useEffect(() => {
     dispatch(detailsOrder(orderId));
   }, [dispatch, orderId]);
-  const placeOrderHandler = () => {};
-  console.log(order);
+
+  console.log(order, "herrrrre");
+  const initializePayment = usePaystackPayment(config);
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
@@ -65,7 +91,7 @@ const OrderDetails = () => {
               <span className="font-light text-sm">{order.paymentMethod}</span>
             </div>
             <div>
-              {order.isPaid ? (
+              {transactionStatus === "success" ? (
                 <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
               ) : (
                 <MessageBox variant="danger">Not Paid</MessageBox>
@@ -149,7 +175,15 @@ const OrderDetails = () => {
                 </a>
               </label>
             </div> */}
-            <Button disabled={loading} className="w-full p-2" primary onClick={placeOrderHandler}>
+
+            <Button
+              disabled={loading}
+              className="w-full p-2"
+              primary
+              onClick={() => {
+                initializePayment(onSuccess, onClose);
+              }}
+            >
               {loading ? "loading..." : "Place order"}
             </Button>
           </div>
