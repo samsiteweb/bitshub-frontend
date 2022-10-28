@@ -119,6 +119,7 @@ export const verifyOrder = (reference, order) => async (dispatch, getState) => {
       );
       dispatch({ type: ORDER_PAY_SUCCESS, payload: updatedOrder });
       dispatch({ type: CART_EMPTY });
+      localStorage.removeItem("cartItems");
     } catch (error) {
       const message = error.response && error.response.data.message ? error.response.data.message : error.message;
       dispatch({ type: ORDER_PAY_FAIL, payload: message });
