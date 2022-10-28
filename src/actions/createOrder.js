@@ -71,21 +71,21 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
   }
 };
 
-export const updateOrder = (order, paymentResult) => async (dispatch, getState) => {
-  dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
-  const {
-    userSignin: { userInfo },
-  } = getState();
-  try {
-    const { data } = Axios.put(`http://localhost:4000/api/orders/${order._id}/pay`, paymentResult, {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    });
-    dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
-  } catch (error) {
-    const message = error.response && error.response.data.message ? error.response.data.message : error.message;
-    dispatch({ type: ORDER_PAY_FAIL, payload: message });
-  }
-};
+// export const updateOrder = (order, paymentResult) => async (dispatch, getState) => {
+//   dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
+//   const {
+//     userSignin: { userInfo },
+//   } = getState();
+//   try {
+//     const { data } = Axios.put(`https://bitshub-api.herokuapp.com/api/orders/${order._id}/pay`, paymentResult, {
+//       headers: { Authorization: `Bearer ${userInfo.token}` },
+//     });
+//     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
+//   } catch (error) {
+//     const message = error.response && error.response.data.message ? error.response.data.message : error.message;
+//     dispatch({ type: ORDER_PAY_FAIL, payload: message });
+//   }
+// };
 
 export const verifyOrder = (reference, order) => async (dispatch, getState) => {
   dispatch({
@@ -111,7 +111,7 @@ export const verifyOrder = (reference, order) => async (dispatch, getState) => {
         email_address: data?.data?.customer?.email,
       };
       const { data: updatedOrder } = await Axios.put(
-        `http://localhost:4000/api/orders/${order._id}/pay`,
+        `https://bitshub-api.herokuapp.com/api/orders/${order._id}/pay`,
         paymentResult,
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
