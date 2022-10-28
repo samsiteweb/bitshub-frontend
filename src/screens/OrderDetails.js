@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/Button";
-import { detailsOrder } from "../actions/createOrder";
+import { detailsOrder, verifyOrder } from "../actions/createOrder";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/modals/MessageBox";
+import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const { _id: orderId } = useParams();
+  const orderPay = useSelector((state) => state?.orderPay);
+  const { loading: orderPayLoading, error: orderPayError, success: orderPaySuccess } = orderPay;
   const orderDetails = useSelector((state) => state?.orderDetails);
   const { loading, error, order } = orderDetails;
   const { userInfo } = useSelector((state) => state?.userSignin);
-  const [transactionStatus, setTransactionStatus] = useState("");
 
   const PUBLIC_KEY_TEST = "pk_test_d1ea6075f9db65a1983a5d0c18fceda9d63d4672";
 
@@ -25,24 +27,30 @@ const OrderDetails = () => {
     publicKey: PUBLIC_KEY_TEST,
   };
 
+  const updatePaymentHandler = async (reference) => {
+    dispatch(verifyOrder(reference.reference, order));
+  };
+
   // you can call this function anything
   const onSuccess = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
-    setTransactionStatus(reference.status);
-    console.log(reference);
+    updatePaymentHandler(reference);
   };
+  // console.log(paymentVerifySuccess);
 
   // you can call this function anything
-  const onClose = () => {
+  const onClose = (payment) => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log("closed");
+    console.log("closed", payment);
   };
 
   useEffect(() => {
-    dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId]);
+    if (!order || orderPaySuccess || (order && order._id !== orderId)) {
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch(detailsOrder(orderId));
+    }
+  }, [dispatch, orderId, order, orderPaySuccess]);
 
-  console.log(order, "herrrrre");
   const initializePayment = usePaystackPayment(config);
   return loading ? (
     <LoadingBox></LoadingBox>
@@ -88,13 +96,13 @@ const OrderDetails = () => {
             <p className="font-medium text-gray-400">Payment</p>
             <div className="pt-2">
               <span className="font-normal">Method:</span>
-              <span className="font-light text-sm">{order.paymentMethod}</span>
+              <span className="font-light text-sm"> {order.paymentMethod}</span>
             </div>
             <div>
-              {transactionStatus === "success" ? (
-                <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
+              {order.isPaid ? (
+                <MessageBox variant="success">Paid at: {order?.PaidAt}</MessageBox>
               ) : (
-                <MessageBox variant="danger">Not Paid</MessageBox>
+                <MessageBox variant="danger">Not Paid!</MessageBox>
               )}
             </div>
           </div>
@@ -126,68 +134,50 @@ const OrderDetails = () => {
           </div>
         </div>
 
-        <div className="col-span-12 md:col-span-4">
-          <div className="bg-gray-200 text-black mb-4 rounded">
-            <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
+        {order.isPaid ? (
+          <div className="col-span-12 md:col-span-4">
+            <MessageBox variant="success">Payment made Successfully!</MessageBox>
           </div>
-          <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
-            {/* {order.orderItems.map((item) => {
-              return (
-                <div className="space-y-2" key={item.product}>
-                  <div className="flex justify-between">
-                    <div>
-                      <p className="text-gray-800 font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-600">{item.condition}</p>
-                    </div>
-                    <p className="text-gray-600">X{item.qty}</p>
-                    <p className="text-gray-800 font-medium">₦{item.price}</p>
-                  </div>
-                </div>
-              );
-            })} */}
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
-              <p>Items</p>
-              <p>₦{order.orderItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
+        ) : (
+          <div className="col-span-12 md:col-span-4">
+            <div className="bg-gray-200 text-black mb-4 rounded">
+              <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
-              <p>Shipping</p>
-              <p>{order.shippingDetails.shippingPrice}</p>
-            </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
-              <p>VAT</p>
-              <p>{order.shippingDetails.taxPrice}</p>
-            </div>
-            <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
-              <p className="font-semibold">Total</p>
-              <p>₦{order.shippingDetails.totalPrice}</p>
-            </div>
-            {/* <div className="flex items-center mb-4 mt-2">
-              <input
-                type="checkbox"
-                id="agreement"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
-              />
-              <label htmlFor="agreement" className="text-gray-600 ml-3 cursor-pointer text-sm">
-                Agree to our
-                <a href="/" className="text-primary pl-1">
-                  terms & condition
-                </a>
-              </label>
-            </div> */}
+            <div className="border border-gray-200 p-4 rounded">
+              <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
 
-            <Button
-              disabled={loading}
-              className="w-full p-2"
-              primary
-              onClick={() => {
-                initializePayment(onSuccess, onClose);
-              }}
-            >
-              {loading ? "loading..." : "Place order"}
-            </Button>
+              <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+                <p>Items</p>
+                <p>₦{order.orderItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
+              </div>
+              <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+                <p>Shipping</p>
+                <p>{order.shippingDetails.shippingPrice}</p>
+              </div>
+              <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+                <p>VAT</p>
+                <p>{order.shippingDetails.taxPrice}</p>
+              </div>
+              <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
+                <p className="font-semibold">Total</p>
+                <p>₦{order.shippingDetails.totalPrice}</p>
+              </div>
+
+              {orderPayError && <MessageBox variant="danger">{orderPayError}</MessageBox>}
+              {orderPayLoading && <LoadingBox></LoadingBox>}
+              <Button
+                disabled={loading}
+                className="w-full p-2"
+                primary
+                onClick={() => {
+                  initializePayment(onSuccess, onClose);
+                }}
+              >
+                {loading ? "loading..." : "Place order"}
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
