@@ -5,9 +5,9 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
 } from "../constants/cartConstants";
-
+const BASE_URL = "https://bitshub-api.herokuapp.com";
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
-  const { data } = await Axios.get(`https://bitshub-api.herokuapp.com/api/products/${productId}`);
+  const { data } = await Axios.get(`${BASE_URL}/api/products/${productId}`);
   dispatch({
     type: CART_ADD_ITEM,
     payload: {

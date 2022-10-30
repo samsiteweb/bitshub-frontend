@@ -7,13 +7,13 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
 } from "../constants/productConstants";
-
+const BASE_URL = "https://bitshub-api.herokuapp.com";
 export const listProducts = () => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get("https://bitshub-api.herokuapp.com/api/products");
+    const { data } = await Axios.get(`${BASE_URL}/api/products`);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -32,7 +32,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
     payload: productId,
   });
   try {
-    const { data } = await Axios.get(`https://bitshub-api.herokuapp.com/api/products/${productId}`);
+    const { data } = await Axios.get(`${BASE_URL}/api/products/${productId}`);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,

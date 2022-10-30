@@ -11,6 +11,7 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
 } from "../constants/userConstants";
+const BASE_URL = "https://bitshub-api.herokuapp.com";
 
 export const register = (name, email, password) => async (dispatch) => {
   dispatch({
@@ -18,7 +19,7 @@ export const register = (name, email, password) => async (dispatch) => {
     payload: { name, email, password },
   });
   try {
-    const { data } = await Axios.post("https://bitshub-api.herokuapp.com/api/users/register", {
+    const { data } = await Axios.post(`${BASE_URL}/api/users/register`, {
       name,
       email,
       password,
@@ -46,7 +47,7 @@ export const signin = (email, password) => async (dispatch) => {
     payload: { email, password },
   });
   try {
-    const { data } = await Axios.post("https://bitshub-api.herokuapp.com/api/users/signin", { email, password });
+    const { data } = await Axios.post(`${BASE_URL}/api/users/signin`, { email, password });
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload: data,
@@ -78,7 +79,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get(`http://localhost:4000/api/users/${userId}`, {
+    const { data } = await Axios.get(`${BASE_URL}/api/users/${userId}`, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
