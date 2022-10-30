@@ -20,7 +20,7 @@ const OrderHistory = () => {
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
-        <MessageBox variant="danger">errorrrrr!!</MessageBox>
+        <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         myOrders?.map((item) => <OrderCard item={item} key={item?._id} />)
       )}

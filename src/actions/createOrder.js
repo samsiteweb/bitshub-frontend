@@ -17,7 +17,7 @@ import {
   ORDER_VERIFY_REQUEST,
   ORDER_VERIFY_SUCCESS,
 } from "../constants/orderConstants";
-
+const BASE_URL = "https://bitshub-api.herokuapp.com";
 export const CreateOrder = (order) => async (dispatch, getState) => {
   dispatch({
     type: ORDER_CREATE_REQUEST,
@@ -27,7 +27,7 @@ export const CreateOrder = (order) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.post("https://bitshub-api.herokuapp.com/api/orders", order, {
+    const { data } = await Axios.post(`${BASE_URL}/api/orders`, order, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
@@ -57,7 +57,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.get("http://localhost:4000/api/orders/mine", {
+    const { data } = await Axios.get(`${BASE_URL}/api/orders/mine`, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
@@ -83,7 +83,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.get(`https://bitshub-api.herokuapp.com/api/orders/${orderId}`, {
+    const { data } = await Axios.get(`${BASE_URL}/api/orders/${orderId}`, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
@@ -123,13 +123,9 @@ export const verifyOrder = (reference, order) => async (dispatch, getState) => {
         update_time: data?.data?.paidAt,
         email_address: data?.data?.customer?.email,
       };
-      const { data: updatedOrder } = await Axios.put(
-        `https://bitshub-api.herokuapp.com/api/orders/${order._id}/pay`,
-        paymentResult,
-        {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
-        }
-      );
+      const { data: updatedOrder } = await Axios.put(`${BASE_URL}/api/orders/${order._id}/pay`, paymentResult, {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      });
       dispatch({ type: ORDER_PAY_SUCCESS, payload: updatedOrder });
       dispatch({ type: CART_EMPTY });
       localStorage.removeItem("cartItems");
