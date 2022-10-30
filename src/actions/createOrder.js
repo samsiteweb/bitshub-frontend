@@ -7,6 +7,9 @@ import {
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
+  ORDER_MINE_LIST_FAIL,
+  ORDER_MINE_LIST_REQUEST,
+  ORDER_MINE_LIST_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
@@ -45,6 +48,32 @@ export const CreateOrder = (order) => async (dispatch, getState) => {
   }
 };
 
+export const listOrderMine = () => async (dispatch, getState) => {
+  dispatch({
+    type: ORDER_MINE_LIST_REQUEST,
+  });
+
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    const { data } = await Axios.get("http://localhost:4000/api/orders/mine", {
+      headers: {
+        authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+    dispatch({
+      type: ORDER_MINE_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_MINE_LIST_FAIL,
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};
+
 export const detailsOrder = (orderId) => async (dispatch, getState) => {
   dispatch({
     type: ORDER_DETAILS_REQUEST,
@@ -70,22 +99,6 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     });
   }
 };
-
-// export const updateOrder = (order, paymentResult) => async (dispatch, getState) => {
-//   dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
-//   const {
-//     userSignin: { userInfo },
-//   } = getState();
-//   try {
-//     const { data } = Axios.put(`https://bitshub-api.herokuapp.com/api/orders/${order._id}/pay`, paymentResult, {
-//       headers: { Authorization: `Bearer ${userInfo.token}` },
-//     });
-//     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
-//   } catch (error) {
-//     const message = error.response && error.response.data.message ? error.response.data.message : error.message;
-//     dispatch({ type: ORDER_PAY_FAIL, payload: message });
-//   }
-// };
 
 export const verifyOrder = (reference, order) => async (dispatch, getState) => {
   dispatch({

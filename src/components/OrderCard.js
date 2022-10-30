@@ -1,36 +1,50 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const OrderCard = (props) => {
-  const { image, price, quantityInStock, name } = props.item;
+  const navigate = useNavigate();
+  const { _id, PaidAt, orderItems, isDelivered, shippingDetails } = props?.item;
   return (
-    <div className="flex flex-col md:flex-row items-left md:items-center justify between gap-6 p-4 border border-gray-200 rounded">
-      <div className="w-28 flex-shrink-0">
-        <img src={image[0]} alt={name} />
-      </div>
-      <div className="md:w-1/3">
-        <p className="text-gray-800 text-lg font-medium uppercase">{name}</p>
-        <p className="text-gray-500 text-sm">
-          <span>Availability: </span>
-          <span className={quantityInStock > 0 ? "text-green-600" : "text-red-600"}>
-            {quantityInStock > 0 ? "In stock" : "out of stock"}
-          </span>
-        </p>
-      </div>
-      <div className="text-primary text-lg font-semibold">₦{price}</div>
-      <div className="flex items-center justify-between gap-4">
+    <div className=" p-4 border border-gray-200 rounded">
+      <div className="flex justify-between items-center">
+        <div className="w-16 flex-shrink-0">
+          <img className="w-full" src="../assets/products/1646_Lenovo-Yoga-3-Pro-Repair_1.jpg" alt="img-text" />
+        </div>
         <button
-          type="submit"
-          className={
-            quantityInStock < 1
-              ? "cursor-not-allowed bg-red-400 border border-red-400 text-white px-2 py-2 font-medium rounded-md uppercase text-sm text-center"
-              : "bg-primary border border-primary text-white px-2 py-2 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm text-center"
-          }
+          onClick={() => {
+            navigate(`/order/${_id}`);
+          }}
+          className="text-primary border border-primary p-2"
         >
-          Add to cart
+          view order
         </button>
-
-        <div className="text-gray-600 cursor-pointer hover:text-primary">
-          <i className="fas fa-trash"></i>
+      </div>
+      <div className="my-3 flex items-center justify-between">
+        <div className="flex flex-col md:flex-row">
+          <div>
+            <p className="text-gray-600 text-base font-semibold">Order number</p>
+            <p className="text-gray-600 text-base">{_id}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-base font-semibold">Purchased</p>
+            <p className="text-gray-600 text-base">{PaidAt ? PaidAt?.substring(0, 10) : "Not paid"}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-base font-semibold">Quantity</p>
+            <p className="text-gray-600 text-base">{orderItems?.length}</p>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row">
+          <div>
+            <p className="text-gray-600 text-base font-semibold">Total</p>
+            <p className="text-gray-600 text-base">{shippingDetails?.totalPrice}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-base font-semibold">Status</p>
+            <p className={` text-base ${isDelivered ? "text-green-600" : "text-red-600"}`}>
+              {isDelivered ? "Delivered" : "Cancelled"}
+            </p>
+          </div>
         </div>
       </div>
     </div>
