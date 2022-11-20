@@ -22,7 +22,6 @@ const Register = () => {
 
   const registerHandler = (e) => {
     e.preventDefault();
-    console.log(name, email, password, confirmPassword);
     if (password !== confirmPassword) {
       toast.error("Password and confirm password do not match!");
     } else {

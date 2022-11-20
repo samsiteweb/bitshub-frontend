@@ -19,32 +19,29 @@ const OrderCard = (props) => {
           view order
         </button>
       </div>
-      <div className="my-3 flex items-center justify-between">
-        <div className="flex flex-col md:flex-row">
-          <div>
-            <p className="text-gray-600 text-base font-semibold">Order number</p>
-            <p className="text-gray-600 text-base">{_id}</p>
-          </div>
-          <div>
-            <p className="text-gray-600 text-base font-semibold">Purchased</p>
-            <p className="text-gray-600 text-base">{PaidAt ? PaidAt?.substring(0, 10) : "Not paid"}</p>
-          </div>
-          <div>
-            <p className="text-gray-600 text-base font-semibold">Quantity</p>
-            <p className="text-gray-600 text-base">{orderItems?.length}</p>
-          </div>
+      <div className="my-3 flex items-center justify-evenly">
+        <div>
+          <p className="text-gray-600 text-base font-semibold">Order number</p>
+          <p className="text-gray-600 text-base">{_id}</p>
         </div>
-        <div className="flex flex-col md:flex-row">
-          <div>
-            <p className="text-gray-600 text-base font-semibold">Total</p>
-            <p className="text-gray-600 text-base">{shippingDetails?.totalPrice}</p>
-          </div>
-          <div>
-            <p className="text-gray-600 text-base font-semibold">Status</p>
-            <p className={` text-base ${isDelivered ? "text-green-600" : "text-red-600"}`}>
-              {isDelivered ? "Delivered" : "Cancelled"}
-            </p>
-          </div>
+        <div>
+          <p className="text-gray-600 text-base font-semibold">Purchased</p>
+          <p className="text-gray-600 text-base">{PaidAt ? PaidAt?.substring(0, 10) : "Not paid"}</p>
+        </div>
+        <div>
+          <p className="text-gray-600 text-base font-semibold">Quantity</p>
+          <p className="text-gray-600 text-base">{orderItems?.length}</p>
+        </div>
+
+        <div>
+          <p className="text-gray-600 text-base font-semibold">Total</p>
+          <p className="text-gray-600 text-base">{shippingDetails?.totalPrice}</p>
+        </div>
+        <div>
+          <p className="text-gray-600 text-base font-semibold">Status</p>
+          <p className={` text-base ${isDelivered ? "text-green-600" : "text-red-600"}`}>
+            {isDelivered ? "Delivered" : "Cancelled"}
+          </p>
         </div>
       </div>
     </div>
