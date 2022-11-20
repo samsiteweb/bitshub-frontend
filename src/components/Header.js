@@ -44,7 +44,10 @@ const Header = () => {
             </button>
           </div>
           <div className="flex items-center space-x-4 ml-3">
-            <Link to="/account/wishlist" className="text-center text-gray-700 hover:text-primary transition relative">
+            <Link
+              to="/account/wishlist"
+              className="text-center text-gray-700 hover:text-primary transition relative"
+            >
               <div className="text-2xl">
                 <i className="far fa-heart"></i>
               </div>
@@ -72,23 +75,83 @@ const Header = () => {
                 <p className="text-2xl">
                   <i className="far fa-user"></i>
                 </p>
-                <p className="text-xs leading-3">{userInfo?.name || "Account"}</p>
+                <p className="text-xs leading-3">
+                  {userInfo?.name || "Account"}
+                </p>
               </div>
               <div className="absolute w-[15rem] right-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-50">
-                {userInfo ? <p className="px-6 py-3">{`Welcome, ${userInfo.name}`}</p> : ""}
+                {userInfo ? (
+                  <p className="px-6 py-3">{`Welcome, ${userInfo.name}`}</p>
+                ) : (
+                  ""
+                )}
 
-                <Link to="/account" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                <Link
+                  to="/account"
+                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+                >
                   <i className="far fa-user"></i>
                   <span className="ml-6 text-gray-600 text-sm">My Account</span>
                 </Link>
-                <Link to="/account/order-history" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                  <img src={packageIcon} alt="" className="w-5 h-5 object-contain text-color-red" />
+                <Link
+                  to="/account/order-history"
+                  className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+                >
+                  <img
+                    src={packageIcon}
+                    alt=""
+                    className="w-5 h-5 object-contain text-color-red"
+                  />
                   <span className="ml-6 text-gray-600 text-sm">My Order</span>
                 </Link>
+                {userInfo && userInfo.isAdmin && (
+                  <div>
+                    <Link
+                      to="/admin"
+                      className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+                    >
+                      <i className="far fa-user"></i>
+                      <span className="ml-6 text-gray-600 text-sm">Admin </span>
+                    </Link>
+                    <Link
+                      to="/account/order-history"
+                      className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+                    >
+                      <i className="far fa-user"></i>
+                      <span className="ml-6 text-gray-600 text-sm">
+                        Dashboard
+                      </span>
+                    </Link>
+                    <Link
+                      to="/account/order-history"
+                      className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+                    >
+                      <i className="far fa-user"></i>
+                      <span className="ml-6 text-gray-600 text-sm">
+                        Products
+                      </span>
+                    </Link>
+                    <Link
+                      to="/account/order-history"
+                      className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+                    >
+                      <i className="far fa-user"></i>
+                      <span className="ml-6 text-gray-600 text-sm">Users</span>
+                    </Link>
+                  </div>
+                )}
                 <div className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                  <img src={switchIcon} alt="" className="w-5 h-5 object-contain text-color-red" />
+                  <img
+                    src={switchIcon}
+                    alt=""
+                    className="w-5 h-5 object-contain text-color-red"
+                  />
                   <span className="ml-6 text-gray-600 text-sm">
-                    {userInfo ? <span onClick={signoutHandler}>Sign Out</span> : <Link to="/login">Sign In</Link>}
+                    {userInfo ? (
+                      <span onClick={signoutHandler}>Sign Out</span>
+                    ) : (
+                      <Link to="/login">Sign In</Link>
+                    )}
                   </span>
                 </div>
               </div>

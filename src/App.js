@@ -30,6 +30,7 @@ import Register from "./screens/Register";
 import Payment from "./screens/Payment";
 import PaymentMethod from "./screens/PaymentMethod";
 import OrderDetails from "./screens/OrderDetails";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -49,98 +50,100 @@ function App() {
         <Route path="/payment" element={<PaymentMethod />} />
         <Route path="/place-order" element={<Payment />} />
         <Route path="/order/:_id" element={<OrderDetails />} />
-        <Route
-          exact
-          path="/account"
-          element={
-            <AccountLayout>
-              <ManageAccount />
-            </AccountLayout>
-          }
-        />
-        <Route
-          exact
-          path="/account/profile-info"
-          element={
-            <AccountLayout>
-              <ProfileInfo />
-            </AccountLayout>
-          }
-        />
+        <Route element={<PrivateRoute />}>
+          <Route
+            exact
+            path="/account"
+            element={
+              <AccountLayout>
+                <ManageAccount />
+              </AccountLayout>
+            }
+          />
+          <Route
+            exact
+            path="/account/profile-info"
+            element={
+              <AccountLayout>
+                <ProfileInfo />
+              </AccountLayout>
+            }
+          />
 
-        <Route
-          exact
-          path="/account/manage-address"
-          element={
-            <AccountLayout>
-              <ManageAddress />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/change-password"
-          element={
-            <AccountLayout>
-              <ChangePassword />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/wishlist"
-          element={
-            <AccountLayout>
-              <WishList />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/order-history"
-          element={
-            <AccountLayout>
-              <OrderHistory />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/returns"
-          element={
-            <AccountLayout>
-              <Returns />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/cancellations"
-          element={
-            <AccountLayout>
-              <Cancellations />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/reviews"
-          element={
-            <AccountLayout>
-              <Reviews />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/payment-methods"
-          element={
-            <AccountLayout>
-              <PaymentMethods />
-            </AccountLayout>
-          }
-        />
-        <Route
-          path="/account/voucher"
-          element={
-            <AccountLayout>
-              <Voucher />
-            </AccountLayout>
-          }
-        />
+          <Route
+            exact
+            path="/account/manage-address"
+            element={
+              <AccountLayout>
+                <ManageAddress />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/change-password"
+            element={
+              <AccountLayout>
+                <ChangePassword />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/wishlist"
+            element={
+              <AccountLayout>
+                <WishList />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/order-history"
+            element={
+              <AccountLayout>
+                <OrderHistory />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/returns"
+            element={
+              <AccountLayout>
+                <Returns />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/cancellations"
+            element={
+              <AccountLayout>
+                <Cancellations />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/reviews"
+            element={
+              <AccountLayout>
+                <Reviews />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/payment-methods"
+            element={
+              <AccountLayout>
+                <PaymentMethods />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="/account/voucher"
+            element={
+              <AccountLayout>
+                <Voucher />
+              </AccountLayout>
+            }
+          />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
