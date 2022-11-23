@@ -37,7 +37,7 @@ const ProfileInfo = () => {
       setDob(user.dob);
       setGender(user.gender);
     }
-  }, [dispatch, user, userInfo, navigate]);
+  }, [dispatch, user, userInfo, navigate, error]);
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  detailsUser,
-  signout,
-  updateUserProfile,
-} from "../actions/userActions";
+import { detailsUser, updateUserProfile } from "../actions/userActions";
 import {
   USER_SIGNOUT,
   USER_UPDATE_PROFILE_RESET,
@@ -79,17 +75,6 @@ const ChangePassword = () => {
             <div className="space-y-4">
               <div className="grid md:grid-cols-2">
                 <div>
-                  {/* <div className="py-4">
-                    <label htmlFor="full-name" className="text-gray-600 mb-2 block">
-                      Current Password
-                    </label>
-                    <input
-                      type="password"
-                      className="input-box"
-                      placeholder="enter current password"
-                      value={user.password}
-                    />
-                  </div> */}
                   <div className="pb-4">
                     <label
                       htmlFor="full-name"

@@ -6,14 +6,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import store from "./store";
+import { StyledEngineProvider } from "../node_modules/@mui/material/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <StyledEngineProvider injectFirst>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StyledEngineProvider>
     </React.StrictMode>
   </Provider>
 );
