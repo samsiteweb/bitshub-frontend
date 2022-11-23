@@ -107,14 +107,14 @@ const Header = () => {
                 {userInfo && userInfo.isAdmin && (
                   <div>
                     <Link
-                      to="/admin"
+                      to="/dashboard/admin"
                       className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
                     >
                       <i className="far fa-user"></i>
                       <span className="ml-6 text-gray-600 text-sm">Admin </span>
                     </Link>
                     <Link
-                      to="/account/order-history"
+                      to="/dashboard"
                       className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
                     >
                       <i className="far fa-user"></i>
@@ -123,7 +123,7 @@ const Header = () => {
                       </span>
                     </Link>
                     <Link
-                      to="/account/order-history"
+                      to="/dashboard/products"
                       className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
                     >
                       <i className="far fa-user"></i>
@@ -132,7 +132,7 @@ const Header = () => {
                       </span>
                     </Link>
                     <Link
-                      to="/account/order-history"
+                      to="/dashboard/users"
                       className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
                     >
                       <i className="far fa-user"></i>

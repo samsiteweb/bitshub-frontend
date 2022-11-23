@@ -8,7 +8,11 @@ const OrderCard = (props) => {
     <div className=" p-4 border border-gray-200 rounded">
       <div className="flex justify-between items-center">
         <div className="w-16 flex-shrink-0">
-          <img className="w-full" src="../assets/products/1646_Lenovo-Yoga-3-Pro-Repair_1.jpg" alt="img-text" />
+          <img
+            className="w-full"
+            src="../assets/products/1646_Lenovo-Yoga-3-Pro-Repair_1.jpg"
+            alt="img-text"
+          />
         </div>
         <button
           onClick={() => {
@@ -21,26 +25,34 @@ const OrderCard = (props) => {
       </div>
       <div className="my-3 flex items-center justify-evenly">
         <div>
-          <p className="text-gray-600 text-base font-semibold">Order number</p>
-          <p className="text-gray-600 text-base">{_id}</p>
+          <p className="text-gray-600 text-sm font-semibold">Order number</p>
+          <p className="text-gray-600 text-sm">{_id}</p>
         </div>
         <div>
-          <p className="text-gray-600 text-base font-semibold">Purchased</p>
-          <p className="text-gray-600 text-base">{PaidAt ? PaidAt?.substring(0, 10) : "Not paid"}</p>
+          <p className="text-gray-600 text-sm font-semibold">Purchased</p>
+          <p className="text-gray-600 text-sm">
+            {PaidAt ? PaidAt?.substring(0, 10) : "Not paid"}
+          </p>
         </div>
         <div>
-          <p className="text-gray-600 text-base font-semibold">Quantity</p>
-          <p className="text-gray-600 text-base">{orderItems?.length}</p>
+          <p className="text-gray-600 text-sm font-semibold">Quantity</p>
+          <p className="text-gray-600 text-sm">{orderItems?.length}</p>
         </div>
 
         <div>
-          <p className="text-gray-600 text-base font-semibold">Total</p>
-          <p className="text-gray-600 text-base">{shippingDetails?.totalPrice}</p>
+          <p className="text-gray-600 text-sm font-semibold">Total</p>
+          <p className="text-gray-600 text-sm">
+            {shippingDetails?.totalPrice || "null"}
+          </p>
         </div>
         <div>
-          <p className="text-gray-600 text-base font-semibold">Status</p>
-          <p className={` text-base ${isDelivered ? "text-green-600" : "text-red-600"}`}>
-            {isDelivered ? "Delivered" : "Cancelled"}
+          <p className="text-gray-600 text-sm font-semibold">Status</p>
+          <p
+            className={` text-sm ${
+              isDelivered ? "text-green-600" : "text-yellow-600"
+            }`}
+          >
+            {isDelivered ? "Delivered" : "Processing"}
           </p>
         </div>
       </div>

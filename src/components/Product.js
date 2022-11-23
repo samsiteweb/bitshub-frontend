@@ -36,17 +36,23 @@ const Product = (props) => {
             >
               <i className="far fa-heart"></i>
             </span>
-            <p className="text-sm text-red-500 font-medium">{item?.quantityInStock < 1 ? "item sold out" : ""}</p>
+            <p className="text-sm text-red-500 font-medium">
+              {item?.quantityInStock < 1 ? "item sold out" : ""}
+            </p>
           </div>
         </div>
         <div className="pt-4 pb-3 px-4">
           <Link to={`/product-details/${item._id}`}>
-            <p className="uppercase font-medium text-l text-gray-800 hover:text-primary transition">{item.name}</p>
+            <p className="uppercase font-medium text-l text-gray-800 hover:text-primary transition">
+              {item.name}
+            </p>
           </Link>
           <p className="text-xs text-gray-500 mb-2">{item.config}</p>
           <div className="flex items-baseline mb-1 space-x-2 font-roboto">
             <p className="text-l text-primary font-semibold">₦{item.price}</p>
-            <p className="text-sm text-gray-400 line-through">₦{item.initialPrice}</p>
+            <p className="text-sm text-gray-400 line-through">
+              ₦{item.initialPrice}
+            </p>
           </div>
           <div>
             <Rating rating={item?.rating} reviews={item?.reviews} />

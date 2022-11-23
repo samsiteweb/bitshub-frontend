@@ -27,12 +27,14 @@ const PaymentMethod = () => {
   });
 
   return (
-    <div>
+    <div className="lg:col-span-9 shadow rounded px-6 pt-5 pb-7">
       <Breadcrumbs page="Payment method" />
       <div className="container">
         <CheckoutSteps step1 step2 step3 />
         <div className="bg-gray-200 text-black my-4 rounded">
-          <p className="px-4 py-3 text-sm font-semibold">Select payment method</p>
+          <p className="px-4 py-3 text-sm font-semibold">
+            Select payment method
+          </p>
         </div>
         <form className="" onSubmit={submitHandler}>
           <div className="flex items-center justify-center gap-4 py-20">
@@ -67,7 +69,12 @@ const PaymentMethod = () => {
             </div>
           </div>
           <div className="mb-44">
-            <Button className="p-2 w-full" primary onClick={submitHandler} children="continue" />
+            <Button
+              className="p-2 w-full"
+              primary
+              onClick={submitHandler}
+              children="continue"
+            />
           </div>
         </form>
       </div>

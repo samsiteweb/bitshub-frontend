@@ -6,9 +6,12 @@ const Returns = () => {
   return (
     <div className="col-span-12 lg:col-span-9 space-y-4">
       <p>Returns</p>
-      {OrderData.orders.map((item) => {
-        return <OrderCard item={item} id={item.id} />;
-      })}
+      <div>
+        <p className="text-2xl font-semibold">
+          Hey, just a little more patience
+        </p>
+        <p>We are working on it...</p>
+      </div>
     </div>
   );
 };
