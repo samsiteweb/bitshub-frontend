@@ -9,12 +9,12 @@ const ProductList = () => {
   const [error, setError] = useState();
 
   const { productCreate } = useSelector((state) => state.productCreate);
-  const {
-    error: createProductError,
-    loading: createProductLoading,
-    success: createProductSuccess,
-    product: createProduct,
-  } = productCreate;
+  // const {
+  //   error: createProductError,
+  //   loading: createProductLoading,
+  //   success: createProductSuccess,
+  //   product: createProduct,
+  // } = productCreate;
 
   const BASE_URL = "https://bitshub-api.herokuapp.com";
 

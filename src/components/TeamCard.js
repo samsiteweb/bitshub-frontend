@@ -1,9 +1,7 @@
 import React from "react";
-import avatar from "../images/avatar.png";
 
 const TeamCard = (props) => {
-  const { name, email, social, title, id } = props.item;
-  console.log(name, email, social, title);
+  const { name, email, title } = props.item;
   return (
     <div className="bg-white rounded shadow overflow-hidden group">
       <div className="">
@@ -13,7 +11,7 @@ const TeamCard = (props) => {
         <p className="font-medium mb-2">{name}</p>
         <p className="text-xs text-gray-800">{title}</p>
         <div>
-          <a href="" className="text-xs text-gray-500">
+          <a href="/" className="text-xs text-gray-500">
             {email}
           </a>
         </div>

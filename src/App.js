@@ -53,7 +53,7 @@ function App() {
         <Route path="/place-order" element={<Payment />} />
         <Route path="/order/:_id" element={<OrderDetails />} />
         <Route element={<AdminRoute />}>
-          <Route exact path="/products" element={<ProductList />} />
+          <Route exact path="dashboard/products" element={<ProductList />} />
         </Route>
         <Route element={<PrivateRoute />}>
           <Route
