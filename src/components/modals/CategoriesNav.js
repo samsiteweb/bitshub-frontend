@@ -19,7 +19,7 @@ const CategoriesNav = ({ modalHandler }) => {
         }}
       >
         <svg
-          class="fill-current text-black"
+          className="fill-current text-black"
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"
@@ -29,27 +29,49 @@ const CategoriesNav = ({ modalHandler }) => {
         </svg>
       </span>
       <div className="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed transition duration-300">
-        <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-          <img src={game} alt="" className="w-5 h-5 object-contain text-color-red" />
+        <a
+          href="/"
+          className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+        >
+          <img
+            src={game}
+            alt=""
+            className="w-5 h-5 object-contain text-color-red"
+          />
           <span className="ml-6 text-gray-600 text-sm">Macbook</span>
         </a>
-        <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+        <a
+          href="/"
+          className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+        >
           <img src={office} alt="" className="w-5 h-5 object-contain" />
           <span className="ml-6 text-gray-600 text-sm">Laptop</span>
         </a>
-        <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+        <a
+          href="/"
+          className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+        >
           <img src={personal} alt="" className="w-5 h-5 object-contain" />
           <span className="ml-6 text-gray-600 text-sm">Desktop</span>
         </a>
-        <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+        <a
+          href="/"
+          className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+        >
           <img src={workstation} alt="" className="w-5 h-5 object-contain" />
           <span className="ml-6 text-gray-600 text-sm">Monitor</span>
         </a>
-        <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+        <a
+          href="/"
+          className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+        >
           <img src={sleek} alt="" className="w-5 h-5 object-contain" />
           <span className="ml-6 text-gray-600 text-sm">Gaming</span>
         </a>
-        <a href="" className="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+        <a
+          href="/"
+          className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
+        >
           <img src={component} alt="" className="w-5 h-5 object-contain" />
           <span className="ml-6 text-gray-600 text-sm">Accessories</span>
         </a>

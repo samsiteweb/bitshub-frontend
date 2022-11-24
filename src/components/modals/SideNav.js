@@ -14,7 +14,7 @@ const SideNav = ({ modalHandler }) => {
           }}
         >
           <svg
-            class="fill-current text-white"
+            className="fill-current text-white"
             xmlns="http://www.w3.org/2000/svg"
             width="18"
             height="18"
@@ -26,19 +26,29 @@ const SideNav = ({ modalHandler }) => {
       </div>
       <div>
         <Link to="/">
-          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">Home</p>
+          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">
+            Home
+          </p>
         </Link>
         <Link to="/shop">
-          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">Shop</p>
+          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">
+            Shop
+          </p>
         </Link>
         <Link to="/account">
-          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">My Account</p>
+          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">
+            My Account
+          </p>
         </Link>
         <Link to="/about">
-          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">About Us</p>
+          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">
+            About Us
+          </p>
         </Link>
         <Link to="/contact">
-          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">Contact Us</p>
+          <p className="text-gray-700 hover:bg-gray-200 border-b border-dashed transition p-3">
+            Contact Us
+          </p>
         </Link>
       </div>
     </div>

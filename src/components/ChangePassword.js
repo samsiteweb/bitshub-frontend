@@ -33,7 +33,15 @@ const ChangePassword = () => {
       });
       dispatch(detailsUser(userInfo._id));
     }
-  }, [dispatch, userInfo, user, navigate]);
+    if (error && error === "Invalid token") {
+      localStorage.removeItem("userInfo");
+      dispatch({
+        type: USER_SIGNOUT,
+      });
+      navigate("/login?redirect=/account");
+    }
+    console.log(error);
+  }, [dispatch, userInfo, user, navigate, error]);
   const removeUser = () => {
     setTimeout(() => {
       localStorage.removeItem("userInfo");
