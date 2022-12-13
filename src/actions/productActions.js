@@ -11,7 +11,7 @@ import {
   PRODUCT_CREATE_FAIL,
 } from "../constants/productConstants";
 
-const BASE_URL = "https://bitshub-api.herokuapp.com";
+const BASE_URL = process.env.REACT_APP_URL;
 
 export const listProducts = () => async (dispatch) => {
   dispatch({
