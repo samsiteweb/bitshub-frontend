@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Filter from "../components/Filter";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/modals/MessageBox";
 import Product from "../components/Product";
-import Products from "../components/Products";
-import ProductData from "../data/productData";
+// import Products from "../components/Products";
+// import ProductData from "../data/productData";
 
 const ShopScreen = () => {
   const [showFilter, setShowFilter] = useState(false);
+
+  const productList = useSelector((state) => state?.productList);
+  const { loading, error, products } = productList;
 
   const handleFilter = () => {
     setShowFilter(!showFilter);
@@ -70,12 +76,19 @@ const ShopScreen = () => {
 
           {/* Products */}
 
-          {/* <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-2">
-            {ProductData.products.map((item) => {
-              return <Product item={item} key={item._id} />;
-            })}
-          </div> */}
-          <Products />
+          <div>
+            {loading ? (
+              <LoadingBox />
+            ) : error ? (
+              <MessageBox variant="danger">{error}</MessageBox>
+            ) : (
+              <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-2">
+                {products?.map((item) => {
+                  return <Product item={item} key={item?._id} />;
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
