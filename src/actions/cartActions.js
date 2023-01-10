@@ -5,14 +5,16 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
 } from "../constants/cartConstants";
-const BASE_URL = "https://bitshub-api.herokuapp.com";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+// const BASE_URL = "http://localhost:4000";
+
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
   const { data } = await Axios.get(`${BASE_URL}/api/products/${productId}`);
   dispatch({
     type: CART_ADD_ITEM,
     payload: {
       name: data.product.name,
-      // image: data.image,
+      image: data.product.image,
       price: data.product.price,
       quantityInStock: data.product.quantityInStock,
       condition: data.product.condition,
