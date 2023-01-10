@@ -12,6 +12,7 @@ const ShoppingCart = () => {
   const qty = Number(searchParams.get("qty"));
   const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
+  console.log(cartItems);
 
   return (
     <div>
@@ -33,7 +34,9 @@ const ShoppingCart = () => {
         </div>
         <div className="col-span-12 lg:col-span-4">
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
+            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">
+              order summary
+            </p>
 
             <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
               <p>Subtotal</p>

@@ -14,7 +14,8 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
 } from "../constants/userConstants";
-const BASE_URL = "https://bitshub-api.herokuapp.com";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const register = (name, email, password) => async (dispatch) => {
   dispatch({
@@ -39,7 +40,10 @@ export const register = (name, email, password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
-      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -50,7 +54,10 @@ export const signin = (email, password) => async (dispatch) => {
     payload: { email, password },
   });
   try {
-    const { data } = await Axios.post(`${BASE_URL}/api/users/signin`, { email, password });
+    const { data } = await Axios.post(`${BASE_URL}/api/users/signin`, {
+      email,
+      password,
+    });
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload: data,
@@ -59,7 +66,10 @@ export const signin = (email, password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_SIGNIN_FAIL,
-      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -94,7 +104,10 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_DETAILS_FAIL,
-      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -108,7 +121,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.put("http://localhost:4000/api/users/profile", user, {
+    const { data } = await Axios.put(`${BASE_URL}/api/users/profile`, user, {
       headers: {
         authorization: `Bearer ${userInfo.token}`,
       },
@@ -125,7 +138,10 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
-      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
