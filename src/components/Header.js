@@ -9,6 +9,7 @@ import switchIcon from "../images/power-off.png";
 import { signout } from "../actions/userActions";
 
 const Header = () => {
+  const bitshub_url = "bitshub-admin.vercel.app/";
   const cart = useSelector((state) => state.cart);
   const signinData = useSelector((state) => state?.userSignin);
   const { userInfo } = signinData;
@@ -107,36 +108,12 @@ const Header = () => {
                 {userInfo && userInfo.isAdmin && (
                   <div>
                     <Link
-                      to="/dashboard/admin"
+                      to={`//${bitshub_url}`}
+                      target="_blank"
                       className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
                     >
                       <i className="far fa-user"></i>
-                      <span className="ml-6 text-gray-600 text-sm">Admin </span>
-                    </Link>
-                    <Link
-                      to="/dashboard"
-                      className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                    >
-                      <i className="far fa-user"></i>
-                      <span className="ml-6 text-gray-600 text-sm">
-                        Dashboard
-                      </span>
-                    </Link>
-                    <Link
-                      to="/dashboard/products"
-                      className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                    >
-                      <i className="far fa-user"></i>
-                      <span className="ml-6 text-gray-600 text-sm">
-                        Products
-                      </span>
-                    </Link>
-                    <Link
-                      to="/dashboard/users"
-                      className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
-                    >
-                      <i className="far fa-user"></i>
-                      <span className="ml-6 text-gray-600 text-sm">Users</span>
+                      <span className="ml-6 text-gray-600 text-sm">Admin</span>
                     </Link>
                   </div>
                 )}
