@@ -47,7 +47,7 @@ const Payment = () => {
   } else if (success) {
     navigate(`/order/${order._id}`);
   }
-
+  console.log(cartItems);
   return (
     <div>
       <Breadcrumbs page="Payment" />
@@ -58,7 +58,9 @@ const Payment = () => {
             <div className="pt-2">
               <div>
                 <span className="font-normal">Name:</span>
-                <span className="font-light text-sm">{shippingDetails.fullName}</span>
+                <span className="font-light text-sm">
+                  {shippingDetails.fullName}
+                </span>
               </div>
               <div>
                 <span className="font-normal">Address:</span>
@@ -71,7 +73,8 @@ const Payment = () => {
           <div className="border border-gray-200 p-4 rounded">
             <p className="font-medium text-gray-400">Payment</p>
             <div className="pt-2">
-              <span className="font-normal">Method:</span> <span className="font-light text-sm">{paymentMethod}</span>
+              <span className="font-normal">Method:</span>{" "}
+              <span className="font-light text-sm">{paymentMethod}</span>
             </div>
           </div>
           <div className="border border-gray-200 p-4 rounded">
@@ -79,22 +82,32 @@ const Payment = () => {
             {cartItems?.map((item) => {
               return (
                 <div
-                  className="flex-col flex md:flex-row items-center justify-evenly gap-1 py-2 border-b border-gray-100"
+                  className="flex-col flex md:flex-row items-center justify-between gap-1 py-2 border-b border-gray-100"
                   key={item.product}
                 >
                   <div className="flex items-center justify-center gap-1">
                     <div className="w-20">
-                      <img className="w-full" src="../assets/products/81nde-rFKzL._AC_SL1500_.jpg" alt="cart item" />
+                      <img
+                        className="w-full"
+                        src={item.image}
+                        alt={item.name}
+                      />
                     </div>
 
-                    <p className="text-gray-700 font-semibold text-xs md:text-base">{item.name}</p>
-                    <p className="text-green-700 font-semibold text-xs md:text-base">{item.condition}</p>
+                    <p className="text-gray-700 font-semibold text-xs md:text-base">
+                      {item.name}
+                    </p>
+                    <p className="text-green-700 font-semibold text-xs md:text-base">
+                      {item.condition}
+                    </p>
                   </div>
                   <div className="text-gray-600 mr-4">
                     <span className="text-gray-700 text-xs md:text-base pr-2">
                       {item.price} x {item.qty}
                     </span>
-                    <span className="text-gray-700 font-semibold text-xs md:text-base">= ₦{item.price * item.qty}</span>
+                    <span className="text-gray-700 font-semibold text-xs md:text-base">
+                      = ₦{item.price * item.qty}
+                    </span>
                   </div>
                 </div>
               );
@@ -107,7 +120,9 @@ const Payment = () => {
             <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
+            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">
+              order summary
+            </p>
             {cartItems.map((item) => {
               return (
                 <div className="space-y-2" key={item.product}>
@@ -147,14 +162,22 @@ const Payment = () => {
                 id="agreement"
                 className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
               />
-              <label htmlFor="agreement" className="text-gray-600 ml-3 cursor-pointer text-sm">
+              <label
+                htmlFor="agreement"
+                className="text-gray-600 ml-3 cursor-pointer text-sm"
+              >
                 Agree to our
                 <a href="/" className="text-primary pl-1">
                   terms & condition
                 </a>
               </label>
             </div>
-            <Button disabled={loader} className="w-full p-2" primary onClick={placeOrderHandler}>
+            <Button
+              disabled={loader}
+              className="w-full p-2"
+              primary
+              onClick={placeOrderHandler}
+            >
               {loader ? "loading..." : "Place order"}
             </Button>
           </div>
