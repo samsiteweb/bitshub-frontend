@@ -16,7 +16,12 @@ const Payment = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (cardName.length < 1 || cardNumber.length < 1 || exp.length < 1 || cvv.length < 1) {
+    if (
+      cardName.length < 1 ||
+      cardNumber.length < 1 ||
+      exp.length < 1 ||
+      cvv.length < 1
+    ) {
       toast.error("Feild cannot be empty!");
     } else {
       toast.success("payment successful");
@@ -29,7 +34,9 @@ const Payment = () => {
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="col-span-12 md:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
-            <p className="px-4 py-3 text-sm font-semibold">Select payment method</p>
+            <p className="px-4 py-3 text-sm font-semibold">
+              Select payment method
+            </p>
           </div>
 
           <div className="border border-gray-200 p-4 rounded">
@@ -111,7 +118,9 @@ const Payment = () => {
             <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
+            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">
+              order summary
+            </p>
             {cartItems.map((item) => {
               return (
                 <div className="space-y-2" key={item.product}>
@@ -147,7 +156,10 @@ const Payment = () => {
                 id="agreement"
                 className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
               />
-              <label htmlFor="agreement" className="text-gray-600 ml-3 cursor-pointer text-sm">
+              <label
+                htmlFor="agreement"
+                className="text-gray-600 ml-3 cursor-pointer text-sm"
+              >
                 Agree to our
                 <a href="/" className="text-primary pl-1">
                   terms & condition

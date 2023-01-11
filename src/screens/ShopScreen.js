@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Filter from "../components/Filter";
 import LoadingBox from "../components/LoadingBox";
@@ -13,6 +14,12 @@ const ShopScreen = () => {
 
   const productList = useSelector((state) => state?.productList);
   const { loading, error, products } = productList;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
 
   const handleFilter = () => {
     setShowFilter(!showFilter);

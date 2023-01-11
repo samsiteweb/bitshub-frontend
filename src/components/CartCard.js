@@ -17,7 +17,6 @@ const CartCard = (props) => {
       toastId: customId,
     });
   };
-  console.log(props);
   return (
     <div className="flex flex-col md:flex-row items-left md:items-center justify between gap-6 p-4 border border-gray-200 rounded">
       <div className="w-28 flex-shrink-0">

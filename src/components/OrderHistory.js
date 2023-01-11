@@ -12,7 +12,7 @@ const OrderHistory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
-  const BASE_URL = "https://bitshub-api.herokuapp.com";
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     const listOrderMine = async () => {

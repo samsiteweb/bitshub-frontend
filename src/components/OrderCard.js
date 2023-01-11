@@ -4,15 +4,19 @@ import { useNavigate } from "react-router-dom";
 const OrderCard = (props) => {
   const navigate = useNavigate();
   const { _id, PaidAt, orderItems, isDelivered, shippingDetails } = props?.item;
+
   return (
     <div className=" p-4 border border-gray-200 rounded">
       <div className="flex justify-between items-center">
-        <div className="w-16 flex-shrink-0">
-          <img
-            className="w-full"
-            src="../assets/products/1646_Lenovo-Yoga-3-Pro-Repair_1.jpg"
-            alt="img-text"
-          />
+        <div className="w-16 flex">
+          {orderItems.map((item) => (
+            <img
+              className="w-full"
+              key={item._id}
+              src={item.image}
+              alt={item.name}
+            />
+          ))}
         </div>
         <button
           onClick={() => {
