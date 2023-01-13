@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 const OrderCard = (props) => {
   const navigate = useNavigate();
-  const { _id, PaidAt, orderItems, isDelivered, shippingDetails } = props?.item;
+  const { _id, PaidAt, orderItems, isDelivered, shippingDetails, isPaid } =
+    props?.item;
 
   return (
     <div className=" p-4 border border-gray-200 rounded">
@@ -51,13 +52,21 @@ const OrderCard = (props) => {
         </div>
         <div>
           <p className="text-gray-600 text-sm font-semibold">Status</p>
-          <p
-            className={` text-sm ${
-              isDelivered ? "text-green-600" : "text-yellow-600"
+          <div
+            className={`rounded p-1 text-xs ${
+              isPaid && isDelivered
+                ? "bg-green-500 text-white"
+                : isPaid && !isDelivered
+                ? "bg-yellow-400 text-gray-800"
+                : "bg-gray-400 text-white"
             }`}
           >
-            {isDelivered ? "Delivered" : "Processing"}
-          </p>
+            {isPaid && isDelivered
+              ? "Delivered"
+              : isPaid && !isDelivered
+              ? "Awaiting delivery"
+              : "Awaiting payment"}
+          </div>
         </div>
       </div>
     </div>

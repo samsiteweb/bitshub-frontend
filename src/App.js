@@ -31,8 +31,6 @@ import Payment from "./screens/Payment";
 import PaymentMethod from "./screens/PaymentMethod";
 import OrderDetails from "./screens/OrderDetails";
 import PrivateRoute from "./components/PrivateRoute";
-import AdminRoute from "./components/AdminRoute";
-import ProductList from "./screens/products/ProductList";
 
 function App() {
   return (
@@ -52,9 +50,7 @@ function App() {
         <Route path="/payment" element={<PaymentMethod />} />
         <Route path="/place-order" element={<Payment />} />
         <Route path="/order/:_id" element={<OrderDetails />} />
-        <Route element={<AdminRoute />}>
-          <Route exact path="dashboard/products" element={<ProductList />} />
-        </Route>
+
         <Route element={<PrivateRoute />}>
           <Route
             exact
