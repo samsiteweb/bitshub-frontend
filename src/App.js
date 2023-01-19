@@ -32,6 +32,7 @@ import PaymentMethod from "./screens/PaymentMethod";
 import OrderDetails from "./screens/OrderDetails";
 import PrivateRoute from "./components/PrivateRoute";
 import FAQ from "./screens/FAQ";
+import TermsCondition from "./screens/TermsCondition";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path="/place-order" element={<Payment />} />
         <Route path="/order/:_id" element={<OrderDetails />} />
         <Route path="/FAQ" element={<FAQ />} />
+        <Route path="/terms-condition" element={<TermsCondition />} />
 
         <Route element={<PrivateRoute />}>
           <Route

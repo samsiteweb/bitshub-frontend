@@ -44,7 +44,7 @@ const Footer = () => {
                   <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
                     Return Policy
                   </a>
-                  <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
+                  <a href="/terms-condition" className="text-base text-gray-500 hover:text-gray-900 block">
                     Terms and condition
                   </a>
                   <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
