@@ -47,7 +47,7 @@ const Footer = () => {
                   <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
                     Terms and condition
                   </a>
-                  <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
+                  <a href="/privacy-policy" className="text-base text-gray-500 hover:text-gray-900 block">
                     Privacy Policy
                   </a>
                   <a href="/FAQ" className="text-base text-gray-500 hover:text-gray-900 block">
