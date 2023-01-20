@@ -142,12 +142,17 @@ const ProfileInfo = () => {
                 </div>
                 <div>
                   <label htmlFor="gender" className="text-gray-600 mb-2 block">
-                    Gender
+                    Gender <span className="text-red-500">*</span>
                   </label>
-                  <select name="" id="gender" className="input-box">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Female">Other</option>
+                  <select
+                    className="input-box focus:border-primary focus:ring-0"
+                    id="gender"
+                    name="gender"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                   </select>
                 </div>
               </div>
