@@ -16,6 +16,19 @@ const ProductDetails = (props) => {
   const { _id: productId } = useParams();
   const dispatch = useDispatch();
 
+  const [showDetails, setShowDetails] = useState(true);
+  const [showReviews, setShowReviews] = useState(false);
+
+  const details = useSelector((state) => state?.singleProduct);
+  const handleShowDetails = () => {
+    setShowDetails(true);
+    setShowReviews(false);
+  };
+  const handleShowReviews = () => {
+    setShowReviews(true);
+    setShowDetails(false);
+  };
+
   const productDetails = useSelector((state) => state?.productDetails);
   const { loading, error, product } = productDetails;
   const [qty, setQty] = useState(1);
@@ -370,42 +383,105 @@ const ProductDetails = (props) => {
             </div>
           </div>
 
-          <div className="container pb-16">
-            <h3 className="border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium">
-              Product details
-            </h3>
-
-            <div className="pt-6">
-              <div className="text-gray-600 space-y-3">
-                <p>{product?.product?.desc}</p>
-              </div>
+          <div className="container pb-16 pt-6">
+            <div className="flex gap-4 border-b border-gray-200 font-roboto text-gray-800 pb-0 font-medium">
+              <h3 
+              onClick={handleShowDetails}
+              className={` font-roboto text-gray-800 mb-3 font-medium cursor-pointer ${
+                  showDetails ? "text-primary " : "text-gray-400"
+                }`}>
+                Product details
+              </h3>
+              <h3 
+                onClick={handleShowReviews}
+              className={`border-l-2 border-orange-500 font-roboto text-gray-800 mb-3 pl-4 font-medium cursor-pointer ${
+                  showReviews ? "text-primary" : "text-gray-400"
+                }`}>
+                Reviews
+              </h3>
             </div>
-            <table className="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
-              <tbody>
-                <tr>
-                  <th className="py-2 px-4 border border-gray-300 w-40 font-medium">
-                    Color
-                  </th>
-                  <td className="py-2 px-4 border border-gray-300">
-                    {product?.product?.color}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="py-2 px-4 border border-gray-300 w-40 font-medium">
-                    Size
-                  </th>
-                  <td className="py-2 px-4 border border-gray-300">
-                    {product?.product?.size}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="py-2 px-4 border border-gray-300 w-40 font-medium">
-                    Weight
-                  </th>
-                  <td className="py-2 px-4 border border-gray-300">3.5kg</td>
-                </tr>
-              </tbody>
-            </table>
+                <div className={!showDetails ? "hidden" : ""}>
+                 <div className="pt-6">
+              
+                  <div className="text-gray-600 space-y-3">
+                    <p>{product?.product?.desc}</p>
+                  </div>
+                </div>
+                <table className="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
+                  <tbody>
+                    <tr>
+                      <th className="py-2 px-4 border border-gray-300 w-40 font-medium">
+                        Color
+                      </th>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {product?.product?.color}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="py-2 px-4 border border-gray-300 w-40 font-medium">
+                        Size
+                      </th>
+                      <td className="py-2 px-4 border border-gray-300">
+                        {product?.product?.size}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="py-2 px-4 border border-gray-300 w-40 font-medium">
+                        Weight
+                      </th>
+                      <td className="py-2 px-4 border border-gray-300">3.5kg</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+
+                        <div className={!showReviews ? "hidden" : ""}>
+              <div className="flex py-4 gap-4 w-[70%]">
+                <div className="w-[80px]">
+                  <img src='https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg' alt="" className="w-full border rounded" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-800">By Sally Joe</p>
+                  <Rating rating="4" reviews="" />
+                  <p className="text-xs text-gray-500">21 July, 2022</p>
+                  <p className="text-xs text-gray-500 py-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+                    assumenda excepturi tempore voluptatum dolores explicabo
+                    iste reiciendis pariatur consequatur recusandae?
+                  </p>
+                </div>
+              </div>
+              <div className="flex py-4 gap-4 w-[70%]">
+                <div className="w-[80px]">
+                  <img src='https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg' alt="" className="w-full border rounded" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-800">By Sally Joe</p>
+                  <Rating rating="4" reviews="" />
+                  <p className="text-xs text-gray-500">21 July, 2022</p>
+                  <p className="text-xs text-gray-500 py-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+                    assumenda excepturi tempore voluptatum dolores explicabo
+                    iste reiciendis pariatur consequatur recusandae?
+                  </p>
+                </div>
+              </div>
+              <div className="flex py-4 gap-4 w-[70%]">
+                <div className="w-[80px]">
+                  <img src='https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg' alt="" className="w-full border rounded" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-800">By Sally Joe</p>
+                  <Rating rating="4" reviews="" />
+                  <p className="text-xs text-gray-500">21 July, 2022</p>
+                  <p className="text-xs text-gray-500 py-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+                    assumenda excepturi tempore voluptatum dolores explicabo
+                    iste reiciendis pariatur consequatur recusandae?
+                  </p>
+                </div>
+              </div>
+              </div>
           </div>
 
           <div className="container pb-16">
