@@ -20,24 +20,78 @@ const Shipping = () => {
   const cart = useSelector((state) => state?.cart);
   const { shippingDetails, cartItems } = cart;
 
+  const userAddressMap = useSelector((state) => state?.userAddressMap);
+  const { address: addressMap } = userAddressMap;
+
   const [fullName, setFullName] = useState(shippingDetails.fullName);
   const [phone, setPhone] = useState(shippingDetails.phone);
-  const [address, setAddress] = useState(shippingDetails.address);
-  const [city, setCity] = useState(shippingDetails.city);
-  // const [state, setState] = useState(shippingDetails.state);
-  let taxPrice = (cartItems.reduce((a, c) => a + c.price * c.qty, 0) / 100) * 7.5;
-  const totalPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0) + taxPrice;
+  const [address, setAddress] = useState(
+    addressMap?.address || shippingDetails.address
+  );
+  const [city, setCity] = useState(addressMap?.city || shippingDetails.city);
+  const [lng, setLng] = useState(shippingDetails.lng);
+  const [lat, setLat] = useState(shippingDetails.lat);
+  const [region, setRegion] = useState(
+    addressMap?.region || shippingDetails.region
+  );
+
+  let taxPrice =
+    (cartItems.reduce((a, c) => a + c.price * c.qty, 0) / 100) * 7.5;
+  const totalPrice =
+    cartItems.reduce((a, c) => a + c.price * c.qty, 0) + taxPrice;
   const shippingPrice = "free";
   const dispatch = useDispatch();
 
   const handleShipping = (e) => {
     e.preventDefault();
-    if (fullName?.length < 1 || phone?.length < 1 || address?.length < 1 || city?.length < 1) {
-      toast.error("Feild cannot be empty!");
-    } else {
-      dispatch(saveShippingAddress({ fullName, phone, address, city, taxPrice, shippingPrice, totalPrice }));
+
+    const newLat = addressMap ? addressMap.lat : lat;
+    const newLng = addressMap ? addressMap.lng : lng;
+    if (addressMap) {
+      setLng(addressMap.lng);
+      setLat(addressMap.lat);
+    }
+    let moveOn = true;
+    if (!newLat || !newLng) {
+      moveOn = window.confirm(
+        "You did not set your location on map. Continue?"
+      );
+    }
+    if (moveOn) {
+      dispatch(
+        saveShippingAddress({
+          fullName,
+          phone,
+          address,
+          city,
+          region,
+          taxPrice,
+          shippingPrice,
+          totalPrice,
+          lat: newLat,
+          lng: newLng,
+        })
+      );
       navigate("/payment");
     }
+  };
+
+  const chooseOnMap = () => {
+    dispatch(
+      saveShippingAddress({
+        fullName,
+        phone,
+        address,
+        city,
+        region,
+        taxPrice,
+        shippingPrice,
+        totalPrice,
+        lat,
+        lng,
+      })
+    );
+    navigate("/map");
   };
 
   return (
@@ -48,6 +102,14 @@ const Shipping = () => {
         <div className="col-span-12 md:col-span-8">
           <div className="bg-gray-200 text-black mb-4 rounded">
             <p className="px-4 py-3 text-sm font-semibold">Shipping Details</p>
+          </div>
+          <div>
+            <button
+              className="bg-gray-300 text-gray-800 rounded p-2 my-2"
+              onClick={chooseOnMap}
+            >
+              Choose location on map
+            </button>
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <div className="space-y-4">
@@ -109,20 +171,20 @@ const Shipping = () => {
                       className="input-box"
                     />
                   </div>
-                  {/* <div className="w-full">
+                  <div className="w-full">
                     <label htmlFor="" className="text-gray-600 mb-2 block">
                       State <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="state"
                       type="text"
-                      value={state}
+                      value={region}
                       onChange={(e) => {
-                        setState(e.target.value);
+                        setRegion(e.target.value);
                       }}
                       className="input-box"
                     />
-                  </div> */}
+                  </div>
                 </div>
               </form>
             </div>
@@ -134,7 +196,9 @@ const Shipping = () => {
             <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</p>
+            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">
+              order summary
+            </p>
             {cartItems.map((item) => {
               return (
                 <div className="space-y-2" key={item.product}>
@@ -174,7 +238,10 @@ const Shipping = () => {
                 id="agreement"
                 className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
               />
-              <label htmlFor="agreement" className="text-gray-600 ml-3 cursor-pointer text-sm">
+              <label
+                htmlFor="agreement"
+                className="text-gray-600 ml-3 cursor-pointer text-sm"
+              >
                 Agree to our
                 <a href="/" className="text-primary pl-1">
                   terms & condition

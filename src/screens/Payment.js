@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateOrder } from "../actions/createOrder";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { toast } from "react-toastify";
 
@@ -40,6 +40,7 @@ const Payment = () => {
     );
     setLoader(loading);
   };
+
   if (error) {
     toast.error(error, {
       toastId: customId,
@@ -47,65 +48,73 @@ const Payment = () => {
   } else if (success) {
     navigate(`/order/${order._id}`);
   }
-  console.log(cartItems);
   return (
     <div>
-      <Breadcrumbs page="Payment" />
+      <Breadcrumbs page="confirm details" />
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="col-span-12 md:col-span-8 space-y-4">
           <div className="border border-gray-200 p-4 rounded">
-            <p className="font-medium text-gray-400">Shipping</p>
-            <div className="pt-2">
-              <div>
-                <span className="font-normal">Name:</span>
-                <span className="font-light text-sm">
-                  {shippingDetails.fullName}
-                </span>
-              </div>
-              <div>
-                <span className="font-normal">Address:</span>
-                <span className="font-light text-sm">
-                  {`${shippingDetails.address}, ${shippingDetails.city}, ${shippingDetails.state}`}
-                </span>
-              </div>
+            <p className="text-sm font-medium text-gray-800 pb-2 flex items-center justify-between">
+              DELIVERY DETAILS
+              <Link to="/shipping" className="text-primary text-xs">
+                Change
+              </Link>
+            </p>
+            <hr />
+            <div className="pt-2 space-y-1">
+              <p className="font-medium text-xs">{shippingDetails.fullName}</p>
+
+              <p className="font-medium text-xs text-gray-400">
+                {`${shippingDetails.address}, ${shippingDetails.city}, ${shippingDetails.region}`}
+              </p>
+              <p className="font-medium text-xs text-gray-400">
+                {shippingDetails.phone}
+              </p>
             </div>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="font-medium text-gray-400">Payment</p>
+            <p className="text-sm font-medium text-gray-800 pb-2 flex items-center justify-between">
+              PAYMENT METHOD
+              <Link to="/payment" className="text-primary text-xs">
+                Change
+              </Link>
+            </p>
+            <hr />
             <div className="pt-2">
-              <span className="font-normal">Method:</span>{" "}
-              <span className="font-light text-sm">{paymentMethod}</span>
+              <p className="font-medium text-xs text-gray-400">
+                {paymentMethod}
+              </p>
             </div>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="font-medium text-gray-400">Ordered items</p>
+            <p className="text-sm font-medium text-gray-800 pb-1 flex items-center justify-between">
+              ITEMS IN CART
+              <Link to="/cart/:id" className="text-primary text-xs">
+                Change
+              </Link>
+            </p>
+            <hr />
             {cartItems?.map((item) => {
               return (
                 <div
-                  className="flex-col flex md:flex-row items-center justify-between gap-1 py-2 border-b border-gray-100"
+                  className="flex-col flex md:flex-row items-center justify-between gap-1 py-2"
                   key={item.product}
                 >
-                  <div className="flex items-center justify-center gap-1">
-                    <div className="w-20">
-                      <img
-                        className="w-full"
-                        src={item.image}
-                        alt={item.name}
-                      />
-                    </div>
-
-                    <p className="text-gray-700 font-semibold text-xs md:text-base">
-                      {item.name}
-                    </p>
-                    <p className="text-green-700 font-semibold text-xs md:text-base">
-                      {item.condition}
-                    </p>
+                  <div className="w-20">
+                    <img className="w-full" src={item.image} alt={item.name} />
                   </div>
-                  <div className="text-gray-600 mr-4">
-                    <span className="text-gray-700 text-xs md:text-base pr-2">
+                  <div>
+                    <span className="text-gray-400 text-xs">{item.name}</span>
+                    <span className="text-green-400 text-xs">
+                      {item.condition}
+                    </span>
+                  </div>
+
+                  <div className="text-gray-400 mr-4">
+                    <span className="text-gray-400 text-xs pr-2">
                       {item.price} x {item.qty}
                     </span>
-                    <span className="text-gray-700 font-semibold text-xs md:text-base">
+                    <span className="text-gray-400 font-semibold text-xs">
                       = ₦{item.price * item.qty}
                     </span>
                   </div>
@@ -120,39 +129,42 @@ const Payment = () => {
             <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">
-              order summary
+            <p className="text-sm font-medium text-gray-800 pb-1">
+              ITEMS IN CART
             </p>
+            <hr />
             {cartItems.map((item) => {
               return (
                 <div className="space-y-2" key={item.product}>
                   <div className="flex justify-between">
                     <div>
-                      <p className="text-gray-800 font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-600">{item.condition}</p>
+                      <p className="text-gray-400 text-xs">{item.name}</p>
+                      <p className="text-xs text-gray-400">{item.condition}</p>
                     </div>
-                    <p className="text-gray-600">X{item.qty}</p>
-                    <p className="text-gray-800 font-medium">₦{item.price}</p>
+                    <p className="text-gray-400 text-xs">X{item.qty}</p>
+                    <p className="text-gray-400 font-medium text-xs">
+                      ₦{item.price}
+                    </p>
                   </div>
                 </div>
               );
             })}
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
-              <p>Subtotal</p>
-              <p>
+            <div className="flex justify-between border-b border-gray-200 text-gray-400 font-medium py-3">
+              <p className="text-xs">Subtotal</p>
+              <p className="text-xs">
                 ({cartItems.reduce((a, c) => a + c.qty, 0)} item(s)): ₦
                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+            <div className="flex justify-between border-b border-gray-200 text-gray-400 font-medium py-3 text-xs">
               <p>Shipping</p>
               <p>{shippingDetails.shippingPrice}</p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-b border-gray-200 text-gray-400 font-medium py-3 uppercase text-xs">
               <p>VAT</p>
               <p>{shippingDetails.taxPrice}</p>
             </div>
-            <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-gray-200 text-gray-400 font-medium py-3 uppercase text-xs">
               <p className="font-semibold">Total</p>
               <p>₦{shippingDetails.totalPrice}</p>
             </div>
@@ -164,7 +176,7 @@ const Payment = () => {
               />
               <label
                 htmlFor="agreement"
-                className="text-gray-600 ml-3 cursor-pointer text-sm"
+                className="text-gray-400 ml-3 cursor-pointer text-xs"
               >
                 Agree to our
                 <a href="/" className="text-primary pl-1">
