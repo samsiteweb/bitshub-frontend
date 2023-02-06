@@ -34,6 +34,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import PrivacyPolicy from "./screens/PrivacyPolicy";
 import FAQ from "./screens/FAQ";
 import TermsCondition from "./screens/TermsCondition";
+import TrackOrder from "./components/TrackOrder";
 
 function App() {
   return (
@@ -56,6 +57,8 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/terms-condition" element={<TermsCondition />} />
+        <Route path="/track-order" element={<TrackOrder />} />
+
 
         <Route element={<PrivateRoute />}>
           <Route

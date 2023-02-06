@@ -22,7 +22,7 @@ const Footer = () => {
                   <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
                     Wishlist
                   </a>
-                  <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
+                  <a href="/track-order" className="text-base text-gray-500 hover:text-gray-900 block">
                     Track Order
                   </a>
                   <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
