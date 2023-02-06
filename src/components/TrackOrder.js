@@ -4,7 +4,6 @@ import Breadcrumbs from "./Breadcrumbs";
 
 
 const TrackOrder = () => {
-    // const steps = [""]
     return (
     <div className=" container h-screen w-full">
                 <div>
