@@ -7,6 +7,7 @@ import {
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import {
+  userAddressMapReducer,
   userDetailsReducer,
   userRegisterReducer,
   userSignInReducer,
@@ -50,6 +51,7 @@ const reducer = combineReducers({
   orderMineList: orderMineListReducer,
   userUpdateProfile: userUpdateProfileReducer,
   productCreate: productCreateReducer,
+  userAddressMap: userAddressMapReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

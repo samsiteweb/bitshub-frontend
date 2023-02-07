@@ -34,7 +34,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import PrivacyPolicy from "./screens/PrivacyPolicy";
 import FAQ from "./screens/FAQ";
 import TermsCondition from "./screens/TermsCondition";
+import MapScreen from "./screens/MapScreen";
 import TrackOrder from "./components/TrackOrder";
+
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
         <Route path="/product-details/:_id" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/shipping" element={<Shipping />} />
+        <Route path="/map" element={<MapScreen />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart/:_id" element={<ShoppingCart />} />
         <Route path="/payment" element={<PaymentMethod />} />

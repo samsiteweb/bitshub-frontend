@@ -7,14 +7,21 @@ import { useNavigate } from "react-router-dom";
 import { savePaymentMethod } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 import Breadcrumbs from "../components/Breadcrumbs";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 
 const PaymentMethod = () => {
-  const [paymentMethod, setPaymentMethod] = useState("PayPal");
+  const [paymentMethod, setPaymentMethod] = useState("paystack");
   const cart = useSelector((state) => state?.cart);
   const { shippingDetails } = cart;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleChange = (event) => {
+    setPaymentMethod(event.target.value);
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
@@ -36,47 +43,37 @@ const PaymentMethod = () => {
             Select payment method
           </p>
         </div>
-        <form className="" onSubmit={submitHandler}>
-          <div className="flex items-center justify-center gap-4 py-20">
-            <div className="w-24 h-24 p-4 border-primary border rounded flex items-center justify-center gap-1">
-              {/* <img className="w-full" src={creditCard} alt="/" /> */}
-              <input
-                type="radio"
-                id="paypal"
-                value="PayPal"
-                name="paymentMethod"
-                required
-                checked
-                onChange={(e) => {
-                  setPaymentMethod(e.target.value);
-                }}
-              />
-              <label htmlFor="paypal">PayPal</label>
-            </div>
-            <div className="w-24 h-24 p-4 border-primary border rounded flex items-center justify-center gap-1">
-              {/* <img className="w-full" src={paypal} alt="/" /> */}
-              <input
-                type="radio"
-                id="stripe"
-                value="Stripe"
-                name="paymentMethod"
-                required
-                onChange={(e) => {
-                  setPaymentMethod(e.target.value);
-                }}
-              />
-              <label htmlFor="stripe">Stripe</label>
-            </div>
-          </div>
-          <div className="mb-44">
-            <Button
-              className="p-2 w-full"
-              primary
-              onClick={submitHandler}
-              children="continue"
+
+        <FormControl>
+          {/* <FormLabel id="demo-controlled-radio-buttons-group">Method</FormLabel> */}
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
+            value={paymentMethod}
+            onChange={handleChange}
+          >
+            <FormControlLabel
+              value="paystack"
+              control={<Radio />}
+              label="Paystack"
             />
-          </div>
-        </form>
+            <FormControlLabel
+              disabled
+              value="cash"
+              control={<Radio />}
+              label="Cash on delivery"
+            />
+          </RadioGroup>
+        </FormControl>
+
+        <div className="my-4">
+          <Button
+            className="py-2 px-4 text-sm"
+            primary
+            onClick={submitHandler}
+            children="continue"
+          />
+        </div>
       </div>
     </div>
   );

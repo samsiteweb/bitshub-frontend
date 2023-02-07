@@ -7,6 +7,9 @@ import Button from "../components/Button";
 import { detailsOrder, verifyOrder } from "../actions/createOrder";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/modals/MessageBox";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+
 import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
 const OrderDetails = () => {
@@ -22,7 +25,8 @@ const OrderDetails = () => {
   const { loading, error, order } = orderDetails;
   const { userInfo } = useSelector((state) => state?.userSignin);
 
-  const PUBLIC_KEY_TEST = "pk_test_d1ea6075f9db65a1983a5d0c18fceda9d63d4672";
+  // const PUBLIC_KEY_TEST = "pk_test_d1ea6075f9db65a1983a5d0c18fceda9d63d4672";
+  const PUBLIC_KEY_TEST = process.env.REACT_APP_PUBLIC_KEY_TEST;
 
   const config = {
     reference: orderId,
@@ -66,58 +70,66 @@ const OrderDetails = () => {
       <div className="container grid grid-cols-1 md:grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="col-span-12 md:col-span-8 space-y-4">
           <div className="border border-gray-200 p-4 rounded">
-            <p className="font-medium text-gray-400">Order</p>
+            <p className="font-medium">ORDER</p>
+            <hr />
             <div className="pt-2">
-              <div>
-                <span className="font-normal">Order Id: </span>
-                <span className="font-light text-sm">{order?._id}</span>
-              </div>
+              <p className="font-medium text-xs">{order?._id}</p>
             </div>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="font-medium text-gray-400">Shipping details</p>
+            <p className="text-sm font-medium text-gray-800 pb-2">
+              DELIVERY DETAILS
+            </p>
+            <hr />
             <div className="pt-2">
-              <div>
-                <span className="font-normal">Name: </span>
-                <span className="font-light text-sm">
-                  {order?.shippingDetails?.fullName}
-                </span>
-              </div>
-              <div>
-                <span className="font-normal">Address: </span>
-                <span className="font-light text-sm">
-                  {`${order?.shippingDetails?.address}, ${order?.shippingDetails?.city}, ${order?.shippingDetails?.state}`}
-                </span>
+              <div className="pt-2 space-y-1">
+                <p className="font-medium text-xs">
+                  {order?.shippingDetails.fullName}
+                </p>
+
+                <p className="font-medium text-xs text-gray-400">
+                  {`${order?.shippingDetails.address}, ${order?.shippingDetails.city}, ${order?.shippingDetails.region}`}
+                </p>
+                <p className="font-medium text-xs text-gray-400">
+                  {order?.shippingDetails.phone}
+                </p>
               </div>
               <div>
                 {order?.isDelivered ? (
-                  <MessageBox variant="success">
-                    Delivered at {order?.deliveredAt}
-                  </MessageBox>
+                  <div className="pt-2">
+                    <Alert severity="info">
+                      Delivered at {order?.deliveredAt}
+                    </Alert>
+                  </div>
                 ) : (
-                  <MessageBox variant="danger">Not Delivered</MessageBox>
+                  <div className="pt-2">
+                    <Alert severity="info">Not Delivered</Alert>
+                  </div>
                 )}
               </div>
             </div>
           </div>
+
           <div className="border border-gray-200 p-4 rounded">
-            <p className="font-medium text-gray-400">Payment</p>
+            <p className="text-sm font-medium text-gray-800 pb-2">
+              PAYMENT METHOD
+            </p>
+            <hr />
             <div className="pt-2">
-              <span className="font-normal">Method:</span>
-              <span className="font-light text-sm">
-                {" "}
+              <p className="font-medium text-xs text-gray-400">
                 {order?.paymentMethod}
-              </span>
+              </p>
             </div>
-            <div>
-              {order?.isPaid ? (
-                <MessageBox variant="success">
-                  Paid at: {order?.PaidAt}
-                </MessageBox>
-              ) : (
-                <MessageBox variant="danger">Not Paid!</MessageBox>
-              )}
-            </div>
+
+            {order?.isPaid ? (
+              <div className="pt-2">
+                <Alert severity="success">Paid at: {order?.PaidAt}</Alert>
+              </div>
+            ) : (
+              <div className="pt-2">
+                <Alert severity="info">Not paid!</Alert>
+              </div>
+            )}
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <p className="font-medium text-gray-400">Ordered items</p>
@@ -159,9 +171,10 @@ const OrderDetails = () => {
 
         {order?.isPaid ? (
           <div className="col-span-12 md:col-span-4">
-            <MessageBox variant="success">
-              Payment made Successfully!
-            </MessageBox>
+            <Alert severity="success">
+              <AlertTitle>Success</AlertTitle>
+              Payment made <strong>Successfully!</strong>
+            </Alert>
           </div>
         ) : (
           <div className="col-span-12 md:col-span-4">

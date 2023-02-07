@@ -24,15 +24,12 @@ const Banner = () => {
           delay: 3500,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[ Pagination, Autoplay ]}
+        modules={[ Autoplay ]}
         className="mySwiper"
       >
         <SwiperSlide>
            <div
-      className="bg-cover bg-no-repeat bg-center py-36 lg:py-48"
+      className="bg-cover bg-no-repeat bg-center py-36 lg:py-48 h-[65h]"
       style={{
         backgroundImage: "url(/assets/img-13.webp)",
       }}
@@ -58,7 +55,7 @@ const Banner = () => {
       </div>
     </div>
         </SwiperSlide> 
-         <SwiperSlide className="bg-cover pt-0 pb-0 lg:pt-6 lg:pb-10  bg-no-repeat bg-center lg:px-32"
+         <SwiperSlide className="bg-cover pt-0 pb-0 lg:pt-6 lg:pb-10  bg-no-repeat bg-center lg:px-32 h-[65h]"
       style={{
         backgroundImage: "url(https://static.vecteezy.com/system/resources/previews/002/884/043/original/abstract-red-and-black-futuristic-gaming-background-in-livestream-free-vector.jpg)",
       }}
@@ -104,7 +101,7 @@ const Banner = () => {
  </SwiperSlide>
         <SwiperSlide>
           <div
-          className="bg-cover bg-no-repeat bg-center h-96 w-96 rounded-lg"
+          className="bg-cover bg-no-repeat bg-center h-96 w-96 rounded-lg "
       style={{
         backgroundImage: "url(https://i.ebayimg.com/images/g/jkoAAOSwdwlheUbC/s-l500.png)",
       }}
@@ -126,10 +123,11 @@ const Banner = () => {
       </div>
     </div>
         </SwiperSlide>
-        <SwiperSlide className="bg-black flex  items-center flex-col justify-center pb-24 lg:pb-0">
-          <div className=" text-center  relative top-20 ">
+        <SwiperSlide className="bg-black flex  items-center flex-col justify-center pb-12 lg:pb-0">
+          <div className=" lg:h-[66vh] overflow-hidden h-[71.5vh]">
+          <div className=" text-center  relative top-16 ">
         <p className="text-red-800 text-1xl mb-3 lg:text-2xl lg:mb-4">New</p>
-        <h1 className="text-white text-4xl mb-5 lg:text-5xl lg:mb-8">MacBook Pro 13</h1>
+        <h1 className="text-white text-4xl mb-3 lg:text-5xl lg:mb-8">MacBook Pro 13</h1>
         <div >
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buy Now</button>
         </div>
@@ -137,10 +135,10 @@ const Banner = () => {
           <div>
           <img className=" lg:h-[50vh] lg:w-[50vw] mb-0 h-[50vh] w-[100%] " src="https://w0.peakpx.com/wallpaper/601/760/HD-wallpaper-apple-macbook-laptop-on-black-background-modern-technology-laptop-apple.jpg"/>
           </div>
-          
+          </div>
         </SwiperSlide>
         <SwiperSlide className="bg-black">
-          <div className="flex flex-col lg:flex-row item-center justify-between lg:px-48">
+          <div className="flex flex-col lg:flex-row item-center justify-between lg:px-48 lg:h-[66vh] h-[77vh] overflow-hidden">
             
             <div>
               <h1 className="text-slate-400 text-3xl mt-10 ml-6 leading-relaxed lg:text-6xl lg:mt-40 lg:leading-normal font-medium">GET UPTO <br /> <span className="text-slate-500">50% DISCOUNT OFF<br /><span className="text-slate-600"> YOUR FAVOURITE ACCESORIES</span></span></h1>
