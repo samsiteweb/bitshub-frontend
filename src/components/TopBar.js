@@ -12,7 +12,7 @@ const TopBar = () => {
           <Link to="/account/order-history" className="text-sm hover:text-primary transition">
             Become a vendor
           </Link>
-          <Link to="/account/order-history" className="text-sm hover:text-primary transition">
+          <Link to="/track-order" className="text-sm hover:text-primary transition">
             Track my order
           </Link>
           <p className="text-sm hover:text-primary transition">
