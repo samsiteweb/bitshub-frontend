@@ -4,6 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import { toast } from "react-toastify";
+import InputField from "../components/InputField";
+import { useFormik } from 'formik';
+import { LoginSchema } from "../utilities/schemas";
+
+
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,27 +17,39 @@ const Login = () => {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const signinData = useSelector((state) => state?.userSignin);
   const { loading, error, userInfo } = signinData;
   const customId = "custom-id-yes";
   const dispatch = useDispatch();
 
-  const signinHandler = (e) => {
-    e.preventDefault();
-    dispatch(signin(email, password));
+
+  const initialValues = {
+    email: "",
+    password: ""
+  }
+
+  const signinHandler = (data) => {
+   
+    dispatch(signin(data?.email, data?.password));
   };
 
-  toast.error(error, {
-    toastId: customId,
-  });
+  // toast.error(error, {
+  //   toastId: customId,
+  // });
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
     }
   }, [redirect, userInfo, navigate]);
+
+  const { values, errors, touched, handleChange, handleSubmit, handleBlur, resetForm } =
+  useFormik({
+      initialValues,
+      validationSchema: LoginSchema,
+      onSubmit: (data) => signinHandler(data),
+      enableReinitialize: true
+  });
 
   return (
     <div className="container py-16">
@@ -41,36 +59,28 @@ const Login = () => {
         <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
           <h2 className="text-2xl uppercase font-medium mb-1">Login</h2>
           <p className="text-gray-600 mb-6 text-sm">Login if you are a returning user</p>
-          <form onSubmit={signinHandler}>
+          <form>
             <div className="space-y-4">
-              <div>
-                <label htmlFor="email" className="text-gray-600 mb-2 block">
-                  Email
-                </label>
-                <input
+           
+              <InputField 
+                  label="Email"
                   id="email"
                   type="email"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  className="w-full block border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                  value={values.email}
+                  onChange={handleChange("email")}
+                  errorMsg={touched.email ? errors.email : undefined}
                   placeholder="Enter your email address"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="text-gray-600 mb-2 block">
-                  Password
-                </label>
-                <input
+              />
+             
+             <InputField 
+                  label="Password"
                   id="password"
                   type="password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  className="w-full block border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                  placeholder="Enter password"
-                />
-              </div>
+                  value={values.password}
+                  onChange={handleChange("password")}
+                  errorMsg={touched.password ? errors.password : undefined}
+                  placeholder="Enter your password"
+              />
             </div>
             <div className="flex items-center justify-between mt-6">
               <div className="flex items-center">
@@ -84,7 +94,7 @@ const Login = () => {
               </Link>
             </div>
             <div className="mt-4">
-              <button className="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+              <button onClick={handleSubmit} className="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
                 Login
               </button>
             </div>
