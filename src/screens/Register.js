@@ -3,15 +3,16 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userActions";
 import { toast } from "react-toastify";
+import { useFormik } from 'formik';
+import InputField from "../components/InputField";
+import { RegisterSchema } from "../utilities/schemas";
 
 const Register = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const userData = useSelector((state) => state?.registerUser);
@@ -20,73 +21,76 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const registerHandler = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
+   const initialValues = {
+    name: "",
+    email: "",
+    password: ""
+  }
+
+  const registerHandler = (data) => {
+    if (values?.password !== confirmPassword) {
       toast.error("Password and confirm password do not match!");
     } else {
-      dispatch(register(name, email, password));
+      dispatch(register(data?.name, data?.email, data?.password));
     }
   };
-  toast.error(error, {
-    toastId: customId,
-  });
+  // toast.error(error, {
+  //   toastId: customId,
+  // });
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
     }
   }, [navigate, redirect, userInfo]);
+
+
+    const { values, errors, touched, handleChange, handleSubmit, handleBlur, resetForm } =
+  useFormik({
+      initialValues,
+      validationSchema: RegisterSchema,
+      onSubmit: (data) => registerHandler(data),
+      enableReinitialize: true
+  });
+
+
   return (
     <div className="container py-16">
       <div className="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
         <h2 className="text-2xl uppercase font-medium mb-1">Create an account</h2>
         <p className="text-gray-600 mb-6 text-sm">Sign up here if you're a new customer</p>
-        <form onSubmit={registerHandler}>
+        <form>
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="text-gray-600 mb-2 block">
-                Full Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                className="w-full block border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                placeholder="John Doe"
+              <InputField 
+                  label="Full name"
+                  id="name"
+                  type="text"
+                  value={values.name}
+                  onChange={handleChange("name")}
+                  errorMsg={touched.name ? errors.name : undefined}
+                  placeholder="John Doe"
               />
-            </div>
-            <div>
-              <label htmlFor="email" className="text-gray-600 mb-2 block">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                className="w-full block border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                placeholder="example@mail.com"
+          
+              <InputField 
+                  label="Email"
+                  id="email"
+                  type="email"
+                  value={values.email}
+                  onChange={handleChange("email")}
+                  errorMsg={touched.email ? errors.email : undefined}
+                  placeholder="Enter your email address"
               />
-            </div>
-            <div>
-              <label htmlFor="password" className="text-gray-600 mb-2 block">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                className="w-full block border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                placeholder="type password"
+             <InputField 
+                  label="Password"
+                  id="password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleChange("password")}
+                  errorMsg={touched.password ? errors.password : undefined}
+                  placeholder="Enter your password"
               />
-            </div>
             <div>
-              <label htmlFor="password" className="text-gray-600 mb-2 block">
+              <label htmlFor="password" className="text-gray-600 mt-3 mb-2 block">
                 Confirm password
               </label>
               <input
@@ -100,6 +104,7 @@ const Register = () => {
               />
             </div>
           </div>
+          </div>
           <div className="flex items-center justify-between mt-6">
             <div className="flex items-center">
               <input type="checkbox" id="agreement" className="text-primary focus:ring-0 rounded-sm cursor-pointer" />
@@ -112,7 +117,7 @@ const Register = () => {
             </a>
           </div>
           <div className="mt-4">
-            <button className="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+            <button onClick={handleSubmit} className="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
               create account
             </button>
           </div>
