@@ -82,39 +82,39 @@ const TrackOrder = () => {
 
 
 
-            <div className="flex flex-col items-center pt-2 lg:pt-8 pb-12 sm:border">
+            <div className="flex flex-col items-center pt-2 lg:pt-8 pb-12">
             <div className="w-1 absolute border border-dashed border-slate-500 items-center justify-center">
-                    <div className="w-6 h-6 rounded-full mt-16 lg:mb-20 md:mb-20 md:mt-12 sm:mt-12 lg:mt-16 relative right-3 bg-green-500"></div>
-                    <div className="w-6 h-6 rounded-full mt-28 sm:mt-20 lg:mb-20 md:mb-16 relative right-3 bg-green-500"></div>
-                    <div className="w-6 h-6 rounded-full mt-20 sm:mt-16 lg:mb-20 md:mb-16 relative right-3 bg-green-500"></div>
-                    <div className="w-6 h-6 rounded-full mt-20 sm:mt-16 mb-8 sm:mb-12 lg:mb-12 md:mb-12 relative right-3 bg-green-500"></div>
+                    <div className="w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-12 lg:mb-20 md:mb-20 md:mt-12 sm:mt-12 lg:mt-16 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500"></div>
+                    <div className="w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-24 sm:mt-20 lg:mb-20 md:mb-16 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500"></div>
+                    <div className="w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-20 sm:mt-16 lg:mb-20 md:mb-16 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500"></div>
+                    <div className="w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-16 sm:mt-16 mb-8 sm:mb-12 lg:mb-12 md:mb-12 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500"></div>
                 </div>
 
-                <div className="w-[75vw] md:w-[70vw] lg:w-[45vw] flex justify-end mt-10">
-                    <div className="flex flex-col  w-[32vw] md:w-[30vw] lg:w-[20vw] px-6 border md:px-0 md:pl-4 h-[24] justify-center">
-                    <h1 className="text-slate-700 font-bold  text-[13px] lg:text-[18px]">01. Order Placement</h1>
-                    <p className="text-slate-500 font-thin  text-[10px] lg:text-[14px] lg:font-light mt-3">30 January, 2021, 8:37 AM</p>
+                <div className="w-[85vw] sm:w-[75vw] md:w-[70vw] lg:w-[45vw] flex justify-end mt-10 border">
+                    <div className="flex flex-col  w-[40vw] sm:w-[32vw] md:w-[30vw] lg:w-[20vw] sm:px-6 px-1 border md:px-0 md:pl-4 h-[24] justify-center">
+                    <h1 className="text-slate-700 font-bold  text-[12px] lg:text-[18px]">01. Order Placement</h1>
+                    <p className="text-slate-500 font-thin  text-[9px] lg:text-[14px] lg:font-light mt-3">30 January, 2021, 8:37 AM</p>
                     </div>
                 </div>
-                <div className="lg:w-[45vw] w-[75vw] md:w-[70vw] mt-10">
-                    <div className=" flex px-0 pr-4 sm:pr-6 lg:px-6 border md:w-[30vw] pl-1 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end justify-center h-[24] w-[32vw] lg:w-[20vw] flex-col mt-4">
-                        <h1 className="text-slate-700 font-bold text-[13px] lg:text-[18px] text-right">02. Processing</h1>
-                        <p className="text-slate-500 text-[10px] font-light lg:text-[14px] lg:font-light mt-3">30 january, 2021, 8:37 AM</p>
+                <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] mt-10">
+                    <div className=" flex sm:px-6 px-1 sm:pr-6 lg:px-6 border md:w-[30vw] pl-1 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end justify-center h-[24] w-[40vw] sm:w-[32vw] lg:w-[20vw] flex-col mt-4">
+                        <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px] text-right">02. Processing</h1>
+                        <p className="text-slate-500 text-[9px] font-light lg:text-[14px] lg:font-light mt-3">30 january, 2021, 8:37 AM</p>
                     </div>
                     
                     
                 </div>
-                <div className="lg:w-[45vw] w-[75vw] md:w-[70vw] flex justify-end mt-10">
-                    <div className="flex flex-col w-[32vw] lg:w-[20vw] md:px-0 md:pl-4 md:w-[30vw] h-[24] justify-center border px-0 pl-6 lg:px-6">
-                        <h1 className="text-slate-700 font-bold text-[13px] lg:text-[18px]">03. Shipping</h1>
-                        <p className="text-slate-500 font-light text-[10px] lg:text-[14px] lg:font-light mt-3">30 january, 2021, 8:37 AM</p>
+                <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] flex justify-end mt-10">
+                    <div className="flex flex-col w-[40vw] sm:w-[32vw] lg:w-[20vw] md:px-0 md:pl-4 md:w-[30vw]  h-[24] justify-center border sm:px-6 px-0 pl-1 sm:pl-6 lg:px-6">
+                        <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px]">03. Shipping</h1>
+                        <p className="text-slate-500 font-light text-[9px] lg:text-[14px] lg:font-light mt-3">30 january, 2021, 8:37 AM</p>
                     </div>
                     
                 </div>
-                <div className="lg:w-[45vw] w-[75vw] md:w-[70vw] mt-10">
-                    <div className=" flex px-0 ml-0 pr-6 lg:px-6 md:w-[30vw] pl-2 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end w-[32vw] h-[24] border justify-center lg:w-[20vw] flex-col">
-                        <h1 className="text-slate-700 font-bold text-[13px] lg:text-[18px] text-right">04. delivering</h1>
-                        <p className="text-slate-500 font-light text-[10px] lg:text-[14px] lg:font-light mt-3">30 january, 2021, 8:37 AM</p>
+                <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] mt-10">
+                    <div className=" flex sm:px-6 ml-0 pr-1 sm:pr-6 lg:px-6 md:w-[30vw] sm:pl-2 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end w-[40vw] sm:w-[32vw] h-[24] border justify-center lg:w-[20vw] flex-col">
+                        <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px] text-right">04. delivering</h1>
+                        <p className="text-slate-500 font-light text-[9px] lg:text-[14px] lg:font-light mt-3">30 january, 2021, 8:37 AM</p>
                     </div>
                     
                     
