@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../actions/cartActions";
-import { toast } from "react-toastify";
 import Button from "../components/Button";
 import CheckoutSteps from "../components/CheckoutSteps";
+import InputField from "../components/InputField";
+import { useFormik } from "formik";
+import { ShippingSchema } from "../utilities/schemas";
 
 const Shipping = () => {
   const signinData = useSelector((state) => state?.userSignin);
@@ -23,17 +25,8 @@ const Shipping = () => {
   const userAddressMap = useSelector((state) => state?.userAddressMap);
   const { address: addressMap } = userAddressMap;
 
-  const [fullName, setFullName] = useState(shippingDetails.fullName);
-  const [phone, setPhone] = useState(shippingDetails.phone);
-  const [address, setAddress] = useState(
-    addressMap?.address || shippingDetails.address
-  );
-  const [city, setCity] = useState(addressMap?.city || shippingDetails.city);
   const [lng, setLng] = useState(shippingDetails.lng);
   const [lat, setLat] = useState(shippingDetails.lat);
-  const [region, setRegion] = useState(
-    addressMap?.region || shippingDetails.region
-  );
 
   let taxPrice =
     (cartItems.reduce((a, c) => a + c.price * c.qty, 0) / 100) * 7.5;
@@ -46,9 +39,24 @@ const Shipping = () => {
 
   const dispatch = useDispatch();
 
-  const handleShipping = (e) => {
-    e.preventDefault();
+  const initialValues = {
+    fullName: shippingDetails.fullName ? shippingDetails.fullName : "",
+    phone: shippingDetails.phone ? shippingDetails.phone : "",
+    address:
+      addressMap?.address || shippingDetails.address
+        ? addressMap?.address || shippingDetails.address
+        : "",
+    city:
+      addressMap?.city || shippingDetails.city
+        ? addressMap?.city || shippingDetails.city
+        : "",
+    region:
+      addressMap?.region || shippingDetails.region
+        ? addressMap?.region || shippingDetails.region
+        : "",
+  };
 
+  const handleShipping = (info) => {
     const newLat = addressMap ? addressMap.lat : lat;
     const newLng = addressMap ? addressMap.lng : lng;
     if (addressMap) {
@@ -61,44 +69,51 @@ const Shipping = () => {
         "You did not set your location on map. Continue?"
       );
     }
+
+    const payload = {
+      fullName: info?.fullName,
+      phone: info?.phone,
+      address: info?.address,
+      city: info?.city,
+      data: info?.region,
+      subtotal,
+      taxPrice,
+      shippingPrice,
+      totalPrice,
+      lat: newLat,
+      lng: newLng,
+    };
+
     if (moveOn) {
-      dispatch(
-        saveShippingAddress({
-          fullName,
-          phone,
-          address,
-          city,
-          region,
-          subtotal,
-          taxPrice,
-          shippingPrice,
-          totalPrice,
-          lat: newLat,
-          lng: newLng,
-        })
-      );
+      dispatch(saveShippingAddress(payload));
       navigate("/payment");
     }
   };
 
   const chooseOnMap = () => {
-    dispatch(
-      saveShippingAddress({
-        fullName,
-        phone,
-        address,
-        city,
-        region,
-        subtotal,
-        taxPrice,
-        shippingPrice,
-        totalPrice,
-        lat,
-        lng,
-      })
-    );
+    const payload = {
+      fullName: values?.fullName,
+      phone: values?.phone,
+      address: values?.address,
+      city: values?.city,
+      data: values?.region,
+      subtotal,
+      taxPrice,
+      shippingPrice,
+      totalPrice,
+      lat,
+      lng,
+    };
+    dispatch(saveShippingAddress(payload));
     navigate("/map");
   };
+
+  const { values, errors, touched, handleChange, handleSubmit } = useFormik({
+    initialValues,
+    validationSchema: ShippingSchema,
+    onSubmit: (data) => handleShipping(data),
+    enableReinitialize: true,
+  });
 
   return (
     <div>
@@ -119,76 +134,66 @@ const Shipping = () => {
           </div>
           <div className="border border-gray-200 p-4 rounded">
             <div className="space-y-4">
-              <form onSubmit={handleShipping}>
+              <form>
                 <div className="py-2">
-                  <label htmlFor="name" className="text-gray-600 mb-2 block">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="fullName"
+                  <InputField
+                    label="Full Name"
+                    id="name"
+                    required
                     type="text"
-                    value={fullName}
-                    onChange={(e) => {
-                      setFullName(e.target.value);
-                    }}
-                    className="input-box"
+                    value={values.fullName}
+                    onChange={handleChange("fullName")}
+                    errorMsg={touched.fullName ? errors.fullName : undefined}
+                    placeholder="Enter your Fullname"
                   />
                 </div>
                 <div className="py-2">
-                  <label htmlFor="" className="text-gray-600 mb-2 block">
-                    Phone <span className="text-red-500">*</span>
-                  </label>
-                  <input
+                  <InputField
+                    label="Phone"
                     id="phone"
                     type="number"
-                    value={phone}
-                    onChange={(e) => {
-                      setPhone(e.target.value);
-                    }}
-                    className="input-box"
+                    required
+                    value={values.phone}
+                    onChange={handleChange("phone")}
+                    errorMsg={touched.phone ? errors.phone : undefined}
+                    placeholder="Enter your Phone no"
                   />
                 </div>
                 <div className="py-2">
-                  <label htmlFor="" className="text-gray-600 mb-2 block">
-                    Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
+                  <InputField
+                    label="Address"
                     id="address"
                     type="text"
-                    value={address}
-                    onChange={(e) => {
-                      setAddress(e.target.value);
-                    }}
-                    className="input-box"
+                    required
+                    value={values.address}
+                    onChange={handleChange("address")}
+                    errorMsg={touched.address ? errors.address : undefined}
+                    placeholder="Enter your address"
                   />
                 </div>
                 <div className="py-2 flex items-center justify-between gap-4">
                   <div className="w-full">
-                    <label htmlFor="" className="text-gray-600 mb-2 block">
-                      City <span className="text-red-500">*</span>
-                    </label>
-                    <input
+                    <InputField
+                      label="City"
                       id="city"
+                      required
                       type="text"
-                      value={city}
-                      onChange={(e) => {
-                        setCity(e.target.value);
-                      }}
-                      className="input-box"
+                      value={values.city}
+                      onChange={handleChange("city")}
+                      errorMsg={touched.city ? errors.city : undefined}
+                      placeholder="Enter your city"
                     />
                   </div>
                   <div className="w-full">
-                    <label htmlFor="" className="text-gray-600 mb-2 block">
-                      State <span className="text-red-500">*</span>
-                    </label>
-                    <input
+                    <InputField
+                      label="State"
                       id="state"
+                      required
                       type="text"
-                      value={region}
-                      onChange={(e) => {
-                        setRegion(e.target.value);
-                      }}
-                      className="input-box"
+                      value={values.region}
+                      onChange={handleChange("region")}
+                      errorMsg={touched.region ? errors.region : undefined}
+                      placeholder="Enter your State"
                     />
                   </div>
                 </div>
@@ -261,7 +266,7 @@ const Shipping = () => {
               disabled={cartItems.length === 0 ? true : false}
               className="w-full p-2"
               primary
-              onClick={handleShipping}
+              onClick={handleSubmit}
             >
               Continue
             </Button>

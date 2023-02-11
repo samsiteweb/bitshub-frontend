@@ -1,7 +1,33 @@
 import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { useFormik } from 'formik';
+import InputField from "../components/InputField";
+import { ContactSchema } from "../utilities/schemas";
+import TextArea from "../components/TextArea";
+
 
 const ContactScreen = () => {
+
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: ""
+  }
+
+  const contactHandler = (data) => {
+    console.log({data})
+  }
+
+  const { values, errors, touched, handleChange, handleSubmit, handleBlur, resetForm } =
+  useFormik({
+      initialValues,
+      validationSchema: ContactSchema,
+      onSubmit: (data) => contactHandler(data),
+      enableReinitialize: true
+  });
+
   return (
     <div>
       <div
@@ -26,44 +52,66 @@ const ContactScreen = () => {
           <div className="">
             <div className="flex md:flex-row flex-col gap-4">
               <div className="w-full">
-                <label htmlFor="" className="text-gray-600 mb-2 block">
-                  First Name <span className="text-red-500">*</span>
-                </label>
-                <input type="text" className="input-box" />
+              <InputField 
+                  label="First Name"
+                  id="firstname"
+                  required
+                  type="text"
+                  value={values.firstName}
+                  onChange={handleChange("firstName")}
+                  errorMsg={touched.firstName ? errors.firstName : undefined}
+                  placeholder="Enter your first name"
+              />
               </div>
+        
               <div className="w-full">
-                <label htmlFor="" className="text-gray-600 mb-2 block">
-                  Last Name <span className="text-red-500">*</span>
-                </label>
-                <input type="text" className="input-box" />
+              <InputField 
+                  label="Last Name"
+                  id="lastname"
+                  type="text"
+                  required
+                  value={values.lastName}
+                  onChange={handleChange("lastName")}
+                  errorMsg={touched.lastName ? errors.lastName : undefined}
+                  placeholder="Enter your last name"
+              />
               </div>
             </div>
-
-            <div>
-              <label htmlFor="" className="text-gray-600 mb-2 block">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input type="email" className="input-box" />
-            </div>
-            <div>
-              <label htmlFor="" className="text-gray-600 mb-2 block">
-                Subject <span className="text-red-500">*</span>
-              </label>
-              <input type="text" className="input-box" />
-            </div>
-            <div>
-              <label htmlFor="" className="text-gray-600 mb-2 block">
-                Message <span className="text-red-500">*</span>
-              </label>
-              <textarea type="text" className="input-box" />
-            </div>
+            <InputField 
+                  label="Email"
+                  id="email"
+                  type="email"
+                  required
+                  value={values.email}
+                  onChange={handleChange("email")}
+                  errorMsg={touched.email ? errors.email : undefined}
+                  placeholder="Enter your email address"
+              />
+              <InputField 
+                  label="Subject"
+                  id="subject"
+                  type="text"
+                  required
+                  value={values.subject}
+                  onChange={handleChange("subject")}
+                  errorMsg={touched.subject ? errors.subject : undefined}
+                  placeholder="Enter your email address"
+              />
+             <TextArea 
+                  label="Message"
+                  required
+                  type="text"
+                  value={values.message}
+                  onChange={handleChange("message")}
+                  errorMsg={touched.message ? errors.message : undefined}
+              />
             <div className="my-8">
-              <a
-                href=""
+              <button
+                onClick={handleSubmit}
                 className="w-full block text-center bg-primary border-primary text-white border px-4 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary transition uppercase"
               >
                 Send
-              </a>
+              </button>
             </div>
           </div>
         </div>
