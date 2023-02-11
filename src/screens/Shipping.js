@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../actions/cartActions";
-import { toast } from "react-toastify";
 import Button from "../components/Button";
 import CheckoutSteps from "../components/CheckoutSteps";
 import InputField from "../components/InputField";
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 import { ShippingSchema } from "../utilities/schemas";
 
 const Shipping = () => {
@@ -26,29 +25,36 @@ const Shipping = () => {
   const userAddressMap = useSelector((state) => state?.userAddressMap);
   const { address: addressMap } = userAddressMap;
 
-
- 
   const [lng, setLng] = useState(shippingDetails.lng);
   const [lat, setLat] = useState(shippingDetails.lat);
 
-
   let taxPrice =
     (cartItems.reduce((a, c) => a + c.price * c.qty, 0) / 100) * 7.5;
+  let shippingPrice = 3000;
+  let subtotal = cartItems?.reduce((a, c) => a + c.price * c.qty, 0);
   const totalPrice =
-    cartItems.reduce((a, c) => a + c.price * c.qty, 0) + taxPrice;
-  const shippingPrice = "free";
-  const dispatch = useDispatch();
+    cartItems.reduce((a, c) => a + c.price * c.qty, 0) +
+    taxPrice +
+    shippingPrice;
 
+  const dispatch = useDispatch();
 
   const initialValues = {
     fullName: shippingDetails.fullName ? shippingDetails.fullName : "",
-    phone: shippingDetails.phone ? shippingDetails.phone :"",
-    address: (addressMap?.address || shippingDetails.address) ? (addressMap?.address || shippingDetails.address) : "",
-    city: (addressMap?.city || shippingDetails.city) ? (addressMap?.city || shippingDetails.city) : "",
-    region: (addressMap?.region || shippingDetails.region) ? (addressMap?.region || shippingDetails.region) : ""
-  }
-
-
+    phone: shippingDetails.phone ? shippingDetails.phone : "",
+    address:
+      addressMap?.address || shippingDetails.address
+        ? addressMap?.address || shippingDetails.address
+        : "",
+    city:
+      addressMap?.city || shippingDetails.city
+        ? addressMap?.city || shippingDetails.city
+        : "",
+    region:
+      addressMap?.region || shippingDetails.region
+        ? addressMap?.region || shippingDetails.region
+        : "",
+  };
 
   const handleShipping = (info) => {
     const newLat = addressMap ? addressMap.lat : lat;
@@ -70,17 +76,16 @@ const Shipping = () => {
       address: info?.address,
       city: info?.city,
       data: info?.region,
+      subtotal,
       taxPrice,
       shippingPrice,
       totalPrice,
       lat: newLat,
       lng: newLng,
-    }
-   
+    };
+
     if (moveOn) {
-      dispatch(
-        saveShippingAddress(payload)
-      );
+      dispatch(saveShippingAddress(payload));
       navigate("/payment");
     }
   };
@@ -92,24 +97,22 @@ const Shipping = () => {
       address: values?.address,
       city: values?.city,
       data: values?.region,
+      subtotal,
       taxPrice,
       shippingPrice,
       totalPrice,
       lat,
-      lng
-    }
-    dispatch(
-      saveShippingAddress(payload)
-    );
+      lng,
+    };
+    dispatch(saveShippingAddress(payload));
     navigate("/map");
   };
 
-  const { values, errors, touched, handleChange, handleSubmit, handleBlur, resetForm } =
-  useFormik({
-      initialValues,
-      validationSchema: ShippingSchema,
-      onSubmit: (data) => handleShipping(data),
-      enableReinitialize: true
+  const { values, errors, touched, handleChange, handleSubmit } = useFormik({
+    initialValues,
+    validationSchema: ShippingSchema,
+    onSubmit: (data) => handleShipping(data),
+    enableReinitialize: true,
   });
 
   return (
@@ -133,70 +136,65 @@ const Shipping = () => {
             <div className="space-y-4">
               <form>
                 <div className="py-2">
-                <InputField 
-                  label="Full Name"
-                  id="name"
-                  required
-                  type="text"
-                  value={values.fullName}
-                  onChange={handleChange("fullName")}
-                  errorMsg={touched.fullName ? errors.fullName : undefined}
-                  placeholder="Enter your Fullname"
-              />
-             
+                  <InputField
+                    label="Full Name"
+                    id="name"
+                    required
+                    type="text"
+                    value={values.fullName}
+                    onChange={handleChange("fullName")}
+                    errorMsg={touched.fullName ? errors.fullName : undefined}
+                    placeholder="Enter your Fullname"
+                  />
                 </div>
                 <div className="py-2">
-                <InputField 
-                  label="Phone"
-                  id="phone"
-                  type="number"
-                  required
-                  value={values.phone}
-                  onChange={handleChange("phone")}
-                  errorMsg={touched.phone ? errors.phone : undefined}
-                  placeholder="Enter your Phone no"
-              />
-             
+                  <InputField
+                    label="Phone"
+                    id="phone"
+                    type="number"
+                    required
+                    value={values.phone}
+                    onChange={handleChange("phone")}
+                    errorMsg={touched.phone ? errors.phone : undefined}
+                    placeholder="Enter your Phone no"
+                  />
                 </div>
                 <div className="py-2">
-                <InputField 
-                  label="Address"
-                  id="address"
-                  type="text"
-                  required
-                  value={values.address}
-                  onChange={handleChange("address")}
-                  errorMsg={touched.address ? errors.address : undefined}
-                  placeholder="Enter your address"
-              />
-             
+                  <InputField
+                    label="Address"
+                    id="address"
+                    type="text"
+                    required
+                    value={values.address}
+                    onChange={handleChange("address")}
+                    errorMsg={touched.address ? errors.address : undefined}
+                    placeholder="Enter your address"
+                  />
                 </div>
                 <div className="py-2 flex items-center justify-between gap-4">
                   <div className="w-full">
-                  <InputField 
-                  label="City"
-                  id="city"
-                  required
-                  type="text"
-                  value={values.city}
-                  onChange={handleChange("city")}
-                  errorMsg={touched.city ? errors.city : undefined}
-                  placeholder="Enter your city"
-              />
-             
+                    <InputField
+                      label="City"
+                      id="city"
+                      required
+                      type="text"
+                      value={values.city}
+                      onChange={handleChange("city")}
+                      errorMsg={touched.city ? errors.city : undefined}
+                      placeholder="Enter your city"
+                    />
                   </div>
                   <div className="w-full">
-                  <InputField 
-                  label="State"
-                  id="state"
-                  required
-                  type="text"
-                  value={values.region}
-                  onChange={handleChange("region")}
-                  errorMsg={touched.region ? errors.region : undefined}
-                  placeholder="Enter your State"
-              />
-             
+                    <InputField
+                      label="State"
+                      id="state"
+                      required
+                      type="text"
+                      value={values.region}
+                      onChange={handleChange("region")}
+                      errorMsg={touched.region ? errors.region : undefined}
+                      placeholder="Enter your State"
+                    />
                   </div>
                 </div>
               </form>
@@ -209,41 +207,44 @@ const Shipping = () => {
             <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">
+            <p className="text-gray-400 text-lg mb-4 font-medium uppercase">
               order summary
             </p>
             {cartItems.map((item) => {
               return (
                 <div className="space-y-2" key={item.product}>
-                  <div className="flex justify-between">
+                  <div className="text-xs flex justify-between">
                     <div>
-                      <p className="text-gray-800 font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-600">{item.condition}</p>
+                      <p className="text-xs text-gray-400 text-gray-800 font-medium">
+                        {item.name}
+                      </p>
                     </div>
-                    <p className="text-gray-600">X{item.qty}</p>
-                    <p className="text-gray-800 font-medium">₦{item.price}</p>
+                    <p className="text-gray-400">X{item.qty}</p>
+                    <p className="text-gray-400 font-medium">
+                      ₦{item.price.toLocaleString()}
+                    </p>
                   </div>
                 </div>
               );
             })}
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+            <div className="flex justify-between border-b border-gray-200 text-xs  text-gray-400 font-medium py-3">
               <p>Subtotal</p>
               <p>
                 ({cartItems.reduce((a, c) => a + c.qty, 0)} item(s)): ₦
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                {subtotal.toLocaleString()}
               </p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+            <div className="flex justify-between border-b border-gray-200 text-sm text-gray-400 font-medium py-3">
               <p>Shipping</p>
-              <p>{shippingPrice}</p>
+              <p>₦{shippingPrice.toLocaleString()}</p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-b border-gray-200 text-sm text-gray-400 font-medium py-3 uppercase">
               <p>VAT</p>
-              <p>{taxPrice}</p>
+              <p>₦{taxPrice.toLocaleString()}</p>
             </div>
-            <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-gray-200 text-sm text-gray-400 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>₦{totalPrice}</p>
+              <p>₦{totalPrice.toLocaleString()}</p>
             </div>
             <div className="flex items-center mb-4 mt-2">
               <input

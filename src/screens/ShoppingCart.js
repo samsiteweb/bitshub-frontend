@@ -12,6 +12,7 @@ const ShoppingCart = () => {
   const qty = Number(searchParams.get("qty"));
   const cart = useSelector((state) => state?.cart);
   const { cartItems } = cart;
+  let vat = (cartItems.reduce((a, c) => a + c.price * c.qty, 0) / 100) * 7.5;
 
   return (
     <div>
@@ -41,20 +42,25 @@ const ShoppingCart = () => {
               <p>Subtotal</p>
               <p>
                 ({cartItems.reduce((a, c) => a + c.qty, 0)} items): ₦
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                {cartItems
+                  .reduce((a, c) => a + c.price * c.qty, 0)
+                  .toLocaleString()}
               </p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-800 py-3">
               <p>Shipping</p>
-              <p>free</p>
+              <p className="text-xs text-gray-400">
+                ... Awaiting shipment details
+              </p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-800 py-3">
               <p>Tax</p>
-              <p>free</p>
+              <p>₦{vat?.toLocaleString()}</p>
             </div>
-            <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
-              <p className="font-semibold">Total</p>
-              <p>₦{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</p>
+            <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3">
+              <p className="font-semibold">TOTAL</p>
+              <p className="text-xs text-gray-400">... Awaiting shipping fee</p>
+              {/* <p>₦{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</p> */}
             </div>
 
             <Button
@@ -65,7 +71,7 @@ const ShoppingCart = () => {
               primary
               className="w-full px-8 py-2 font-medium"
             >
-              Proceed to checkout
+              Proceed to shipment
             </Button>
           </div>
         </div>

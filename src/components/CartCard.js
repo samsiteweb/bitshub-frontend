@@ -26,7 +26,9 @@ const CartCard = (props) => {
         <p className="text-gray-800 text-sm font-medium uppercase">{name}</p>
         <p className="text-gray-500 text-sm">
           <span>Price: </span>
-          <span className="text-primary font-semibold">₦{price}</span>
+          <span className="text-primary font-semibold">
+            ₦{price.toLocaleString()}
+          </span>
         </p>
         <p className="text-gray-500 text-sm">
           <span>Condition: </span>
@@ -76,7 +78,7 @@ const CartCard = (props) => {
       </div>
       <div className="flex items-center justify-between gap-4">
         <p className="text-primary text-lg font-semibold w-24">
-          ₦{price * qty}
+          ₦{(price * qty).toLocaleString()}
         </p>
 
         <div

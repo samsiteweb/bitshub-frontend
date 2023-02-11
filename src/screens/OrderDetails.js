@@ -25,7 +25,6 @@ const OrderDetails = () => {
   const { loading, error, order } = orderDetails;
   const { userInfo } = useSelector((state) => state?.userSignin);
 
-  // const PUBLIC_KEY_TEST = "pk_test_d1ea6075f9db65a1983a5d0c18fceda9d63d4672";
   const PUBLIC_KEY_TEST = process.env.REACT_APP_PUBLIC_KEY_TEST;
 
   const config = {
@@ -157,10 +156,10 @@ const OrderDetails = () => {
                   </div>
                   <div className="text-gray-600 mr-4">
                     <span className="text-gray-700 text-xs md:text-base pr-2">
-                      {item?.price} x {item?.qty}
+                      ₦{item?.price.toLocaleString()} x {item?.qty}
                     </span>
                     <span className="text-gray-700 font-semibold text-xs md:text-base">
-                      = ₦{item?.price * item?.qty}
+                      = ₦{(item?.price * item?.qty).toLocaleString()}
                     </span>
                   </div>
                 </div>
@@ -189,20 +188,23 @@ const OrderDetails = () => {
               <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
                 <p>Items</p>
                 <p>
-                  ₦{order?.orderItems?.reduce((a, c) => a + c.price * c.qty, 0)}
+                  ₦
+                  {order?.orderItems
+                    ?.reduce((a, c) => a + c.price * c.qty, 0)
+                    .toLocaleString()}
                 </p>
               </div>
-              <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+              <div className="flex justify-between border-b border-gray-200 text-gray-800 text-sm font-medium py-3">
                 <p>Shipping</p>
-                <p>{order?.shippingDetails?.shippingPrice}</p>
+                <p>₦{order?.shippingDetails?.shippingPrice.toLocaleString()}</p>
               </div>
-              <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+              <div className="flex justify-between border-b border-gray-200 text-gray-800 text-sm font-medium py-3 uppercase">
                 <p>VAT</p>
-                <p>{order?.shippingDetails?.taxPrice}</p>
+                <p>₦{order?.shippingDetails?.taxPrice.toLocaleString()}</p>
               </div>
-              <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
+              <div className="flex justify-between border-gray-200 text-gray-800 text-sm font-medium py-3 uppercase">
                 <p className="font-semibold">Total</p>
-                <p>₦{order?.shippingDetails?.totalPrice}</p>
+                <p>₦{order?.shippingDetails?.totalPrice.toLocaleString()}</p>
               </div>
 
               {orderPayError && (
