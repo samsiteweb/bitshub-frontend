@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { detailsUser, updateUserProfile } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/modals/MessageBox";
+import { toast } from "react-toastify";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 const ProfileInfo = () => {
@@ -22,9 +23,11 @@ const ProfileInfo = () => {
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState(Number);
+  const customId = "custom-id-yes";
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (!user) {
+    if (!user || successUpdate) {
       dispatch({
         type: USER_UPDATE_PROFILE_RESET,
       });
@@ -37,7 +40,7 @@ const ProfileInfo = () => {
       setDob(user.dob);
       setGender(user.gender);
     }
-  }, [dispatch, user, userInfo, navigate, error]);
+  }, [dispatch, user, userInfo, navigate, error, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -79,11 +82,10 @@ const ProfileInfo = () => {
           {errorUpdate && (
             <MessageBox variant="danger">{errorUpdate}</MessageBox>
           )}
-          {successUpdate && (
-            <MessageBox variant="success">
-              Profile updated successfully
-            </MessageBox>
-          )}
+          {successUpdate &&
+            toast.success("Profile update successful", {
+              toastId: customId,
+            })}
           <form onSubmit={submitHandler}>
             <div className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
