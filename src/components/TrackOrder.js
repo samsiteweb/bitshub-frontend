@@ -34,53 +34,6 @@ const TrackOrder = () => {
 
 
 
-        {/* <div className="container track_steps flex w-full max-h-full">
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-9 py-10">
-
-             Stack 1
-             <div className="col-span-4 w-full h-full"></div>
-             <div className="relative col-span-1 w-full flex justify-center items-center">
-                    <div className=" h-full w-1 bg-gray-300 justify-center items-center"></div>
-                    <div className="absolute w-7 h-7 rounded-full bg-green-600 z-10 text-white text-center">1</div>
-                </div>
-                <div className="col-span-4 w-full h-full">
-                    <div className="w-80 h-24 bg-white leading-loose text-slate-800 border shadow-sm rounded-md md:pl-4">
-                    <h5 className="text-lg font-medium py-3">01. Order Placement</h5>
-                    <p className="text-md sm:text-md">23 January, 2023, 13:09 PM</p>
-                </div>
-            </div>
-
-             Stack 2
-             <div className="col-span-4 w-full h-full pl-20">
-                <div className="w-80 h-24 bg-white leading-loose text-slate-800 border shadow-sm rounded-md md:pl-4">
-                    <h5 className="text-lg font-medium py-3">02. Shipping</h5>
-                    <p className="text-md sm:text-md">23 January, 2023, 13:09 PM</p>
-                </div>
-            </div>
-        <div className="relative col-span-1 w-full flex justify-center items-center">
-        <div className=" h-full w-1 bg-gray-300 justify-center items-center"></div>
-            <div className="absolute w-7 h-7 rounded-full bg-green-600 z-10 text-white text-center">2</div>
-            </div>
-                <div className="col-span-4 w-full h-full"></div>
-
-
-             Stack 3
-             <div className="col-span-4 w-full h-full"></div>
-                <div className="relative col-span-1 w-full flex justify-center items-center">
-                    <div className=" h-full w-1 bg-gray-300 justify-center items-center"></div>
-                    <div className="absolute w-7 h-7 rounded-full bg-green-600 z-10 text-white text-center">3</div>
-                </div>
-            <div className="col-span-4 w-full h-full">
-            <div className="w-80 h-24 bg-white leading-loose text-slate-800 border shadow-sm rounded-md md:pl-4">
-                <h5 className="text-lg font-medium py-3">03. Delivery</h5>
-                <p className="text-md sm:text-md">23 January, 2023, 13:09 PM</p>
-                   </div>
-               </div>
-            </div>
-
-        </div> */}
-
-
 
             <div className="flex flex-col items-center pt-2 lg:pt-8 pb-12">
             <div className="w-1 absolute border border-dashed border-slate-500 items-center justify-center">
@@ -90,12 +43,14 @@ const TrackOrder = () => {
                     <div className="w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-16 sm:mt-16 mb-8 sm:mb-12 lg:mb-12 md:mb-12 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500"></div>
                 </div>
 
-                <div className="w-[85vw] sm:w-[75vw] md:w-[70vw] lg:w-[45vw] flex justify-end mt-10 border">
+                <div className="w-[85vw] sm:w-[75vw] md:w-[70vw] lg:w-[45vw] flex justify-end mt-10">
                     <div className="flex flex-col  w-[40vw] sm:w-[32vw] md:w-[30vw] lg:w-[20vw] sm:px-6 px-1 border md:px-0 md:pl-4 h-[24] justify-center">
                     <h1 className="text-slate-700 font-bold  text-[12px] lg:text-[18px]">01. Order Placement</h1>
                     <p className="text-slate-500 font-thin  text-[9px] lg:text-[14px] lg:font-light mt-3">30 January, 2021, 8:37 AM</p>
                     </div>
                 </div>
+
+                
                 <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] mt-10">
                     <div className=" flex sm:px-6 px-1 sm:pr-6 lg:px-6 border md:w-[30vw] pl-1 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end justify-center h-[24] w-[40vw] sm:w-[32vw] lg:w-[20vw] flex-col mt-4">
                         <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px] text-right">02. Processing</h1>
