@@ -83,7 +83,7 @@ const ShopScreen = () => {
 
           {/* Products */}
 
-          <div className="h-[65vh] lg:overflow-y-scroll">
+          <div className="lg:h-[65vh] h-[60vh] sm:h-[55vh] overflow-y-scroll">
             {loading ? (
               <LoadingBox />
             ) : error ? (
