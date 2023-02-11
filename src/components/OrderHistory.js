@@ -35,7 +35,7 @@ const OrderHistory = () => {
     <div className="col-span-12 lg:col-span-9 space-y-4">
       <p className="font-semibold text-gray-800">Order History</p>
 
-      <div className="lg:sh-[60vh] h-[55vh] overflow-y-scroll">
+      <div className="lg:h-[60vh] h-[55vh] overflow-y-scroll">
         {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
