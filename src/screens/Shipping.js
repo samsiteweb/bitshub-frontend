@@ -37,9 +37,13 @@ const Shipping = () => {
 
   let taxPrice =
     (cartItems.reduce((a, c) => a + c.price * c.qty, 0) / 100) * 7.5;
+  let shippingPrice = 3000;
+  let subtotal = cartItems?.reduce((a, c) => a + c.price * c.qty, 0);
   const totalPrice =
-    cartItems.reduce((a, c) => a + c.price * c.qty, 0) + taxPrice;
-  const shippingPrice = "free";
+    cartItems.reduce((a, c) => a + c.price * c.qty, 0) +
+    taxPrice +
+    shippingPrice;
+
   const dispatch = useDispatch();
 
   const handleShipping = (e) => {
@@ -65,6 +69,7 @@ const Shipping = () => {
           address,
           city,
           region,
+          subtotal,
           taxPrice,
           shippingPrice,
           totalPrice,
@@ -84,6 +89,7 @@ const Shipping = () => {
         address,
         city,
         region,
+        subtotal,
         taxPrice,
         shippingPrice,
         totalPrice,
@@ -196,41 +202,44 @@ const Shipping = () => {
             <p className="px-4 py-3 text-sm font-semibold">Your Order</p>
           </div>
           <div className="border border-gray-200 p-4 rounded">
-            <p className="text-gray-800 text-lg mb-4 font-medium uppercase">
+            <p className="text-gray-400 text-lg mb-4 font-medium uppercase">
               order summary
             </p>
             {cartItems.map((item) => {
               return (
                 <div className="space-y-2" key={item.product}>
-                  <div className="flex justify-between">
+                  <div className="text-xs flex justify-between">
                     <div>
-                      <p className="text-gray-800 font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-600">{item.condition}</p>
+                      <p className="text-xs text-gray-400 text-gray-800 font-medium">
+                        {item.name}
+                      </p>
                     </div>
-                    <p className="text-gray-600">X{item.qty}</p>
-                    <p className="text-gray-800 font-medium">₦{item.price}</p>
+                    <p className="text-gray-400">X{item.qty}</p>
+                    <p className="text-gray-400 font-medium">
+                      ₦{item.price.toLocaleString()}
+                    </p>
                   </div>
                 </div>
               );
             })}
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+            <div className="flex justify-between border-b border-gray-200 text-xs  text-gray-400 font-medium py-3">
               <p>Subtotal</p>
               <p>
                 ({cartItems.reduce((a, c) => a + c.qty, 0)} item(s)): ₦
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                {subtotal.toLocaleString()}
               </p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3">
+            <div className="flex justify-between border-b border-gray-200 text-sm text-gray-400 font-medium py-3">
               <p>Shipping</p>
-              <p>{shippingPrice}</p>
+              <p>₦{shippingPrice.toLocaleString()}</p>
             </div>
-            <div className="flex justify-between border-b border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-b border-gray-200 text-sm text-gray-400 font-medium py-3 uppercase">
               <p>VAT</p>
-              <p>{taxPrice}</p>
+              <p>₦{taxPrice.toLocaleString()}</p>
             </div>
-            <div className="flex justify-between border-gray-200 text-gray-800 font-medium py-3 uppercase">
+            <div className="flex justify-between border-gray-200 text-sm text-gray-400 font-medium py-3 uppercase">
               <p className="font-semibold">Total</p>
-              <p>₦{totalPrice}</p>
+              <p>₦{totalPrice.toLocaleString()}</p>
             </div>
             <div className="flex items-center mb-4 mt-2">
               <input

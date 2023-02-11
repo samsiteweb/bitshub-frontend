@@ -112,10 +112,10 @@ const Payment = () => {
 
                   <div className="text-gray-400 mr-4">
                     <span className="text-gray-400 text-xs pr-2">
-                      {item.price} x {item.qty}
+                      ₦{item.price.toLocaleString()} x {item.qty}
                     </span>
                     <span className="text-gray-400 font-semibold text-xs">
-                      = ₦{item.price * item.qty}
+                      = ₦{item.price * item.qty.toLocaleString()}
                     </span>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ const Payment = () => {
                     </div>
                     <p className="text-gray-400 text-xs">X{item.qty}</p>
                     <p className="text-gray-400 font-medium text-xs">
-                      ₦{item.price}
+                      ₦{item.price.toLocaleString()}
                     </p>
                   </div>
                 </div>
@@ -153,20 +153,20 @@ const Payment = () => {
               <p className="text-xs">Subtotal</p>
               <p className="text-xs">
                 ({cartItems.reduce((a, c) => a + c.qty, 0)} item(s)): ₦
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                {shippingDetails?.subtotal?.toLocaleString()}
               </p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-400 font-medium py-3 text-xs">
               <p>Shipping</p>
-              <p>{shippingDetails.shippingPrice}</p>
+              <p>₦{shippingDetails.shippingPrice.toLocaleString()}</p>
             </div>
             <div className="flex justify-between border-b border-gray-200 text-gray-400 font-medium py-3 uppercase text-xs">
               <p>VAT</p>
-              <p>{shippingDetails.taxPrice}</p>
+              <p>₦{shippingDetails.taxPrice.toLocaleString()}</p>
             </div>
             <div className="flex justify-between border-gray-200 text-gray-400 font-medium py-3 uppercase text-xs">
               <p className="font-semibold">Total</p>
-              <p>₦{shippingDetails.totalPrice}</p>
+              <p>₦{shippingDetails.totalPrice.toLocaleString()}</p>
             </div>
             <div className="flex items-center mb-4 mt-2">
               <input
