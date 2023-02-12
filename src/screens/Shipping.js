@@ -14,6 +14,7 @@ const Shipping = () => {
   const signinData = useSelector((state) => state?.userSignin);
   const { userInfo } = signinData;
   const navigate = useNavigate();
+  const [checkBox, setCheckBox] = useState(false)
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
@@ -58,6 +59,12 @@ const Shipping = () => {
       setLat(addressMap.lat);
     }
     let moveOn = true;
+    if (!checkBox) {
+      moveOn = window.confirm(
+        "You need to accept terms and conditions before proceeding"
+      );
+      return;
+    }
     if (!newLat || !newLng) {
       moveOn = window.confirm(
         "You did not set your location on map. Continue?"
@@ -111,6 +118,7 @@ const Shipping = () => {
       onSubmit: (data) => handleShipping(data),
       enableReinitialize: true
   });
+
 
   return (
     <div>
@@ -249,6 +257,8 @@ const Shipping = () => {
               <input
                 type="checkbox"
                 id="agreement"
+                value={checkBox}
+                onClick={() => setCheckBox(!checkBox)}
                 className="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3"
               />
               <label
