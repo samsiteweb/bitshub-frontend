@@ -54,7 +54,7 @@ export const signin = (email, password) => async (dispatch) => {
     payload: { email, password },
   });
   try {
-    const { data } = await Axios.post(`${BASE_URL}/api/users/signin`, {
+    const { data} = await Axios.post(`${BASE_URL}/api/users/signin`, {
       email,
       password,
     });
@@ -64,6 +64,7 @@ export const signin = (email, password) => async (dispatch) => {
     });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
+
     dispatch({
       type: USER_SIGNIN_FAIL,
       payload:
@@ -81,6 +82,7 @@ export const signout = () => (dispatch) => {
   dispatch({
     type: USER_SIGNOUT,
   });
+
 };
 
 export const detailsUser = (userId) => async (dispatch, getState) => {
@@ -102,6 +104,13 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
       payload: data,
     });
   } catch (error) {
+    if(error?.response?.status === 401){
+      dispatch({
+        type: USER_SIGNOUT,
+      });
+      localStorage.clear()
+      return window.location.href = "/login"
+    }
     dispatch({
       type: USER_DETAILS_FAIL,
       payload:
