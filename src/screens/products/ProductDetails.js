@@ -11,13 +11,38 @@ import Rating from "../../components/Rating";
 import Button from "../../components/Button";
 import CenterModal from "../../components/modals/CenterModal";
 import ProductDetailsModal from "./ProductDetailsModal";
+// import img1 from '/img1.jpg';
 
 const ProductDetails = (props) => {
+
+  const images = [
+    {
+      id: 1,
+      imageLink: '../assets/img1.jpg'
+    },
+    {
+      id: 2,
+      imageLink: '../assets/img1.webp'
+    },
+    {
+      id: 3,
+      imageLink: '../assets/img3.webp'
+    },
+    {
+      id: 4,
+      imageLink: '../assets/img4.webp'
+    },
+    {
+      id: 5,
+      imageLink: '../assets/img5.jpg'
+    },
+  ]
   const { _id: productId } = useParams();
   const dispatch = useDispatch();
 
   const [showDetails, setShowDetails] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
+  const [index, setIndex] = useState(0);
 
   const details = useSelector((state) => state?.singleProduct);
   const handleShowDetails = () => {
@@ -52,50 +77,29 @@ const ProductDetails = (props) => {
         <div>
           <Breadcrumbs page="Product view" />
           <div className="container grid md:grid-cols-2 gap-6">
+
             <div>
-              <img src={product?.product?.image} alt={product?.product?.name} />
-              <div className="grid grid-cols-5 gap-4 mt-4">
-                <img
-                  src={product?.product?.image}
-                  alt={product?.product?.name}
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
-                <img
-                  src={product?.product?.image}
-                  alt=""
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
-                <img
-                  src={product?.product?.image}
-                  alt=""
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
-                <img
-                  src={product?.product?.image}
-                  alt=""
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
-                <img
-                  src={product?.product?.image}
-                  alt=""
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
-                <img
-                  src={product?.product?.image}
-                  alt=""
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
-                <img
-                  src={product?.product?.image}
-                  alt=""
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
-                <img
-                  src={product?.product?.image}
-                  alt=""
-                  className="w-full cursor-pointer border hover:border-primary"
-                />
+              <div className="container w-96 h-96 block">
+              <img src={images[index].imageLink} alt='test'/>
               </div>
+              <div className="grid grid-cols-5 gap-4 mt-4">
+              {images?.map((items) => (
+              <div>
+               
+                <img
+                key={items.id}
+                  id={items.id}
+                  src={items.imageLink}
+                  alt='test'
+                  onMouseEnter={() => setIndex(items.id - 1)}
+                  className="w-full cursor-pointer border hover:border-primary"
+                />
+                
+                
+              </div>
+            
+              ))}
+            </div>
             </div>
 
             <div>
