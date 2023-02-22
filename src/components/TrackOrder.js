@@ -151,38 +151,38 @@ const TrackOrder = () => {
 
                 <div className="flex flex-col items-center pt-2 lg:pt-8 pb-12">
                     <div className="w-1 absolute border border-dashed border-slate-500 items-center justify-center">
-                        <div className={`w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-12 lg:mb-20 md:mb-20 md:mt-12 sm:mt-12 lg:mt-16 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500 ${isDelivered ? "bg-green-500" : "bg-red-700"
+                        <div className={`w-4 h-4 flex items-center justify-center sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-12 lg:mb-20 md:mb-20 md:mt-12 sm:mt-12 lg:mt-16 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500 ${isDelivered ? "bg-green-500" : "bg-red-700"
                             }`}>
-                            {isDelivered ? <CheckIcon style={{
+                            {isDelivered ? <CheckIcon className="text-xs lg:text-xl" style={{
                                 color: "white"
-                            }} /> : <CloseIcon style={{
+                            }} /> : <CloseIcon className="text-xs lg:text-xl" style={{
                                 color: "white"
                             }} />}
                         </div>
-                        <div className={`w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-24 sm:mt-20 lg:mb-20 md:mb-16 relative right-2 sm:right-3 lg:right-3 md:right-3  ${isDelivered ? 'bg-green-500' :
+                        <div className={`w-4 h-4 sm:w-6 flex justify-center items-center sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-24 sm:mt-20 lg:mb-20 md:mb-16 relative right-2 sm:right-3 lg:right-3 md:right-3  ${isDelivered ? 'bg-green-500' :
                             isOrdered && !isDelivered && paymentStatus ? 'bg-yellow-500' : 'bg-red-700'
                             }`}>
-                            {isDelivered ? <CheckIcon style={{
+                            {isDelivered ? <CheckIcon className="text-xs lg:text-xl" style={{
                                 color: "white"
-                            }} /> : isOrdered && !isDelivered && paymentStatus ? <MoreVertIcon style={{
+                            }} /> : isOrdered && !isDelivered && paymentStatus ? <MoreVertIcon className="text-xs lg:text-xl" style={{
                                 color: "white"
-                            }} /> : <CloseIcon style={{
-                                color: "white"
-                            }} />}
-                        </div>
-                        <div className={`w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-20 sm:mt-16 lg:mb-20 md:mb-16 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500 ${paymentStatus ? "bg-green-500" : "bg-red-700"
-                            }`}>
-                            {paymentStatus ? <CheckIcon style={{
-                                color: "white"
-                            }} /> : <CloseIcon style={{
+                            }} /> : <CloseIcon className="text-xs lg:text-xl" style={{
                                 color: "white"
                             }} />}
                         </div>
-                        <div className={`w-4 h-4 sm:w-6 sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-16 sm:mt-16 mb-8 sm:mb-12 lg:mb-12 md:mb-12 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500  ${isOrdered ? "bg-green-500" : "bg-red-700"
+                        <div className={`w-4 h-4 sm:w-6 sm:h-6 flex justify-center items-center lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-20 sm:mt-16 lg:mb-20 md:mb-16 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500 ${paymentStatus ? "bg-green-500" : "bg-red-700"
                             }`}>
-                            {isOrdered ? <CheckIcon style={{
+                            {paymentStatus ? <CheckIcon className="text-xs lg:text-xl" style={{
                                 color: "white"
-                            }} /> : <CloseIcon style={{
+                            }} /> : <CloseIcon className="text-xs lg:text-xl" style={{
+                                color: "white"
+                            }} />}
+                        </div>
+                        <div className={`w-4 h-4 sm:w-6 flex justify-center items-center sm:h-6 lg:w-6 lg:h-6 md:w-6 md:h-6 rounded-full mt-16 sm:mt-16 mb-8 sm:mb-12 lg:mb-12 md:mb-12 relative right-2 sm:right-3 lg:right-3 md:right-3 bg-green-500  ${isOrdered ? "bg-green-500" : "bg-red-700"
+                            }`}>
+                            {isOrdered ? <CheckIcon className="text-xs lg:text-xl" style={{
+                                color: "white"
+                            }} /> : <CloseIcon className="text-xs lg:text-xl" style={{
                                 color: "white"
                             }} />}
                         </div>
@@ -199,7 +199,7 @@ const TrackOrder = () => {
                     <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] mt-10">
                         <div className=" flex sm:px-6 px-1 sm:pr-6 lg:px-6 border md:w-[30vw] pl-1 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end justify-center h-[24] w-[40vw] sm:w-[32vw] lg:w-[20vw] flex-col mt-4">
                             <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px] text-right">03. Shipping</h1>
-                            <p className="text-slate-500 text-[9px] font-light lg:text-[14px] lg:font-light mt-3">{`${isDelivered ? 'Delivered' : isOrdered && !isDelivered ? 'Ongoing' : 'Invalid'}`}</p>
+                            <p className="text-slate-500 text-[9px] font-light lg:text-[14px] lg:font-light mt-3">{`${isDelivered ? 'Shipped' : isOrdered && !isDelivered ? 'Ongoing' : 'Invalid'}`}</p>
                         </div>
 
 
