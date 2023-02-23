@@ -34,7 +34,7 @@ const PaymentMethod = () => {
   });
 
   return (
-    <div className="lg:col-span-9 shadow rounded px-6 pt-5 pb-7">
+    <div className="lg:col-span-9 shadow rounded px-6 pt-5 pb-7 ">
       <Breadcrumbs page="Payment method" />
       <div className="container">
         <CheckoutSteps step1 step2 step3 />
@@ -43,36 +43,40 @@ const PaymentMethod = () => {
             Select payment method
           </p>
         </div>
+        <div className="flex flex-col justify-between items-center pt-28 overflow-x-hidden">
+          <FormControl className="mb-40">
+            {/* <FormLabel id="demo-controlled-radio-buttons-group">Method</FormLabel> */}
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              value={paymentMethod}
+              onChange={handleChange}
+              className="flex flex-row gap-3"
+            >
+              <FormControlLabel
+                value="paystack"
+                control={<Radio />}
+                label="Paypal"
+                className="border border-orange-500 h-28 px-2 rounded-lg"
+              />
+              <FormControlLabel
+                disabled
+                value="cash"
+                control={<Radio />}
+                label="Stripe"
+                className="border border-orange-500 h-28 px-2 rounded-lg"
+              />
+            </RadioGroup>
+          </FormControl>
 
-        <FormControl>
-          {/* <FormLabel id="demo-controlled-radio-buttons-group">Method</FormLabel> */}
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="controlled-radio-buttons-group"
-            value={paymentMethod}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="paystack"
-              control={<Radio />}
-              label="Paystack"
+          <div className="my-4">
+            <Button
+              className="py-2 px-4 text-sm w-[80vw] lg:w-screen"
+              primary
+              onClick={submitHandler}
+              children="Save"
             />
-            <FormControlLabel
-              disabled
-              value="cash"
-              control={<Radio />}
-              label="Cash on delivery"
-            />
-          </RadioGroup>
-        </FormControl>
-
-        <div className="my-4">
-          <Button
-            className="py-2 px-4 text-sm"
-            primary
-            onClick={submitHandler}
-            children="continue"
-          />
+          </div>
         </div>
       </div>
     </div>
