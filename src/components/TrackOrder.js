@@ -191,7 +191,7 @@ const TrackOrder = () => {
                     <div className="w-[85vw] sm:w-[75vw] md:w-[70vw] lg:w-[45vw] flex justify-end mt-10">
                         <div className="flex flex-col  w-[40vw] sm:w-[32vw] md:w-[30vw] lg:w-[20vw] sm:px-6 px-1 border md:px-0 md:pl-4 h-[24] justify-center">
                             <h1 className="text-slate-700 font-bold  text-[12px] lg:text-[18px]">04. delivering</h1>
-                            <p className="text-slate-500 font-thin  text-[9px] lg:text-[14px] lg:font-light mt-3">{isDelivered ? `${deliveryDate}` : 'Invalid'}</p>
+                            <p className="text-slate-500 font-thin  text-[9px] lg:text-[14px] lg:font-light mt-2">{isDelivered ? `${deliveryDate}` : 'Invalid'}</p>
                         </div>
                     </div>
 
@@ -199,7 +199,7 @@ const TrackOrder = () => {
                     <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] mt-10">
                         <div className=" flex sm:px-6 px-1 sm:pr-6 lg:px-6 border md:w-[30vw] pl-1 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end justify-center h-[24] w-[40vw] sm:w-[32vw] lg:w-[20vw] flex-col mt-4">
                             <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px] text-right">03. Shipping</h1>
-                            <p className="text-slate-500 text-[9px] font-light lg:text-[14px] lg:font-light mt-3">{`${isDelivered ? 'Shipped' : isOrdered && !isDelivered ? 'Ongoing' : 'Invalid'}`}</p>
+                            <p className="text-slate-500 text-[9px] font-light lg:text-[14px] lg:font-light mt-2">{`${isDelivered ? 'Shipped' : isOrdered && !isDelivered ? 'Ongoing' : 'Invalid'}`}</p>
                         </div>
 
 
@@ -207,14 +207,14 @@ const TrackOrder = () => {
                     <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] flex justify-end mt-10">
                         <div className="flex flex-col w-[40vw] sm:w-[32vw] lg:w-[20vw] md:px-0 md:pl-4 md:w-[30vw]  h-[24] justify-center border sm:px-6 px-0 pl-1 sm:pl-6 lg:px-6">
                             <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px]">02. Payment</h1>
-                            <p className="text-slate-500 font-light text-[9px] lg:text-[14px] lg:font-light mt-3">{paymentStatus ? `${paymentDate}` : 'Invalid'}</p>
+                            <p className="text-slate-500 font-light text-[9px] lg:text-[14px] lg:font-light mt-2">{paymentStatus ? `${paymentDate}` : 'Invalid'}</p>
                         </div>
 
                     </div>
                     <div className="lg:w-[45vw] w-[85vw] sm:w-[75vw] md:w-[70vw] mt-10">
                         <div className=" flex sm:px-6 ml-0 pr-1 sm:pr-6 lg:px-6 md:w-[30vw] sm:pl-2 md:pl-0 lg:pl-0 md:px-0 md:pr-4 place-items-end w-[40vw] sm:w-[32vw] h-[24] border justify-center lg:w-[20vw] flex-col">
                             <h1 className="text-slate-700 font-bold text-[12px] lg:text-[18px] text-right">01. Order Placement</h1>
-                            <p className="text-slate-500 font-light text-[9px] lg:text-[14px] lg:font-light mt-3">{isOrdered ? `${orderDate}` : 'Invalid'}</p>
+                            <p className="text-slate-500 font-light text-[9px] lg:text-[14px] lg:font-light mt-2">{isOrdered ? `${orderDate}` : 'Invalid'}</p>
                         </div>
 
 
