@@ -5,6 +5,10 @@ import { useDispatch } from "react-redux";
 // import creditCard from "../images/credit-card.png";
 import { savePaymentMethod } from "../actions/cartActions";
 import Breadcrumbs from "../components/Breadcrumbs";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 
 const PaymentMethods = () => {
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
@@ -25,47 +29,50 @@ const PaymentMethods = () => {
             Select payment method
           </p>
         </div>
-        <form className="" onSubmit={submitHandler}>
-          <div className="flex items-center justify-center gap-4 py-20">
-            <div className="w-24 h-24 p-4 border-primary border rounded flex items-center justify-center gap-1">
-              {/* <img className="w-full" src={creditCard} alt="/" /> */}
-              <input
-                type="radio"
-                id="paypal"
-                value="PayPal"
-                name="paymentMethod"
-                required
-                checked
-                onChange={(e) => {
-                  setPaymentMethod(e.target.value);
-                }}
-              />
-              <label htmlFor="paypal">PayPal</label>
-            </div>
-            <div className="w-24 h-24 p-4 border-primary border rounded flex items-center justify-center gap-1">
-              {/* <img className="w-full" src={paypal} alt="/" /> */}
-              <input
-                type="radio"
-                id="stripe"
-                value="Stripe"
-                name="paymentMethod"
-                required
-                onChange={(e) => {
-                  setPaymentMethod(e.target.value);
-                }}
-              />
-              <label htmlFor="stripe">Stripe</label>
-            </div>
+        <FormControl className="" onSubmit={submitHandler}>
+          <div className="flex flex-col">
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              value={paymentMethod}
+              onChange={(e) => {
+                setPaymentMethod(e.target.value);
+              }}
+            >
+              <div className="p-2 rounded flex gap-4 items-center">
+                {/* <img className="w-full" src={creditCard} alt="/" /> */}
+
+                <FormControlLabel
+                  disabled
+                  id="paypal"
+                  label="Cash on hand"
+                  value="PayPal"
+                  required
+                  checked
+                  control={<Radio />}
+                />
+              </div>
+              <div className="p-2 rounded flex gap-4 items-center mb-6">
+                {/* <img className="w-full" src={paypal} alt="/" /> */}
+                <FormControlLabel
+                  id="stripe"
+                  label="Stripe"
+                  required
+                  value="Stripe"
+                  control={<Radio />}
+                />
+              </div>
+            </RadioGroup>
           </div>
           <div className="mb-44">
             <Button
-              className="p-2 w-full"
+              className="p-2 px-7"
               primary
               onClick={submitHandler}
               children="Save"
             />
           </div>
-        </form>
+        </FormControl>
       </div>
     </div>
   );
