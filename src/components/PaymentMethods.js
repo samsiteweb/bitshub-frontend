@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
 import { useDispatch } from "react-redux";
-// import paypal from "../images/paypal.png";
-// import creditCard from "../images/credit-card.png";
 import { savePaymentMethod } from "../actions/cartActions";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Radio from "@mui/material/Radio";
@@ -40,27 +38,19 @@ const PaymentMethods = () => {
               }}
             >
               <div className="p-2 rounded flex gap-4 items-center">
-                {/* <img className="w-full" src={creditCard} alt="/" /> */}
-
-                <FormControlLabel
-                  disabled
-                  id="paypal"
-                  label="Cash on hand"
-                  value="PayPal"
-                  required
-                  checked
-                  control={<Radio />}
-                />
+                   <FormControlLabel
+              value="paystack"
+              control={<Radio />}
+              label="Paystack"
+            />
               </div>
               <div className="p-2 rounded flex gap-4 items-center mb-6">
-                {/* <img className="w-full" src={paypal} alt="/" /> */}
                 <FormControlLabel
-                  id="stripe"
-                  label="Stripe"
-                  required
-                  value="Stripe"
-                  control={<Radio />}
-                />
+              disabled
+              value="cash"
+              control={<Radio />}
+              label="Cash on delivery"
+            />
               </div>
             </RadioGroup>
           </div>
