@@ -1,6 +1,9 @@
 import React from "react";
 import bitshub from "../images/bitshub.jpeg";
 import BottomBar from "./BottomBar";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SupportTwoToneIcon from '@mui/icons-material/SupportTwoTone';
+
 
 const Footer = () => {
   return (
@@ -16,16 +19,16 @@ const Footer = () => {
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">My account</h3>
                 <div className="mt-4 space-y-2">
-                  <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
+                  <a href="/account/order-history" className="text-base text-gray-500 hover:text-gray-900 block">
                     Orders
                   </a>
-                  <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
+                  <a href="/account/wishlist" className="text-base text-gray-500 hover:text-gray-900 block">
                     Wishlist
                   </a>
                   <a href="/track-order" className="text-base text-gray-500 hover:text-gray-900 block">
                     Track Order
                   </a>
-                  <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
+                  <a href="/account" className="text-base text-gray-500 hover:text-gray-900 block">
                     Manage Account
                   </a>
                   <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
@@ -38,7 +41,7 @@ const Footer = () => {
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Information</h3>
                 <div className="mt-4 space-y-2">
-                  <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
+                  <a href="/about" className="text-base text-gray-500 hover:text-gray-900 block">
                     About Us
                   </a>
                   <a href="" className="text-base text-gray-500 hover:text-gray-900 block">
@@ -58,15 +61,15 @@ const Footer = () => {
 
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Contact</h3>
-                <div className="mt-4 space-y-2">
+                <div className="mt-4 space-y-2 ">
                   <p className="text-base text-gray-500 hover:text-gray-900 block">
-                    <i className="fas fa-location pr-1"></i>18, Oremeji street, Computer Village, Ikeja
+                  <LocationOnIcon />18, Oremeji street, Computer Village, Ikeja
                   </p>
                   <p className="text-base text-gray-500 hover:text-gray-900 block">
-                    <i className="fas fa-phone pr-1"></i>+234 8103431851
+                    <a href="tel:+2348103431851"><i className="fas fa-phone pr-1"></i>+234 8103431851</a>
                   </p>
-                  <p className="text-base text-gray-500 hover:text-gray-900 block">
-                    <i className="fas fa-inbox pr-1"></i>support@bitshubsoluions.com
+                  <p className="text-base whitespace-nowrap text-gray-500 hover:text-gray-900 block">
+                    <a href="mailto:support@bitshubsolutions.com"><SupportTwoToneIcon />support@bitshubsoluions.com</a>
                   </p>
                 </div>
                 <div className="flex space-x-6 pt-4">
