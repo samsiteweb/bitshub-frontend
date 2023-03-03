@@ -36,6 +36,7 @@ import FAQ from "./screens/FAQ";
 import TermsCondition from "./screens/TermsCondition";
 import MapScreen from "./screens/MapScreen";
 import TrackOrder from "./components/TrackOrder";
+import ReturnPolicy from "./screens/ReturnPolicy";
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/terms-condition" element={<TermsCondition />} />
         <Route path="/track-order" element={<TrackOrder />} />
+        <Route path="/return-policy" element={<ReturnPolicy />} />
 
 
         <Route element={<PrivateRoute />}>
