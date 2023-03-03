@@ -37,14 +37,14 @@ const OrderHistory = () => {
 
       <div className="lg:h-[60vh] h-[55vh] overflow-y-scroll">
         {loading ? (
-        <LoadingBox></LoadingBox>
-      ) : error ? (
-        <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
-        myOrders?.map((item) => <OrderCard item={item} key={item?._id} />)
-      )}
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
+          myOrders?.map((item) => <OrderCard item={item} key={item?._id} />)
+        )}
       </div>
-      
+
     </div>
   );
 };
