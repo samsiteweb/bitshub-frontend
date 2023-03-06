@@ -1,9 +1,9 @@
 import React from "react";
 import bitshub from "../images/bitshub.jpeg";
 import BottomBar from "./BottomBar";
+import SupportIcon from '@mui/icons-material/Support';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SupportTwoToneIcon from '@mui/icons-material/SupportTwoTone';
-
+import PhoneIcon from '@mui/icons-material/Phone';
 
 const Footer = () => {
   return (
@@ -61,15 +61,15 @@ const Footer = () => {
 
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Contact</h3>
-                <div className="mt-4 space-y-2 ">
+                <div className="mt-4 space-y-4 ">
                   <p className="text-base text-gray-500 hover:text-gray-900 block">
-                  <LocationOnIcon />18, Oremeji street, Computer Village, Ikeja
+                  <LocationOnIcon sx={{ fontSize: 20, color: "black"}} />18, Oremeji street, Computer Village, Ikeja
                   </p>
                   <p className="text-base text-gray-500 hover:text-gray-900 block">
-                    <a href="tel:+2348103431851"><i className="fas fa-phone pr-1"></i>+234 8103431851</a>
+                    <a href="tel:+2348103431851"><PhoneIcon sx={{ fontSize: 20, color: "black"}} />+234 8103431851</a>
                   </p>
-                  <p className="text-base whitespace-nowrap text-gray-500 hover:text-gray-900 block">
-                    <a href="mailto:support@bitshubsolutions.com"><SupportTwoToneIcon />support@bitshubsoluions.com</a>
+                  <p className="text-base whitespace-nowrap text-gray-500 hover:text-gray-900 md:break-words block">
+                    <a href="mailto:support@bitshubsolutions.com"><SupportIcon sx={{ fontSize: 20, color: "black"}} /> support@bitshubsoluions.com</a>
                   </p>
                 </div>
                 <div className="flex space-x-6 pt-4">
