@@ -1,7 +1,7 @@
 import React from "react";
 import bitshub from "../images/bitshub.jpeg";
 import BottomBar from "./BottomBar";
-import SupportIcon from '@mui/icons-material/Support';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 
@@ -61,15 +61,15 @@ const Footer = () => {
 
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Contact</h3>
-                <div className="mt-4 space-y-4 ">
-                  <p className="text-base text-gray-500 hover:text-gray-900 block">
-                  <LocationOnIcon sx={{ fontSize: 20, color: "black"}} />18, Oremeji street, Computer Village, Ikeja
+                <div className="mt-4 space-y-3 ">
+                  <p className="text-base lg:whitespace-nowrap text-gray-500 hover:text-gray-900 block">
+                  <LocationOnIcon className="mr-3" sx={{ fontSize: 20, color: "black"}} /> 18, Oremeji street, Computer Village, Ikeja 
                   </p>
                   <p className="text-base text-gray-500 hover:text-gray-900 block">
-                    <a href="tel:+2348103431851"><PhoneIcon sx={{ fontSize: 20, color: "black"}} />+234 8103431851</a>
+                    <a href="tel:+2348103431851"><PhoneIcon className="mr-3" sx={{ fontSize: 20, color: "black"}} /> +234 8103431851</a>
                   </p>
-                  <p className="text-base whitespace-nowrap text-gray-500 hover:text-gray-900 md:break-words block">
-                    <a href="mailto:support@bitshubsolutions.com"><SupportIcon sx={{ fontSize: 20, color: "black"}} /> support@bitshubsoluions.com</a>
+                  <p className="text-base lg:whitespace-nowrap text-gray-500 hover:text-gray-900 md:break-words block">
+                    <a href="mailto:support@bitshubsolutions.com"><EmailOutlinedIcon className="mr-3" sx={{ fontSize: 20, color: "black"}} /> support@bitshubsoluions.com</a>
                   </p>
                 </div>
                 <div className="flex space-x-6 pt-4">
